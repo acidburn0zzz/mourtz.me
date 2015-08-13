@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    #page-content-wrapper {
-        word-break: break-all;
-    }
-
-    #page-content-wrapper li {
-        display: table-cell;
-        vertical-align: top;
-        padding-left: 10px;
-    }
-
-</style>
 
 <head>
 
@@ -24,13 +12,13 @@
     <title>alex mourtziapis</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="../css/simple-sidebar.css" rel="stylesheet">
 
     <!--  Font Awesome  -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +28,13 @@
     <![endif]-->
 
 </head>
+<style>
 
+
+
+
+
+</style>
 <body>
 
     <div id="wrapper">
@@ -49,21 +43,21 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                        <img src="img/cicaca_3301_symbol_logo_emblem.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
+                    <a href="../index.html">
+                        <img src="../img/cicaca_3301_symbol_logo_emblem.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
                     </a>
                 </li>
                 <li>
-                    <a href="pages/me.html">About me</a>
+                    <a href="../pages/me.html">About me</a>
                 </li>
                 <li>
                     <a href="#">Collaborations</a>
                 </li>
                 <li>
-                    <a href="pages/works.html">Works of mine</a>
+                    <a href="../pages/works.html">Works of mine</a>
                 </li>
                 <li>
-                    <a href="pages/eyecandy.html">Eye candy</a>
+                    <a href="#">Eye candy</a>
                 </li>
             </ul>
         </div>
@@ -71,28 +65,14 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <h1><a href="#" target="_blank">GLSL toolbox</a></h1>
-            <ul>
-                <li>
-                    Rectangle<br>
-                    <canvas id="glslCanvas" data-fragment-url="../shaders/shapes/rect.glsl" width="150" height="150"></canvas><br>
-                    <a href="../shaders/shapes/rect.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+            <h1>A radom pattern cycling through all RGB values.</h1>
+            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>
+            <a href="../shaders/shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+            <h1>Checkerboard Effect.</h1>
+            <canvas id="glslCanvas" data-fragment-url="../shaders/shader1.glsl" width="640" height="640"></canvas><br>
+            <a href="../shaders/shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a><br><br><br><br>
 
-                </li>
-                <li>
-                    Circle<br>
-                    <canvas id="glslCanvas" data-fragment-url="../shaders/shapes/circle.glsl" width="150" height="150"></canvas><br>
-                    <a href="../shaders/shapes/circle.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-
-                </li>
-                <li>
-                    Polygon<br>
-                    <canvas id="glslCanvas" data-fragment-url="../shaders/shapes/polygon.glsl" width="150" height="150"></canvas><br>
-                    <a href="../shaders/shapes/polygon.glsl"><i class="fa fa-file-code-o fa-2x"></i></a><br>
-                </li>
-            </ul>
-
-            <br><br><br><br><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> Toggle Menu </a>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -100,17 +80,17 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 
     <!-- GLSL canvas -->
-    <script src="js/GlslCanvas.min.js"></script>
+    <script src="../js/GlslCanvas.min.js"></script>
 
     <!--  marked js  -->
-    <script src="js/marked.min.js"></script>
-<!--            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>-->
+    <script src="../js/marked.min.js"></script>
+
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function(e) {
@@ -118,21 +98,7 @@
             $("#wrapper").toggleClass("toggled");
         });
 
-//        document.getElementById('page-content-wrapper').innerHTML = marked('# GLSL toolbox\n\n');
-
-//        var canvas0 = document.createElement('canvas');
-//        canvas0.width = canvas0.height = 150;
-//        canvas0.setAttribute("data-fragment-url","shaders/shapes/circle.glsl");
-//        document.getElementById('page-content-wrapper').appendChild(canvas0);
-//
-//        document.getElementById('page-content-wrapper').innerHTML += '&ensp;';
-//
-//        var canvas1 = document.createElement('canvas');
-//        canvas1.width = canvas1.height = 150;
-//        canvas1.setAttribute("data-fragment-url","shaders/shapes/polygon.glsl");
-//        document.getElementById('page-content-wrapper').appendChild(canvas1);
-
-             //
+     //
         window.onload = function () {
             load_all_GlslCanvas();
             render_all_GlslCanvas();
@@ -179,6 +145,7 @@
         }
 
     </script>
+
 </body>
 
 </html>

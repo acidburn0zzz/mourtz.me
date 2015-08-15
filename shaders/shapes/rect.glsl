@@ -21,8 +21,7 @@ void main(){
     st *= 4.0;
     st -= 2.0;
     vec3 color = vec3(0.0);
-    vec3 rect_color = vec3(1.0);
-    color += vec3(rect(st, vec2(sin(u_time),cos(u_time)), vec2(abs(sin(u_time*3.0))),0.01)) * rect_color;
+    color += vec3(rect(st, vec2(sin(u_time),cos(u_time)), vec2(abs(sin(u_time*3.0))),0.01));
 
     gl_FragColor = vec4(color,1.0);
 }

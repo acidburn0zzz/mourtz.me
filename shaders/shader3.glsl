@@ -12,10 +12,9 @@ precision mediump float;
 #endif
 
 uniform float u_time;
-uniform vec2 u_mouse;
 uniform vec2 u_resolution;
 
-#define DOMINOS 10
+#define DOMINOS 5
 #define flag true
 
 float Plane( vec3 p )
@@ -196,20 +195,6 @@ vec2 castRay( in vec3 ro, in vec3 rd )
   return vec2( t, m );
 }
 
-float softshadow( in vec3 ro, in vec3 rd, in float mint, in float tmax )
-{
-  float res = 1.0;
-  float t = mint;
-  for ( int i=0; i<16; i++ )
-  {
-    float h = map( ro + rd*t ).x;
-    res = min( res, 8.0*h/t );
-    t += clamp( h, 0.02, 0.10 );
-    if ( h<0.001 || t>tmax ) break;
-  }
-  return clamp( res, 0.0, 1.0 );
-}
-
 vec3 calcNormal( in vec3 pos )
 {
   vec3 eps = vec3( 0.001, 0.0, 0.0 );
@@ -250,8 +235,6 @@ vec3 render( in vec3 ro, in vec3 rd )
     float fre = pow( clamp(1.0+dot(nor, rd), 0.0, 1.0), 2.0 );
     float spe = pow(clamp( dot( ref, lig ), 0.0, 1.0 ), 16.0);
 
-    dom *= softshadow( pos, ref, 0.02, 2.5 );
-
     vec3 brdf = vec3(0.0);
     brdf += 1.20*dif*vec3(1.00, 0.90, 0.60);
     brdf += 1.20*spe*vec3(1.00, 0.90, 0.60)*dif;
@@ -270,7 +253,7 @@ void main( void )
 {
   vec2 p = 2.0*(gl_FragCoord.xy / u_resolution.xy) - 1.0;
   p.x *= u_resolution.x / u_resolution.y;
-  vec2 mo = vec2(sin(u_time/20.0),0.5);
+  vec2 mo = vec2(sin(u_time/30.0),0.5);
 
   // camera  
   float rx = -0.5 + 3.2*cos(6.0*mo.x);

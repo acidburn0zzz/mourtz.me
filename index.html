@@ -74,38 +74,51 @@
             <h1><a>[<font color="#000">GLSL</font>] Simple 2D shapes</a><h4><u>13/8/2015</u></h4></h1>
             <ul>
                 <li>
-                    Rectangle<br>
+                    Rectangle
+                    <br>
                     <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/rect.glsl" target="_blank">
-                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/rect.glsl" width="150" height="150"></canvas><br>
+                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/rect.glsl" width="150" height="150"></canvas>
+                        <br>
                     </a>
                     <a href="../shaders/shapes/rect.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
                 </li>
                 <li>
-                    Circle<br>
+                    Circle
+                    <br>
                     <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/circle.glsl" target="_blank">
-                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/circle.glsl" width="150" height="150"></canvas><br>
+                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/circle.glsl" width="150" height="150"></canvas>
+                        <br>
                     </a>
                     <a href="../shaders/shapes/circle.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
                 </li>
                 <li>
-                    Polygon<br>
+                    Polygon
+                    <br>
                     <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/polygon.glsl" target="_blank">
-                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/polygon.glsl" width="150" height="150"></canvas><br>
+                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/polygon.glsl" width="150" height="150"></canvas>
+                        <br>
                     </a>
-                    <a href="../shaders/shapes/polygon.glsl"><i class="fa fa-file-code-o fa-2x"></i></a><br>
+                    <a href="../shaders/shapes/polygon.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+                    <br>
                 </li>
                 <li>
-                    Line<br>
+                    Line
+                    <br>
                     <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/line.glsl" target="_blank">
-                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/line.glsl" width="150" height="150"></canvas><br>
+                        <canvas id="glslCanvas" data-fragment-url="shaders/shapes/line.glsl" width="150" height="150"></canvas>
+                        <br>
                     </a>
-                    <a href="../shaders/shapes/line.glsl"><i class="fa fa-file-code-o fa-2x"></i></a><br>
+                    <a href="../shaders/shapes/line.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+                    <br>
                 </li>
             </ul>
 
-            <br><br><br><br><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+            <br>
+            <br>
+            <br>
+            <br><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -123,7 +136,7 @@
 
     <!--  marked js  -->
     <script src="js/marked.min.js"></script>
-<!--            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>-->
+    <!--            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>-->
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function(e) {
@@ -131,51 +144,55 @@
             $("#wrapper").toggleClass("toggled");
         });
 
-//        document.getElementById('page-content-wrapper').innerHTML = marked('# GLSL toolbox\n\n');
+        //        document.getElementById('page-content-wrapper').innerHTML = marked('# GLSL toolbox\n\n');
 
-//        var canvas0 = document.createElement('canvas');
-//        canvas0.width = canvas0.height = 150;
-//        canvas0.setAttribute("data-fragment-url","shaders/shapes/circle.glsl");
-//        document.getElementById('page-content-wrapper').appendChild(canvas0);
-//
-//        document.getElementById('page-content-wrapper').innerHTML += '&ensp;';
-//
-//        var canvas1 = document.createElement('canvas');
-//        canvas1.width = canvas1.height = 150;
-//        canvas1.setAttribute("data-fragment-url","shaders/shapes/polygon.glsl");
-//        document.getElementById('page-content-wrapper').appendChild(canvas1);
+        //        var canvas0 = document.createElement('canvas');
+        //        canvas0.width = canvas0.height = 150;
+        //        canvas0.setAttribute("data-fragment-url","shaders/shapes/circle.glsl");
+        //        document.getElementById('page-content-wrapper').appendChild(canvas0);
+        //
+        //        document.getElementById('page-content-wrapper').innerHTML += '&ensp;';
+        //
+        //        var canvas1 = document.createElement('canvas');
+        //        canvas1.width = canvas1.height = 150;
+        //        canvas1.setAttribute("data-fragment-url","shaders/shapes/polygon.glsl");
+        //        document.getElementById('page-content-wrapper').appendChild(canvas1);
 
-             //
-        window.onload = function () {
+        //
+        window.onload = function() {
             load_all_GlslCanvas();
             render_all_GlslCanvas();
         };
 
         // Keep track of the mouse
-        var mouse = {x: 0, y: 0};
-        document.addEventListener('mousemove', function(e){
+        var mouse = {
+            x: 0,
+            y: 0
+        };
+        document.addEventListener('mousemove', function(e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY
         }, false);
 
         // Provides requestAnimationFrame in a cross browser way.
         window.requestAnimFrame = (function() {
-            return  window.requestAnimationFrame ||
-                    window.webkitRequestAnimationFrame ||
-                    window.mozRequestAnimationFrame ||
-                    window.oRequestAnimationFrame ||
-                    window.msRequestAnimationFrame ||
-                    function(callback, element) {
-                        return window.setTimeout(callback, 1000/60);
-                 };
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function(callback, element) {
+                    return window.setTimeout(callback, 1000 / 60);
+                };
         })();
 
         var billboards = [];
+
         function load_all_GlslCanvas() {
             var list = document.getElementsByTagName("canvas");
 
             // Load shaders on canvas
-            for(var i = 0; i < list.length; i++){
+            for (var i = 0; i < list.length; i++) {
                 var sandbox = new GlslCanvas(list[i]);
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
@@ -183,13 +200,31 @@
             }
         }
 
-        function render_all_GlslCanvas(){
-            for(var i = 0; i < billboards.length; i++){
+        function render_all_GlslCanvas() {
+            for (var i = 0; i < billboards.length; i++) {
                 billboards[i].setMouse(mouse);
                 billboards[i].render();
             }
             window.requestAnimFrame(render_all_GlslCanvas);
         }
+
+    </script>
+
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-55222347-5', 'auto');
+        ga('send', 'pageview');
 
     </script>
 </body>

@@ -13,29 +13,25 @@ vec2 eyePosition=vec2(0.0,20.0);
 bool inCircle(vec2 circleCenter, float radius)
 {
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
-	if(temp.x*temp.x+temp.y*temp.y<radius*radius) return true;
-	return false;
+	return temp.x*temp.x+temp.y*temp.y<radius*radius;
 }
 
 bool inBorder(vec2 circleCenter, float radius,float PIxelWidth)
 {
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
-	if((temp.x*temp.x+temp.y*temp.y>radius*radius-PIxelWidth)&&(temp.x*temp.x+temp.y*temp.y<radius*radius)) return true;
-	return false;
+	return (temp.x*temp.x+temp.y*temp.y>radius*radius-PIxelWidth)&&(temp.x*temp.x+temp.y*temp.y<radius*radius);
 }
 
 bool inMouth(vec2 circleCenter, float radius,float maxAngle)
 {
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
-	if(((temp.y>temp.x*sin(maxAngle))&&(temp.y<temp.x*sin(-maxAngle)))&&(temp.x*temp.x+temp.y*temp.y<radius*radius)) return true;
-	return false;
+	return ((temp.y>temp.x*sin(maxAngle))&&(temp.y<temp.x*sin(-maxAngle)))&&(temp.x*temp.x+temp.y*temp.y<radius*radius);
 }
 
 bool inEye(vec2 circleCenter, vec2 eyePos,float eyeRadius)
 {
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy- eyePos;
-	if((temp.x*temp.x+temp.y*temp.y<eyeRadius*eyeRadius)) return true;
-	return false;
+	return (temp.x*temp.x+temp.y*temp.y<eyeRadius*eyeRadius);
 }
 
 void main( void ) {
@@ -45,15 +41,13 @@ void main( void ) {
     vec3 pacman = vec3(0.0);
     center.x= mod(u_time*100.0,u_resolution.x);  
 	
-	if(inCircle(center, radius)){
+	if(inCircle(center, radius))
         if(!inMouth(center, radius,mod(u_time*4.0,-PI)))
             pacman = vec3(1.0,1.0,-0.0);
         else 
             pacman = vec3(0.0);   
-    }
-	else{
+	else
    		pacman = vec3(0.0);     
-    }
 	
     if(inEye(center, eyePosition,6.0)||inBorder(center, radius,100.0)&&!inMouth(center, radius,mod(u_time*4.0,-PI))) 
     	pacman = vec3(0.0);

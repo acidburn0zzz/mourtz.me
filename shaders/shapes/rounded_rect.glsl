@@ -17,6 +17,6 @@ void main( void )
   vec2 surfacePosition = gl_FragCoord.xy/u_resolution.xy;	
   vec2  p = 2.0*(surfacePosition-0.5);	
     
-  vec3 c = vec3(rounded_rect(vec2(p.x + sin(u_time)/2.0,p.y + cos(u_time)/2.0),vec2(0.15+abs(sin(u_time))/8.0),cos(u_time)));
+  vec3 c = vec3(rounded_rect(vec2(p.x,p.y),vec2(0.8*max(0.4,abs(sin(u_time)))),abs(cos(u_time))));
   gl_FragColor = vec4(c, 1.0);
 }

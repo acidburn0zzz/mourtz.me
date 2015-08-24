@@ -163,8 +163,8 @@
 
         function render_all_GlslCanvas() {
             for (var i = 0; i < billboards.length; i++) {
-                billboards[i].setMouse(mouse);
                 if (elementInViewport(list[i])) {
+                    billboards[i].setMouse(mouse);
                     billboards[i].render();
                 }
             }

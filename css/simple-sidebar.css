@@ -6,7 +6,10 @@
 
 
 /* Toggle Styles */
-
+@font-face {
+    font-family: Imagine;
+    src: url("../fonts/imagine_font.ttf");
+}
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;

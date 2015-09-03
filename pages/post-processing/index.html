@@ -32,6 +32,7 @@
     #No0_range {
         width: 320px;
     }
+
 </style>
 
 <body>
@@ -68,7 +69,8 @@
             <canvas id="No0" data-fragment-url="shader0.glsl" width="640" height="640"></canvas>
             <br>
             <input id="No0_file" accept="image/*" type="file" />
-<!--            <input id="No0_range" type="range" min="0" max="15">-->
+            Sampling
+            <input id="No0_range" type="range" min="1.0" max="20.0" value="10.0">
             <br>
             <a href="shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
@@ -140,6 +142,7 @@
                 var sandbox = new GlslCanvas(list[i]);
                 if (list[i].id === "No0") {
                     sandbox.setUniform("u_texture", No0Img);
+                    sandbox.uniform('1f', 'float',"u_sampling", document.getElementById("No0_range").value);
                 }
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
@@ -185,6 +188,10 @@
             };
 
             fr.readAsDataURL(f);
+        });
+
+        $('#No0_range').on('input', function(ev) {
+            load_all_GlslCanvas();
         });
 
     </script>

@@ -2,8 +2,6 @@
 precision mediump float;
 #endif
 
-#define SAMPLE 10.0
-
 uniform float u_sampling;
 uniform float u_time;
 uniform vec2 u_resolution;

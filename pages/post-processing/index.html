@@ -30,7 +30,10 @@
 </head>
 <style>
     #No0_range,
-    #No1_range {
+    #No1_range,
+    #No2_H_range,
+    #No2_S_range,
+    #No2_V_range {
         width: 320px;
     }
 
@@ -72,7 +75,7 @@
             <br>
             <input id="No0_file" accept="image/*" type="file" /> Sampling
             <br>
-            <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0">
+            <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0" onchange="load_all_GlslCanvas();">
             <br>
             <a href="shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
@@ -82,9 +85,23 @@
             <br>
             <input id="No1_file" accept="image/*" type="file" /> Scaling
             <br>
-            <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01">
+            <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01" onchange="load_all_GlslCanvas();">
             <br>
             <a href="shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+
+            <h1>Post Processing Experiment No.3 <h4><u>7/9/2015</u></h4></h1>
+            <p id="No2P"></p>
+            <canvas id="No2" data-fragment-url="shader2.glsl" width="640" height="640"></canvas>
+            <br>
+            <input id="No2_file" accept="image/*" type="file" /> Hue
+            <br>
+            <input id="No2_H_range" type="range" min="0.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas();"> Saturation
+            <br>
+            <input id="No2_S_range" type="range" min="0.0" max="1.0" value="0.0" step="0.01" onchange="load_all_GlslCanvas();"> Value
+            <br>
+            <input id="No2_V_range" type="range" min="0.0" max="1.0" value="0.8" step="0.01" onchange="load_all_GlslCanvas();">
+            <br>
+            <a href="shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
             <br>
             <br>
@@ -161,6 +178,10 @@
                     sandbox.setUniform("u_texture", No1Img);
                     sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
                 }
+                if (list[i].id === "No2") {
+                    sandbox.setUniform("u_texture", No1Img);
+                    sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
+                }
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
                 }
@@ -195,6 +216,8 @@
             );
         }
 
+        // First canvas
+
         $('#No0_file').on('change', function(ev) {
             var f = ev.target.files[0];
             var fr = new FileReader();
@@ -206,6 +229,8 @@
 
             fr.readAsDataURL(f);
         });
+
+        // Second canvas
 
         $('#No1_file').on('change', function(ev) {
             var f = ev.target.files[0];
@@ -219,16 +244,23 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No0_range').on('change', function(ev) {
-            load_all_GlslCanvas();
-        });
+        // Third canvas
 
-        $('#No1_range').on('change', function(ev) {
-            load_all_GlslCanvas();
+        $('#No2_file').on('change', function(ev) {
+            var f = ev.target.files[0];
+            var fr = new FileReader();
+
+            fr.onload = function(ev2) {
+                No1Img = ev2.target.result;
+                load_all_GlslCanvas();
+            };
+
+            fr.readAsDataURL(f);
         });
 
         document.getElementById('No0P').innerHTML = marked('**Pixelation** effect lowers the definition of an image and increases the size of the individual image pixels.');
         document.getElementById('No1P').innerHTML = marked('**Gaussian blur** is the result of blurring an image by a [Gaussian function](https://en.wikipedia.org/wiki/Gaussian_function).');
+        document.getElementById('No2P').innerHTML = marked('**HSV** is a common cylindrical-coordinate representations of points in an RGB color model.\n\n**RGB** to **HSV** conversion algorithm taken from [here](http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl).');
 
     </script>
 

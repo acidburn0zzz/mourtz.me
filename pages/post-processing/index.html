@@ -136,7 +136,7 @@
         //
         window.onload = function() {
             load_all_GlslCanvas();
-            render_all_GlslCanvas();
+            //render_all_GlslCanvas();
         };
 
         // Keep track of the mouse
@@ -186,6 +186,8 @@
                 }
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
+                    billboards[i].setMouse(mouse);
+                    billboards[i].render();
                 }
             }
         }
@@ -195,7 +197,7 @@
                 billboards[i].setMouse(mouse);
                 billboards[i].render();
             }
-            window.requestAnimFrame(render_all_GlslCanvas);
+            //window.requestAnimFrame(render_all_GlslCanvas);
         }
 
         function elementInViewport(el) {

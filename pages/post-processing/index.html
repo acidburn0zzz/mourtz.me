@@ -163,8 +163,10 @@
 
         var billboards = [];
         var list = document.getElementsByTagName("canvas");
-        var No0Img = "../../favicon.jpg";
-        var No1Img = "../../favicon.jpg";
+        var No0Img = "../../favicon.jpg",
+            No1Img = "../../favicon.jpg",
+            No2Img = "../../favicon.jpg";
+
 
         function load_all_GlslCanvas() {
             // Load shaders on canvas
@@ -179,7 +181,7 @@
                     sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
                 }
                 if (list[i].id === "No2") {
-                    sandbox.setUniform("u_texture", No1Img);
+                    sandbox.setUniform("u_texture", No2Img);
                     sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
                 }
                 if (sandbox.isValid) {
@@ -251,7 +253,7 @@
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
-                No1Img = ev2.target.result;
+                No2Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
 

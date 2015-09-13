@@ -103,6 +103,14 @@
             <br>
             <a href="shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
+            <h1>Post Processing Experiment No.4 <h4><u>5/9/2015</u></h4></h1>
+            <p id="No3P"></p>
+            <canvas id="No3" data-fragment-url="shader3.glsl" width="640" height="640"></canvas>
+            <br>
+            <input id="No3_file" accept="image/*" type="file" />
+            <br>
+            <a href="shader3.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+
             <br>
             <br>
             <br>
@@ -136,7 +144,7 @@
         //
         window.onload = function() {
             load_all_GlslCanvas();
-            //render_all_GlslCanvas();
+            render_all_GlslCanvas();
         };
 
         // Keep track of the mouse
@@ -165,7 +173,8 @@
         var list = document.getElementsByTagName("canvas");
         var No0Img = "../../favicon.jpg",
             No1Img = "../../favicon.jpg",
-            No2Img = "../../favicon.jpg";
+            No2Img = "../../favicon.jpg",
+            No3Img = "../../favicon.jpg";
 
 
         function load_all_GlslCanvas() {
@@ -184,10 +193,11 @@
                     sandbox.setUniform("u_texture", No2Img);
                     sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
                 }
+                if (list[i].id === "No3") {
+                    sandbox.setUniform("u_texture", No3Img);
+                }
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
-                    billboards[i].setMouse(mouse);
-                    billboards[i].render();
                 }
             }
         }
@@ -197,7 +207,7 @@
                 billboards[i].setMouse(mouse);
                 billboards[i].render();
             }
-            //window.requestAnimFrame(render_all_GlslCanvas);
+            window.requestAnimFrame(render_all_GlslCanvas);
         }
 
         function elementInViewport(el) {
@@ -262,10 +272,24 @@
             fr.readAsDataURL(f);
         });
 
+        // Fourth canvas
+
+        $('#No3_file').on('change', function(ev) {
+            var f = ev.target.files[0];
+            var fr = new FileReader();
+
+            fr.onload = function(ev2) {
+                No3Img = ev2.target.result;
+                load_all_GlslCanvas();
+            };
+
+            fr.readAsDataURL(f);
+        });
+
         document.getElementById('No0P').innerHTML = marked('**Pixelation** effect lowers the definition of an image and increases the size of the individual image pixels.');
         document.getElementById('No1P').innerHTML = marked('**Gaussian blur** is the result of blurring an image by a [Gaussian function](https://en.wikipedia.org/wiki/Gaussian_function).');
         document.getElementById('No2P').innerHTML = marked('**HSV** is a common cylindrical-coordinate representations of points in an RGB color model.\n\n**RGB** to **HSV** conversion algorithm taken from [here](http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl).');
-
+        document.getElementById('No3P').innerHTML = marked('Odd **Trasistion** Effect');
     </script>
 
     <script>

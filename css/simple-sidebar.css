@@ -6,6 +6,7 @@
 
 
 /* Toggle Styles */
+
 @font-face {
     font-family: Imagine;
     src: url("../fonts/imagine_font.ttf");
@@ -39,11 +40,11 @@
 }
 #page-content-wrapper {
     width: 100%;
-    position: absolute;
+    position: relative;
     padding: 1z5px;
 }
 #wrapper.toggled #page-content-wrapper {
-    position: absolute;
+    position: relative;
     margin-right: -250px;
 }
 
@@ -113,7 +114,6 @@
         margin-right: 0;
     }
 }
-
 #page-content-wrapper a {
     font-size: 16px;
     color: hsla(0, 0%, 60%, 0.7);
@@ -134,7 +134,7 @@
 #page-content-wrapper li p {
     padding-left: 18px;
 }
-#contact_list ul{
+#contact_list ul {
     padding-left: 0px;
 }
 #contact_list li {

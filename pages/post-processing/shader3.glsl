@@ -1,3 +1,7 @@
+/**
+ * Transistion FX 0
+ */
+
 #ifdef GL_ES
 precision mediump float;
 #endif

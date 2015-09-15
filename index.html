@@ -69,7 +69,7 @@
         <div id="page-content-wrapper">
 
             <!--  Post 1  -->
-            <h4><a href="pages/post-processing/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Post Processing</font><h4><u>3/9/2015</u></h4></h4>
+            <h4><a href="pages/post-processing/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Post Processing</font><h4><u>3/9/2015</u></h4><p id="postFx_Description"></p></h4>
             <br>
 
             <!--  Post 0  -->
@@ -221,6 +221,7 @@
             window.requestAnimFrame(render_all_GlslCanvas);
         }
 
+        document.getElementById('postFx_Description').innerHTML = marked('#### Here is a brief list of some post-FX shaders. :)');
     </script>
 
     <script>

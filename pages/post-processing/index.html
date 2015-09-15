@@ -170,7 +170,6 @@
         //
         window.onload = function() {
             load_all_GlslCanvas();
-            render_all_GlslCanvas();
         };
 
         // Keep track of the mouse
@@ -206,6 +205,9 @@
 
 
         function load_all_GlslCanvas() {
+
+            // reset "billboards" array
+            billboards = [];
             // Load shaders on canvas
             for (var i = 0; i < list.length; i++) {
                 var sandbox = new GlslCanvas(list[i]);
@@ -236,6 +238,7 @@
                     billboards.push(sandbox);
                 }
             }
+            render_all_GlslCanvas();
         }
 
         function render_all_GlslCanvas() {
@@ -245,7 +248,9 @@
                     billboards[i].render();
                 }
             }
-            window.requestAnimFrame(render_all_GlslCanvas);
+            if(!isLoadingFile){
+                window.requestAnimFrame(render_all_GlslCanvas);
+            }
         }
 
         function elementInViewport(el) {
@@ -269,12 +274,14 @@
         }
 
         // First canvas
-
+        var isLoadingFile = false;
         $('#No0_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No0Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
@@ -285,10 +292,12 @@
         // Second canvas
 
         $('#No1_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No1Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
@@ -299,10 +308,12 @@
         // Third canvas
 
         $('#No2_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No2Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
@@ -313,10 +324,12 @@
         // Fourth canvas
 
         $('#No3_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No3Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
@@ -327,10 +340,12 @@
         // Fifth canvas
 
         $('#No4_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No4Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
@@ -341,10 +356,12 @@
         // Sixth canvas
 
         $('#No5_file').on('change', function(ev) {
+            isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
             fr.onload = function(ev2) {
+                isLoadingFile = false;
                 No5Img = ev2.target.result;
                 load_all_GlslCanvas();
             };

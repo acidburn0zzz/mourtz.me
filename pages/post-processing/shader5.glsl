@@ -2,8 +2,6 @@
 precision mediump float;
 #endif
 
-#define stitching_size 8.0
-
 uniform float u_amount;
 uniform float u_time;
 uniform vec2 u_resolution;

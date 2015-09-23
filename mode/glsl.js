@@ -1,11 +1,14 @@
 CodeMirror.defineMode("glsl", function(config, parserConfig) {
   var indentUnit = config.indentUnit,
+      statementIndentUnit = parserConfig.statementIndentUnit || indentUnit,
+      dontAlignCalls = parserConfig.dontAlignCalls,
       keywords = parserConfig.keywords || {},
-      builtins = parserConfig.builtins || {},
+      builtin = parserConfig.builtin || {},
       blockKeywords = parserConfig.blockKeywords || {},
       atoms = parserConfig.atoms || {},
       hooks = parserConfig.hooks || {},
-      multiLineStrings = parserConfig.multiLineStrings;
+      multiLineStrings = parserConfig.multiLineStrings,
+      indentStatements = parserConfig.indentStatements !== false;
   var isOperatorChar = /[+\-*&%=<>!?|\/]/;
 
   var curPunc;
@@ -22,7 +25,7 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
     }
     if (/[\[\]{}\(\),;\:\.]/.test(ch)) {
       curPunc = ch;
-      return "bracket";
+      return null;
     }
     if (/\d/.test(ch)) {
       stream.eatWhile(/[\w\.]/);
@@ -42,17 +45,18 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
       stream.eatWhile(isOperatorChar);
       return "operator";
     }
-    stream.eatWhile(/[\w\$_]/);
+    stream.eatWhile(/[\w\$_\xa1-\uffff]/);
     var cur = stream.current();
     if (keywords.propertyIsEnumerable(cur)) {
       if (blockKeywords.propertyIsEnumerable(cur)) curPunc = "newstatement";
       return "keyword";
     }
-    if (builtins.propertyIsEnumerable(cur)) {
+    if (builtin.propertyIsEnumerable(cur)) {
+      if (blockKeywords.propertyIsEnumerable(cur)) curPunc = "newstatement";
       return "builtin";
     }
     if (atoms.propertyIsEnumerable(cur)) return "atom";
-    return "word";
+    return "variable";
   }
 
   function tokenString(quote) {
@@ -63,7 +67,7 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
         escaped = !escaped && next == "\\";
       }
       if (end || !(escaped || multiLineStrings))
-        state.tokenize = tokenBase;
+        state.tokenize = null;
       return "string";
     };
   }
@@ -72,7 +76,7 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
     var maybeEnd = false, ch;
     while (ch = stream.next()) {
       if (ch == "/" && maybeEnd) {
-        state.tokenize = tokenBase;
+        state.tokenize = null;
         break;
       }
       maybeEnd = (ch == "*");
@@ -88,7 +92,10 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
     this.prev = prev;
   }
   function pushContext(state, col, type) {
-    return state.context = new Context(state.indented, col, type, null, state.context);
+    var indent = state.indented;
+    if (state.context && state.context.type == "statement")
+      indent = state.context.indented;
+    return state.context = new Context(indent, col, type, null, state.context);
   }
   function popContext(state) {
     var t = state.context.type;
@@ -122,7 +129,7 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
       if (style == "comment" || style == "meta") return style;
       if (ctx.align == null) ctx.align = true;
 
-      if ((curPunc == ";" || curPunc == ":") && ctx.type == "statement") popContext(state);
+      if ((curPunc == ";" || curPunc == ":" || curPunc == ",") && ctx.type == "statement") popContext(state);
       else if (curPunc == "{") pushContext(state, stream.column(), "}");
       else if (curPunc == "[") pushContext(state, stream.column(), "]");
       else if (curPunc == "(") pushContext(state, stream.column(), ")");
@@ -132,21 +139,30 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
         while (ctx.type == "statement") ctx = popContext(state);
       }
       else if (curPunc == ctx.type) popContext(state);
-      else if (ctx.type == "}" || ctx.type == "top" || (ctx.type == "statement" && curPunc == "newstatement"))
+      else if (indentStatements &&
+               (((ctx.type == "}" || ctx.type == "top") && curPunc != ';') ||
+                (ctx.type == "statement" && curPunc == "newstatement")))
         pushContext(state, stream.column(), "statement");
       state.startOfLine = false;
       return style;
     },
 
     indent: function(state, textAfter) {
-      if (state.tokenize != tokenBase && state.tokenize != null) return 0;
-      var firstChar = textAfter && textAfter.charAt(0), ctx = state.context, closing = firstChar == ctx.type;
-      if (ctx.type == "statement") return ctx.indented + (firstChar == "{" ? 0 : indentUnit);
-      else if (ctx.align) return ctx.column + (closing ? 0 : 1);
+      if (state.tokenize != tokenBase && state.tokenize != null) return CodeMirror.Pass;
+      var ctx = state.context, firstChar = textAfter && textAfter.charAt(0);
+      if (ctx.type == "statement" && firstChar == "}") ctx = ctx.prev;
+      var closing = firstChar == ctx.type;
+      if (ctx.type == "statement") return ctx.indented + (firstChar == "{" ? 0 : statementIndentUnit);
+      else if (ctx.align && (!dontAlignCalls || ctx.type != ")")) return ctx.column + (closing ? 0 : 1);
+      else if (ctx.type == ")" && !closing) return ctx.indented + statementIndentUnit;
       else return ctx.indented + (closing ? 0 : indentUnit);
     },
 
-    electricChars: "{}"
+    electricChars: "{}",
+    blockCommentStart: "/*",
+    blockCommentEnd: "*/",
+    lineComment: "//",
+    fold: "brace"
   };
 });
 
@@ -171,7 +187,19 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
 
   function cppHook(stream, state) {
     if (!state.startOfLine) return false;
-    stream.skipToEnd();
+    for (;;) {
+      if (stream.skipTo("\\")) {
+        stream.next();
+        if (stream.eol()) {
+          state.tokenize = cppHook;
+          break;
+        }
+      } else {
+        stream.skipToEnd();
+        state.tokenize = null;
+        break;
+      }
+    }
     return "meta";
   }
 
@@ -189,10 +217,27 @@ CodeMirror.defineMode("glsl", function(config, parserConfig) {
 
   CodeMirror.defineMIME("text/x-glsl", {
     name: "glsl",
-    keywords: words(glslKeywords),
-    builtins: words(glslBuiltins),
-    blockKeywords: words("case do else for if switch while struct"),
-    atoms: words("null"),
-    hooks: {"#": cppHook}
+    keywords: words("float int bool void " +
+                    "vec2 vec3 vec4 ivec2 ivec3 ivec4 bvec2 bvec3 bvec4 " +
+                    "mat2 mat3 mat4 " +
+                    "sampler2D samplerCube " +
+                    "const attribute uniform varying " +
+                    "break continue discard return " +
+                    "for while do if else struct " +
+                    "in out inout"),
+    blockKeywords: words("for while do if else struct"),
+    builtin: words("radians degrees sin cos tan asin acos atan " +
+                    "pow exp log exp2 sqrt inversesqrt " +
+                    "abs sign floor ceil fract mod min max clamp mix step smoothstep " +
+                    "length distance dot cross normalize faceforward " +
+                    "reflect refract matrixCompMult " +
+                    "lessThan lessThanEqual greaterThan greaterThanEqual " +
+                    "equal notEqual any all not " +
+                    "texture2D textureCube"),
+    atoms: words("true false " +
+                 "u_time u_resolution u_mouse " +
+                 "gl_FragColor gl_Position gl_PointSize gl_FragCoord "),
+    hooks: {"#": cppHook},
+    modeProps: {fold: ["brace", "include"]}
   });
 }());

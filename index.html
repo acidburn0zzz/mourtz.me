@@ -68,6 +68,15 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
+            <!--  Post 2  -->
+            <div id="post2">
+                <h4><a href="pages/Mandelbrot%20set/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Mandelbrot set</font><h4><u>23/9/2015</u></h4>
+                <p id="post2_description"></p>
+                </h4>
+            </div>
+
+            <br>
+
             <!--  Post 1  -->
             <div id="post1">
                 <h4><a href="pages/post-processing/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Post Processing</font><h4><u>3/9/2015</u></h4>
@@ -138,7 +147,7 @@
             <br>
             <br>
             <br>
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -148,21 +157,23 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
+    <!-- jQuery Easing -->
+    <script src="js/jquery.easing.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- index -->
+    <script src="js/index.js"></script>
 
     <!-- GLSL canvas -->
     <script src="js/GlslCanvas.min.js"></script>
 
     <!--  marked js  -->
     <script src="js/marked.min.js"></script>
+
     <!--            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>-->
-    <!-- Menu Toggle Script -->
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
 
         //        document.getElementById('page-content-wrapper').innerHTML = marked('# GLSL toolbox\n\n');
 
@@ -229,6 +240,7 @@
         }
 
         document.getElementById('post1_description').innerHTML = marked('#### Here is a brief list of some post-FX shaders. :)');
+
     </script>
 
     <script>

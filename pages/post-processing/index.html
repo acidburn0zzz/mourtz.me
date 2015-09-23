@@ -244,7 +244,7 @@
             <br>
             <br>
             <br>
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> Toggle Menu </a>
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -269,12 +269,7 @@
     <!--  marked js  -->
     <script src="../../js/marked.min.js"></script>
 
-    <!-- Menu Toggle Script -->
     <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
 
         //
         window.onload = function() {
@@ -396,26 +391,6 @@
             if (!isLoadingFile) {
                 window.requestAnimFrame(render_all_GlslCanvas);
             }
-        }
-
-        function elementInViewport(el) {
-            var top = el.offsetTop;
-            var left = el.offsetLeft;
-            var width = el.offsetWidth;
-            var height = el.offsetHeight;
-
-            while (el.offsetParent) {
-                el = el.offsetParent;
-                top += el.offsetTop;
-                left += el.offsetLeft;
-            }
-
-            return (
-                top < (window.pageYOffset + window.innerHeight) &&
-                left < (window.pageXOffset + window.innerWidth) &&
-                (top + height) > window.pageYOffset &&
-                (left + width) > window.pageXOffset
-            );
         }
 
         var isLoadingFile = false;

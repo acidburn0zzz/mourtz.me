@@ -2,9 +2,9 @@
 precision mediump float;
 #endif
 
-uniform float time;
-uniform vec2 mouse;
-uniform vec2 resolution;
+uniform float u_time;
+uniform vec2 u_mouse;
+uniform vec2 u_resolution;
 
 float julia(vec2 pos, vec2 a)
 {
@@ -30,7 +30,7 @@ float julia(vec2 pos, vec2 a)
 }
 
 void main() {
-	vec2 pos = (gl_FragCoord.xy*2.0 -resolution) / (2.0 * resolution.y);
+	vec2 pos = (gl_FragCoord.xy*2.0 -u_resolution) / (2.0 * u_resolution.y);
 	vec4 gs = vec4(vec3(julia(pos + vec2(-0.15, 0.5), vec2(0.38, 0.3))), 1.0);
 	gl_FragColor = gs;
 }

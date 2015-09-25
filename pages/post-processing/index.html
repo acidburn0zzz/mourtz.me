@@ -57,7 +57,6 @@
         color: rgb(0, 0, 0);
         background: rgb(255, 255, 255);
     }
-
 </style>
 
 <body>
@@ -128,7 +127,7 @@
             <div id="Ex_No0">
                 <h1>Post Processing Experiment No.1 <h4><u>3/9/2015</u></h4></h1>
                 <p id="No0P"></p>
-                <canvas id="No0" data-fragment-url="shader0.glsl" width="640" height="640"></canvas>
+                <div id="No0-wrapper"></div>
                 <br>
                 <input id="No0_file" accept="image/*" type="file" /> Sampling
                 <br>
@@ -141,7 +140,7 @@
             <div id="Ex_No1">
                 <h1>Post Processing Experiment No.2 <h4><u>5/9/2015</u></h4></h1>
                 <p id="No1P"></p>
-                <canvas id="No1" data-fragment-url="shader1.glsl" width="640" height="640"></canvas>
+                <div id="No1-wrapper"></div>
                 <br>
                 <input id="No1_file" accept="image/*" type="file" /> Scaling
                 <br>
@@ -154,7 +153,7 @@
             <div id="Ex_No2">
                 <h1>Post Processing Experiment No.3 <h4><u>7/9/2015</u></h4></h1>
                 <p id="No2P"></p>
-                <canvas id="No2" data-fragment-url="shader2.glsl" width="640" height="640"></canvas>
+                <div id="No2-wrapper"></div>
                 <br>
                 <input id="No2_file" accept="image/*" type="file" /> Hue
                 <br>
@@ -171,7 +170,7 @@
             <div id="Ex_No3">
                 <h1>Post Processing Experiment No.4 <h4><u>13/9/2015</u></h4></h1>
                 <p id="No3P"></p>
-                <canvas id="No3" data-fragment-url="shader3.glsl" width="640" height="640"></canvas>
+                <div id="No3-wrapper"></div>
                 <br>
                 <input id="No3_file" accept="image/*" type="file" />
                 <br>
@@ -182,7 +181,7 @@
             <div id="Ex_No4">
                 <h1>Post Processing Experiment No.5 <h4><u>14/9/2015</u></h4></h1>
                 <p id="No4P"></p>
-                <canvas id="No4" data-fragment-url="shader4.glsl" width="640" height="640"></canvas>
+                <div id="No4-wrapper"></div>
                 <br>
                 <input id="No4_file" accept="image/*" type="file" />
                 <br>
@@ -193,7 +192,7 @@
             <div id="Ex_No5">
                 <h1>Post Processing Experiment No.6 <h4><u>15/9/2015</u></h4></h1>
                 <p id="No5P"></p>
-                <canvas id="No5" data-fragment-url="shader5.glsl" width="640" height="640"></canvas>
+                <div id="No5-wrapper"></div>
                 <br>
                 <input id="No5_file" accept="image/*" type="file" />
                 <br>
@@ -206,7 +205,7 @@
             <div id="Ex_No6">
                 <h1>Post Processing Experiment No.7 <h4><u>17/9/2015</u></h4></h1>
                 <p id="No6P"></p>
-                <canvas id="No6" data-fragment-url="shader6.glsl" width="640" height="640"></canvas>
+                <div id="No6-wrapper"></div>
                 <br>
                 <input id="No6_file" accept="image/*" type="file" />
                 <br>
@@ -219,7 +218,7 @@
             <div id="Ex_No7">
                 <h1>Post Processing Experiment No.8 <h4><u>19/9/2015</u></h4></h1>
                 <p id="No7P"></p>
-                <canvas id="No7" data-fragment-url="shader7.glsl" width="640" height="640"></canvas>
+                <div id="No7-wrapper"></div>
                 <br>
                 <input id="No7_file" accept="image/*" type="file" />
                 <br>Radius
@@ -233,7 +232,7 @@
             <div id="Ex_No8">
                 <h1>Post Processing Experiment No.9 <h4><u>20/9/2015</u></h4></h1>
                 <p id="No8P"></p>
-                <canvas id="No8" data-fragment-url="shader8.glsl" width="640" height="640"></canvas>
+                <div id="No8-wrapper"></div>
                 <br>
                 <input id="No8_file" accept="image/*" type="file" />
                 <br>
@@ -270,9 +269,92 @@
     <script src="../../js/marked.min.js"></script>
 
     <script>
+        var w = Math.floor(document.getElementById('page-content-wrapper').offsetWidth / 2);
 
-        //
-        window.onload = function() {
+        window.onload = function () {
+            AppendCanvas([{
+                    name: "id",
+                    value: "No0"
+                }], w, w, 'No0-wrapper', {
+                    src: "shader0.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No1"
+                }], w, w, 'No1-wrapper', {
+                    src: "shader1.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No2"
+                }], w, w, 'No2-wrapper', {
+                    src: "shader2.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No3"
+                }], w, w, 'No3-wrapper', {
+                    src: "shader3.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No4"
+                }], w, w, 'No4-wrapper', {
+                    src: "shader4.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No5"
+                }], w, w, 'No5-wrapper', {
+                    src: "shader5.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No6"
+                }], w, w, 'No6-wrapper', {
+                    src: "shader6.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No7"
+                }], w, w, 'No7-wrapper', {
+                    src: "shader7.glsl",
+                    isPath: true
+                },
+                undefined);
+
+            AppendCanvas([{
+                    name: "id",
+                    value: "No8"
+                }], w, w, 'No8-wrapper', {
+                    src: "shader8.glsl",
+                    isPath: true
+                },
+                undefined);
+
+
+
             load_all_GlslCanvas();
         };
 
@@ -281,19 +363,19 @@
             x: 0,
             y: 0
         };
-        document.addEventListener('mousemove', function(e) {
+        document.addEventListener('mousemove', function (e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY
         }, false);
 
         // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function() {
+        window.requestAnimFrame = (function () {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function(callback, element) {
+                function (callback, element) {
                     return window.setTimeout(callback, 1000 / 60);
                 };
         })();
@@ -394,12 +476,12 @@
         }
 
         var isLoadingFile = false;
-        $('#No0_file').on('change', function(ev) {
+        $('#No0_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No0Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -408,12 +490,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No1_file').on('change', function(ev) {
+        $('#No1_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No1Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -422,12 +504,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No2_file').on('change', function(ev) {
+        $('#No2_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No2Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -436,12 +518,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No3_file').on('change', function(ev) {
+        $('#No3_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No3Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -450,12 +532,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No4_file').on('change', function(ev) {
+        $('#No4_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No4Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -464,12 +546,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No5_file').on('change', function(ev) {
+        $('#No5_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No5Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -478,12 +560,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No6_file').on('change', function(ev) {
+        $('#No6_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No6Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -492,12 +574,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No7_file').on('change', function(ev) {
+        $('#No7_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No7Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -506,12 +588,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No8_file').on('change', function(ev) {
+        $('#No8_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No8Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -529,13 +611,12 @@
         document.getElementById('No6P').innerHTML = marked('**Gaussian noise.**');
         document.getElementById('No7P').innerHTML = marked('**Bulge/Pinch** the image in a circle.');
         document.getElementById('No8P').innerHTML = marked('**Dither** is an intentionally applied form of noise used to randomize quantization error, preventing large-scale patterns such as **color banding** in images. \n\n If you want to learn more about ordered dithering and dither in general click [here](https://www.cs.princeton.edu/courses/archive/fall00/cs426/lectures/dither/dither.pdf).');
-
     </script>
 
     <script>
-        (function(i, s, o, g, r, a, m) {
+        (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
+            i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
@@ -547,7 +628,6 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
-
     </script>
 
 </body>

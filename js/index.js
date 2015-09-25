@@ -75,3 +75,53 @@ function elementInViewport(el) {
         (left + width) > window.pageXOffset
     );
 }
+
+
+/**
+ * Append canvas to DOM
+ * @medhod #AppendCanvas
+ *
+ * @param {Array<object>} attributes - canvas's attributes
+    * @attribute {string} name - attribute's name
+    * @attribute {string} value - attribute's value
+ * @param {number} width - canvas's width
+ * @param {number} height - canvas's height
+ * @param {string} parent - canvas's parent
+ * @param {object} Frag - Fragment Shader
+    * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
+    * @attribute {string} src - source
+ * @param {object} Vert - Vertex Shader
+    * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
+    * @attribute {string} src - source
+ */
+function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
+    var canvas0 = document.createElement('canvas');
+    canvas0.width = width;
+    canvas0.height = height;
+
+    if (Frag !== undefined) {
+        if (Frag.isPath) {
+            canvas0.setAttribute("data-fragment-url", Frag.src);
+        } else {
+            canvas0.setAttribute("data-fragment", Frag.src);
+        }
+    }
+
+
+    if (Vert !== undefined){
+        if (Vert.isPath) {
+            canvas0.setAttribute("data-fragment-url", Vert.src);
+        } else {
+            canvas0.setAttribute("data-fragment", Vert.src);
+        }
+    }
+
+    if (attributes !== undefined){
+        var i=0;
+        for( ; i<attributes.length; i++){
+            canvas0.setAttribute(attributes[i].name, attributes[i].value);
+        }
+    }
+
+    document.getElementById(parent).appendChild(canvas0);
+}

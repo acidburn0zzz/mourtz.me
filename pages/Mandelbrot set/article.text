@@ -3,24 +3,24 @@
 Fractals are similar to many **natural** phenomenons in the way they repeat themselves as the viewer enlarges the picture. However, fractals such as the Mandelbrot set are created from mathematical sequences based on **complex numbers**. The set is **enormously complex** — it is said by some to be the most complex known mathematical entity.
 
 ### Here are some Captivating Fractals Found in Nature
-<table id = "">
+<table>
   <tr>
     <td>       
         **Ligting**<br>
-        <img src="http://coinjournal.net/wp-content/uploads/2015/06/lightning-night-sky1.jpg" height="250"></td>
+        <img src="http://coinjournal.net/wp-content/uploads/2015/06/lightning-night-sky1.jpg" height="200"></td>
     <td>        
         **Romanescu**<br>
-        <img src="http://3.bp.blogspot.com/-EZVUt1aJBz0/VMSmYsSG2FI/AAAAAAAAAWM/se-OelT4CD0/s1600/romanescu.JPG" height="250">
+        <img src="http://3.bp.blogspot.com/-EZVUt1aJBz0/VMSmYsSG2FI/AAAAAAAAAWM/se-OelT4CD0/s1600/romanescu.JPG" height="200">
     </td>		
   </tr>
   <tr>
     <td>
         **Broccoli**<br>
-        <img src="http://sekapporchard.com/wp-content/uploads/2013/09/Broccoli.jpg" height="250">
+        <img src="http://sekapporchard.com/wp-content/uploads/2013/09/Broccoli.jpg" height="200">
     </td>
     <td>
         **Pineapple**<br>
-        <img src="http://wearechange.org/wp-content/uploads/2015/04/fresh-beach-pineapple-wallpaper.jpg" height="250">
+        <img src="http://wearechange.org/wp-content/uploads/2015/04/fresh-beach-pineapple-wallpaper.jpg" height="200">
     </td>		
   </tr>
 </table><br>
@@ -30,43 +30,3 @@ Fractals are similar to many **natural** phenomenons in the way they repeat them
 In a similar way, the **Mandelbrot set** will repeat itself in a myriad of different ways as the viewer “zooms in” on the picture.e. In fact, the Mandelbrot set can be enlarged indefinitely.
 Mathematicians can enlarge the Mandelbrot set to the same ratio as if an atom was enlarged to the size
 of the universe – and the fractal will be just as complicated as it was at first glance.
-
-<!-- Mandelbrot by iq -->
-<canvas id="No6" data-fragment-url="iq_Mandelbrot.glsl" width="640" height="640"></canvas>
--   #### **Mandelbrot** by [**Inigo Quílez**](https://twitter.com/iquilezles).
-
-### Usage
-**Mandelbrot** found applications for fractals in many previously unrelated studies;
-Fractals can be used in geology, medicine, cosmology, and engineering – they can help explain the way
-galaxies cluster, the way wheat prices change over time, and the way mammalian brains fold as they
-grow. 
-
-### Here are some odd facts about the **Mandelbrot set**:
-*   The area of the Mandelbrot set is **unknown**, but it's fairly small.
-*   The length of the border is known - it's **infinite**!
-*   The barnacle covered pear shape that you see occurs an infinite number of times in the Mandelbrot set. Rotated, distorted and shrunken, but quite **recognizeable**.
-*   All of the black areas of the Mandelbrot set are **connected** together.
-*   Every band of colour around the Mandelbrot set goes all the way around, without breaking, and without crossing any other colour bands. Think about that when looking at some of the more complex areas!
-*   The Mandelbrot set can be used as a very **inefficient way to calculate PI**.
-*   The Mandelbrot set is named after its discoverer, **Benoit B. Mandelbrot**.
-*   Without computers, the Mandelbrot set would be **invisible**. Even a very low-resolution image of the Mandelbrot set requires millions of calculations.
-*   The Mandelbrot set has **infinite detail** - theoretically you can keep zooming in **forever**.
-
-### Cause most of us aren't mathematicians, lets dive into the **code**.
-
-The mandelbrot set is a subset of the complex numbers. When visualized on the complex plane, it gives the familliar image often referred to as the "gingerbread man". black points are elements of the set, while white points are not. The 'image' to the left, is a direct plot of the mandelbrot set on the complex plane, black points are elements of the set, while white points are not. The membership of a complex number to the mandelbrot set is determined by evaluating the following recursive function: <img src="assets/mbrot_func.png">. The mandelbrot set is defined as the set of complex number for which <img src="assets/mbrot_mship.png">. Of course we cannot evaluate the equation infinite times, so we have to settle for a big number for n instead. Also it can be proven that if at any **point ||z|| becomes greater than 2**, it will eventually **go to infinity**, so we can **stop** the evaluation based on that condition, and classify the number as not belonging to the set.
-
-
-<!-- 
-Sources:
-
-http://www.cygnus-software.com/theory/theory.htm
-
-http://nuclear.mutantstargoat.com/articles/sdr_fract/#mbrot
-
-http://people.math.umass.edu/~tevelev/fractals2.pdf
-
-http://www.visualbots.com/mandelbrot_project.htm
-
-https://en.wikibooks.org/wiki/Fractals/Iterations_in_the_complex_plane/Mandelbrot_set
--->

@@ -164,15 +164,18 @@
 
         //
         window.onload = function () {
-            AppendCanvas(undefined, w, w, 'canvas0', {
-                    src: document.getElementById("code").textContent,
-                    isPath: false
-                },
-                undefined);
 
             AppendCanvas(undefined, w, w, 'iq_Mandelbrot', {
                     src: "iq_Mandelbrot.glsl",
                     isPath: true
+                },
+                undefined);
+
+            document.getElementById('iq_Mandelbrot').innerHTML += marked("-   #### **Mandelbrot** by [**Inigo Quílez**](https://twitter.com/iquilezles).");
+
+            AppendCanvas(undefined, w, w, 'canvas0', {
+                    src: document.getElementById("code").textContent,
+                    isPath: false
                 },
                 undefined);
             
@@ -229,7 +232,6 @@
         }
         //        
         document.getElementById('part0').innerHTML = marked(fetchHTTP("article.text"));
-        document.getElementById('iq_Mandelbrot').innerHTML += marked("-   #### **Mandelbrot** by [**Inigo Quílez**](https://twitter.com/iquilezles).");
         document.getElementById('part1').innerHTML = marked(fetchHTTP("article1.text"));
     </script>
 

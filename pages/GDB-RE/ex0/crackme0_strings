@@ -1,0 +1,21 @@
+strings crackme0.out
+
+Output: 
+#Libraries 
+/lib64/ld-linux-x86-64.so.2
+tztz
+libc.so.6
+__isoc99_scanf
+puts
+printf
+__libc_start_main
+__gmon_start__
+GLIBC_2.7
+GLIBC_2.2.5
+UH-P
+UH-P
+[]A\A]A^A_
+#Binary embedded string 
+ Enter Key: 
+win!
+lose!

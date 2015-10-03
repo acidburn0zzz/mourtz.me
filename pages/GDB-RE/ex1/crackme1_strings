@@ -1,0 +1,25 @@
+strings crackme1.out
+
+#Libraries 
+/lib64/ld-linux-x86-64.so.2
+libm.so.6
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_Jv_RegisterClasses
+_ITM_registerTMCloneTable
+libc.so.6
+__isoc99_scanf
+puts
+printf
+__libc_start_main
+GLIBC_2.2.5
+GLIBC_2.7
+UH-X
+UH-X
+gfff
+[]A\A]A^A_
+#Binary embedded string 
+ Enter Key: 
+Bad input detected! Terminating the program...
+lose!
+win!

@@ -1,0 +1,28 @@
+(gdb) set disassembly-flavor intel
+(gdb) disass main
+Dump of assembler code for function main:
+   0x00000000004005ed <+0>: 	push   rbp
+   0x00000000004005ee <+1>:	    mov    rbp,rsp
+   0x00000000004005f1 <+4>:	    sub    rsp,0x10
+   0x00000000004005f5 <+8>: 	mov    edi,0x4006d4
+   0x00000000004005fa <+13>:	mov    eax,0x0
+   0x00000000004005ff <+18>:	call   0x4004c0 <printf@plt>
+   0x0000000000400604 <+23>:	lea    rax,[rbp-0x4]
+   0x0000000000400608 <+27>:	mov    rsi,rax
+   0x000000000040060b <+30>:	mov    edi,0x4006e3
+   0x0000000000400610 <+35>:	mov    eax,0x0
+   0x0000000000400615 <+40>:	call   0x4004f0 <__isoc99_scanf@plt>
+   0x000000000040061a <+45>:	mov    eax,DWORD PTR [rbp-0x4]
+   0x000000000040061d <+48>:	cmp    eax,0x188
+   0x0000000000400622 <+53>:	jne    0x400635 <main+72>
+   0x0000000000400624 <+55>:	mov    edi,0x4006e6
+   0x0000000000400629 <+60>:	call   0x4004b0 <puts@plt>
+   0x000000000040062e <+65>:	mov    eax,0x0
+   0x0000000000400633 <+70>:	jmp    0x400644 <main+87>
+   0x0000000000400635 <+72>:	mov    edi,0x4006eb
+   0x000000000040063a <+77>:	call   0x4004b0 <puts@plt>
+   0x000000000040063f <+82>:	mov    eax,0x1
+   0x0000000000400644 <+87>:	leave  
+   0x0000000000400645 <+88>:	ret    
+End of assembler dump.
+(gdb) q

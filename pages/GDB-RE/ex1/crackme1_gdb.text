@@ -1,6 +1,6 @@
 ### ! Remember: `%rbp` is the base pointer and `%rsp` is the stack pointer !
 
-If you re not familiar with assembly you re gonna struggle here.
+If you 're not familiar with assembly you 're gonna struggle here.
 
 1.)
 ``` 
@@ -59,7 +59,7 @@ ___
 0x0000000000400814 <+237>:   jmp    0x40085c <main+309>
 ```
 ___
->>>> [rbp-0x24] and eax in (3) are coming after excuting the following instructions.
+>>>> [rbp-0x24] and eax in (3) after excuting the following instructions.
 ```
 ;   eax
 0x0000000000400750 <+41>:    call   0x4005f0 <__isoc99_scanf@plt>
@@ -75,7 +75,7 @@ ___
 0x0000000000400826 <+255>:   mov    eax,DWORD PTR [rbp-0x18]       ; eax = our_input(aftermath)
 0x000000000040082b <+260>:   mov    DWORD PTR [rbp-0x24],eax       ; [rbp-0x24] = our_input(aftermath)
 ```
-Now we know that both variables in (3) condition are deeply linked to our input.
+Now we know that both variables in (3) are deeply linked to our input.
 
 Lets back up a little and write what we know so far.
 

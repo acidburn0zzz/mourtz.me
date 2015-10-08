@@ -1,3 +1,7 @@
+/**
+ * 8x8 Bayer Matrix Dithering
+ */
+ 
 #ifdef GL_ES
 precision mediump float;
 #endif

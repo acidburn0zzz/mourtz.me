@@ -197,7 +197,8 @@
 
             </div>
             <br>
-            <blockquote><h4>Unfortunately, GDB can only be used for basic Reverse Engineering. More compilated programs require better tools like IDA, Immunity Debugger etc.</h4></blockquote>
+            <blockquote>
+                <h4>Unfortunately, GDB can only be used for basic Reverse Engineering. More compilated programs require better tools like IDA, Immunity Debugger etc.</h4></blockquote>
             <br>
             <div id="sources">
                 <h4>Usefull stuff:</h4>
@@ -258,13 +259,12 @@
     <script src="../../js/index.js"></script>
 
     <script>
-
-        window.onload = function(event){
+        window.onload = function (event) {
             $("#list").css("height", window.innerHeight - document.getElementById('nav-list').offsetHeight - 20);
             $("#usefull_stuff").css("width", document.getElementById('sidebar-wrapper').offsetWidth);
         };
 
-        window.onresize = function(event) {
+        window.onresize = function (event) {
             $("#list").css("height", window.innerHeight - document.getElementById('nav-list').offsetHeight - 20);
             $("#usefull_stuff").css("width", document.getElementById('sidebar-wrapper').offsetWidth);
         };
@@ -274,7 +274,7 @@
         //  Header
         document.getElementById("header").innerHTML = marked("#### > Note that I'm not a professional Malware Analyst or Reverse Engineer. It's just a hobby. I just like low-level stuff, and it is interesting sometimes to check under the hood.\n___\n# Reverse Engineering \n **Reverse engineering**, also called **back engineering**, is the processes of extracting knowledge or design information from anything man-made and re-producing it or reproducing anything based on the extracted information. The process often involves disassembling something (a mechanical device, electronic component, computer program, or biological, chemical, or organic matter) and analyzing its components and workings in detail. \n\n Here's a simple program in C that we are going to crack using GDB and the Linux");
 
-    // First Example
+        // First Example
         //  crackme0
         CodeMirror.runMode(fetchHTTP("crackme0.c"), "text/x-csrc",
             document.getElementById("crackme0"));
@@ -297,7 +297,7 @@
         document.getElementById("ex0_gdb_text").innerHTML = marked(fetchHTTP("ex0/crackme0_gdb.text"));
 
 
-    // Second Example
+        // Second Example
         //  crackme1
         CodeMirror.runMode(fetchHTTP("crackme1.c"), "text/x-csrc",
             document.getElementById("crackme1"));
@@ -318,7 +318,6 @@
             document.getElementById("crackme1_gdb"));
         //
         document.getElementById("ex1_gdb_text").innerHTML = marked(fetchHTTP("ex1/crackme1_gdb.text"));
-
     </script>
 
     <script>

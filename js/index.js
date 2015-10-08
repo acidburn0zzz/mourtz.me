@@ -16,7 +16,24 @@ $("#menu-toggle").click(function (e) {
     mm = !mm;
 });
 
-// Fetch for files
+//jQuery for page scrolling feature - requires jQuery Easing plugin
+$(function () {
+    $('a.page-scroll').bind('click', function (event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();
+    });
+});
+
+/**
+ * Fetch for files
+ * @medhod #fetchHTTP
+ *
+ * @param {string} url - filepath
+ * @param {string} methood - Http Request method
+ */
 function fetchHTTP(url, methood) {
     var request = new XMLHttpRequest(),
         response;
@@ -32,7 +49,13 @@ function fetchHTTP(url, methood) {
     return response;
 }
 
-// hash generator
+/**
+ * hash generator
+ * @medhod #randomString
+ *
+ * @param {number} length - hash length
+ * @param {string} chars - hash chars
+ */
 function randomString(length, chars) {
     var mask = '';
     if (chars.indexOf('a') > -1) mask += 'abcdefghijklmnopqrstuvwxyz';
@@ -44,18 +67,12 @@ function randomString(length, chars) {
     return result;
 }
 
-// jQuery for page scrolling feature - requires jQuery Easing plugin
-$(function () {
-    $('a.page-scroll').bind('click', function (event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
-});
-
-// true if part of the element can be viewd
+/**
+ * Check if DOM element is visible in viewport
+ * @medhod #elementInViewport
+ *
+ * @param {object} el - DOM element
+ */
 function elementInViewport(el) {
     var top = el.offsetTop;
     var left = el.offsetLeft;
@@ -82,17 +99,17 @@ function elementInViewport(el) {
  * @medhod #AppendCanvas
  *
  * @param {Array<object>} attributes - canvas's attributes
-    * @attribute {string} name - attribute's name
-    * @attribute {string} value - attribute's value
+ * @attribute {string} name - attribute's name
+ * @attribute {string} value - attribute's value
  * @param {number} width - canvas's width
  * @param {number} height - canvas's height
  * @param {string} parent - canvas's parent
  * @param {object} Frag - Fragment Shader
-    * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
-    * @attribute {string} src - source
+ * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
+ * @attribute {string} src - source
  * @param {object} Vert - Vertex Shader
-    * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
-    * @attribute {string} src - source
+ * @attribute {string} isPath - indicates if string is a path to the shader or the shader itself
+ * @attribute {string} src - source
  */
 function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
     var canvas0 = document.createElement('canvas');
@@ -108,7 +125,7 @@ function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
     }
 
 
-    if (Vert !== undefined){
+    if (Vert !== undefined) {
         if (Vert.isPath) {
             canvas0.setAttribute("data-fragment-url", Vert.src);
         } else {
@@ -116,9 +133,9 @@ function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
         }
     }
 
-    if (attributes !== undefined){
-        var i=0;
-        for( ; i<attributes.length; i++){
+    if (attributes !== undefined) {
+        var i = 0;
+        for (; i < attributes.length; i++) {
             canvas0.setAttribute(attributes[i].name, attributes[i].value);
         }
     }

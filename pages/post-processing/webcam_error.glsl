@@ -178,16 +178,19 @@ void main( void )
 	//////////////////////////////////////////////////////
 	start_print(cen);
 
-	c_h c_e c_l c_l c_o c_spc c_t c_h c_e c_r c_e
-
-	nl(); nl();
-        cur.x = 14.;
+	c_w c_e c_b c_c c_a c_m c_spc c_n c_o c_t
+	
+    nl();
+    
+    c_c c_o c_m c_p c_a c_t c_i c_b c_l c_e
+    
+ cur.x = 14.;
 
 
 
 	start_print(vec2(0,0));
 
-	number(u_time);
+	//number(u_time);
 
 	gl_FragColor = vec4( vec3( sprite(char,cuv) ), 1.0 );
 }

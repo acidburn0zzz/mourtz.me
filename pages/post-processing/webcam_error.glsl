@@ -20,42 +20,42 @@ vec2 chp = vec2(0,0);
 vec2 cur = vec2(0,0);
 vec2 char = vec2(0,0);
 
-#define c_a ch(vec2(0x7268BE, 0x8A2000));
-#define c_b ch(vec2(0xF22F22, 0x8BC000));
-#define c_c ch(vec2(0x722820, 0x89C000));
-#define c_d ch(vec2(0xE248A2, 0x938000));
-#define c_e ch(vec2(0xFA0E20, 0x83E000));
-#define c_f ch(vec2(0xFA0E20, 0x820000));
-#define c_g ch(vec2(0x72282E, 0x89C000));
-#define c_h ch(vec2(0x8A2FA2, 0x8A2000));
-#define c_i ch(vec2(0xF88208, 0x23E000));
-#define c_j ch(vec2(0xF84104, 0x918000));
-#define c_k ch(vec2(0x8A4A34, 0x8A2000));
-#define c_l ch(vec2(0x820820, 0x83E000));
-#define c_m ch(vec2(0x8B6AA2, 0x8A2000));
-#define c_n ch(vec2(0x8B2AA6, 0x8A2000));
-#define c_o ch(vec2(0x7228A2, 0x89C000));
-#define c_p ch(vec2(0xF228BC, 0x820000));
-#define c_q ch(vec2(0x7228AA, 0x99E000));
-#define c_r ch(vec2(0xF228BC, 0x8A2000));
-#define c_s ch(vec2(0x7A0702, 0x0BC000));
-#define c_t ch(vec2(0xF88208, 0x208000));
-#define c_u ch(vec2(0x8A28A2, 0x89C000));
-#define c_v ch(vec2(0x8A28A2, 0x508000));
-#define c_w ch(vec2(0x8A28AA, 0xDA2000));
-#define c_x ch(vec2(0x8A2722, 0x8A2000));
-#define c_y ch(vec2(0x8A2782, 0x89C000));
-#define c_z ch(vec2(0xF84210, 0x83E000));
-#define c_0 ch(vec2(0x732AA6, 0x89C000));
-#define c_1 ch(vec2(0x218208, 0x23E000));
-#define c_2 ch(vec2(0x722108, 0x43E000));
-#define c_3 ch(vec2(0x722302, 0x89C000));
-#define c_4 ch(vec2(0x92491E, 0x104000));
-#define c_5 ch(vec2(0xFA0F02, 0x89C000));
-#define c_6 ch(vec2(0x72283C, 0x89C000));
-#define c_7 ch(vec2(0xF82108, 0x420000));
-#define c_8 ch(vec2(0x722722, 0x89C000));
-#define c_9 ch(vec2(0x722782, 0x89C000));
+#define A ch(vec2(0x7268BE, 0x8A2000));
+#define B ch(vec2(0xF22F22, 0x8BC000));
+#define C ch(vec2(0x722820, 0x89C000));
+#define D ch(vec2(0xE248A2, 0x938000));
+#define E ch(vec2(0xFA0E20, 0x83E000));
+#define F ch(vec2(0xFA0E20, 0x820000));
+#define G ch(vec2(0x72282E, 0x89C000));
+#define H ch(vec2(0x8A2FA2, 0x8A2000));
+#define I ch(vec2(0xF88208, 0x23E000));
+#define J ch(vec2(0xF84104, 0x918000));
+#define K ch(vec2(0x8A4A34, 0x8A2000));
+#define L ch(vec2(0x820820, 0x83E000));
+#define M ch(vec2(0x8B6AA2, 0x8A2000));
+#define N ch(vec2(0x8B2AA6, 0x8A2000));
+#define O ch(vec2(0x7228A2, 0x89C000));
+#define P ch(vec2(0xF228BC, 0x820000));
+#define Q ch(vec2(0x7228AA, 0x99E000));
+#define R ch(vec2(0xF228BC, 0x8A2000));
+#define S ch(vec2(0x7A0702, 0x0BC000));
+#define T ch(vec2(0xF88208, 0x208000));
+#define U ch(vec2(0x8A28A2, 0x89C000));
+#define V ch(vec2(0x8A28A2, 0x508000));
+#define W ch(vec2(0x8A28AA, 0xDA2000));
+#define X ch(vec2(0x8A2722, 0x8A2000));
+#define Y ch(vec2(0x8A2782, 0x89C000));
+#define Z ch(vec2(0xF84210, 0x83E000));
+#define ZERO    ch(vec2(0x732AA6, 0x89C000));
+#define ONE     ch(vec2(0x218208, 0x23E000));
+#define TWO     ch(vec2(0x722108, 0x43E000));
+#define THREE   ch(vec2(0x722302, 0x89C000));
+#define FOUR    ch(vec2(0x92491E, 0x104000));
+#define FIVE    ch(vec2(0xFA0F02, 0x89C000));
+#define SIX     ch(vec2(0x72283C, 0x89C000));
+#define SEVEN   ch(vec2(0xF82108, 0x420000));
+#define EIGHT   ch(vec2(0x722722, 0x89C000));
+#define NINE    ch(vec2(0x722782, 0x89C000));
 #define c_per ch(vec2(0x000000, 0x008000));
 #define c_exc ch(vec2(0x208908, 0x008000));
 #define c_com ch(vec2(0x000800, 0x008400));
@@ -112,16 +112,16 @@ void ch(vec2 ch)
 void digit(float n)
 {
 	n = mod(floor(n),10.0);
-	if(n == 0.0) c_0 ;
-	if(n == 1.0) c_1 ;
-	if(n == 2.0) c_2 ;
-	if(n == 3.0) c_3 ;
-	if(n == 4.0) c_4 ;
-	if(n == 5.0) c_5 ;
-	if(n == 6.0) c_6 ;
-	if(n == 7.0) c_7 ;
-	if(n == 8.0) c_8 ;
-	if(n == 9.0) c_9 ;
+	if(n == 0.0) ZERO ;
+	if(n == 1.0) ONE ;
+	if(n == 2.0) TWO ;
+	if(n == 3.0) THREE ;
+	if(n == 4.0) FOUR ;
+	if(n == 5.0) FIVE ;
+	if(n == 6.0) SIX ;
+	if(n == 7.0) SEVEN ;
+	if(n == 8.0) EIGHT ;
+	if(n == 9.0) NINE ;
 }
 
 void number(float n)
@@ -178,19 +178,11 @@ void main( void )
 	//////////////////////////////////////////////////////
 	start_print(cen);
 
-	c_w c_e c_b c_c c_a c_m c_spc c_n c_o c_t
+	W E B C A M c_spc N O T
 	
     nl();
     
-    c_c c_o c_m c_p c_a c_t c_i c_b c_l c_e
-    
- cur.x = 14.;
-
-
-
-	start_print(vec2(0,0));
-
-	//number(u_time);
+    C O M P A T I B L E
 
 	gl_FragColor = vec4( vec3( sprite(char,cuv) ), 1.0 );
 }

@@ -28,12 +28,11 @@ If you 're not familiar with assembly you 're gonna struggle here.
 
 ### <u>Conclusion</u>
 
-Cause of (1) we know that if our input is <=2 is rejected by having a look at the code before this particular instruction.
+Cause of (1) we know that if numDigits(our input) is <=2 is rejected by having a look at the code before this particular instruction.
 ```
 <+83>:    mov    DWORD PTR [rbp-0x20],eax
 ;   where 
-<+41>:    call   0x4005f0 <__isoc99_scanf@plt>
-<+46>:    mov    eax,DWORD PTR [rbp-0x2c]
+<+78>:    call   0x4006ed <numDigits>
 ;   which means our input has been stored in DWORD PTR [rbp-0x20]
 ```
 ___
@@ -79,8 +78,8 @@ Now we know that both variables in (3) are deeply linked to our input.
 
 Lets back up a little and write what we know so far.
 
-- 1.) `if(our_input <= 2) exit() else continue()`
-- 2.) `if(counter == our_input - 1 && our_input(aftermath) >= our_input(aftermath)) continue() else exit()`
+- 1.) `if(numDigits(our_input) <= 2) exit() else continue()`
+- 2.) `if(counter == numDigits(our_input) - 1 && our_input(aftermath) >= our_input(aftermath)) continue() else exit()`
 - 3.) `for(int counter = numDigits(our_input) - 1; counter <= 0; counter--)`
 
 Knowing all those stuff if you execute the program again you are most likely to crack it!

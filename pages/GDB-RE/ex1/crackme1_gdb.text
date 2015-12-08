@@ -79,7 +79,9 @@ Now we know that both variables in (3) are deeply linked to our input.
 Lets back up a little and write what we know so far.
 
 - 1.) `if(numDigits(our_input) <= 2) exit() else continue()`
-- 2.) `if(counter == numDigits(our_input) - 1 && our_input(aftermath) >= our_input(aftermath)) continue() else exit()`
-- 3.) `for(int counter = numDigits(our_input) - 1; counter <= 0; counter--)`
+- 2.) `for(int counter = numDigits(our_input) - 1; counter >= 0; counter--)`
+- 3.) `if(our_input(aftermath) >= our_input(aftermath)) continue() else exit()`
 
 Knowing all those stuff if you execute the program again you are most likely to crack it!
+
+### `I know especially the 2nd crackme is badly written. When I find time I will rewrite the whole article. :(`

@@ -1,2 +1,4 @@
 /pages/articles/
 *.out
+/pages/cpp-tricks/
+/pages/ray-marching/

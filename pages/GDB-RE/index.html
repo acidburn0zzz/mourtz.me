@@ -233,7 +233,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../../js/jquery.js"></script>
+    <script src="../../js/jquery.min.js"></script>
 
     <!-- jQuery Easing -->
     <script src="../../js/jquery.easing.min.js"></script>
@@ -294,7 +294,7 @@
         CodeMirror.runMode(fetchHTTP("ex0/crackme0_gdb"), "shell",
             document.getElementById("crackme0_gdb"));
         //
-        document.getElementById("ex0_gdb_text").innerHTML = marked(fetchHTTP("ex0/crackme0_gdb.text"));
+        document.getElementById("ex0_gdb_text").innerHTML = marked(fetchHTTP("ex0/crackme0_gdb.md"));
 
 
         // Second Example
@@ -317,7 +317,7 @@
         CodeMirror.runMode(fetchHTTP("ex1/crackme1_gdb"), "shell",
             document.getElementById("crackme1_gdb"));
         //
-        document.getElementById("ex1_gdb_text").innerHTML = marked(fetchHTTP("ex1/crackme1_gdb.text"));
+        document.getElementById("ex1_gdb_text").innerHTML = marked(fetchHTTP("ex1/crackme1_gdb.md"));
     </script>
 
     <script>

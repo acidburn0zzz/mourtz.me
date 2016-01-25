@@ -3,8 +3,19 @@
  */
 
 // Menu Toggle Script
-var mm = false;
+var mm = undefined;
+
+if(window.innerWidth < 768){
+    document.getElementById('menu-toggle').innerHTML = '<i class="fa fa-arrow-circle-o-right"> Open Menu</i>';
+    mm = true;
+} else{
+    mm = false;
+}
+
 $("#menu-toggle").click(function (e) {
+    if(mm === undefined)
+        return;
+
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
 

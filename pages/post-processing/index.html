@@ -41,14 +41,6 @@
         width: 320px;
     }
 
-    #videoCanvas {
-        position: fixed;
-        top: 0px;
-        right: 0px;
-        border-color: '#ff0000';
-        border: 10;
-    }
-
     #list #title {
         padding-left: 9px;
         color: rgb(255, 255, 255);
@@ -156,9 +148,6 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <button id="CamStatus" type="button" class="btn"><img src="../../camOff.png" id="CamState" width="24px"> Use WebCam (WIP)</button>
-            <video autoplay id="videoElement" hidden></video>
-            <canvas id="videoCanvas"></canvas>
             <!--  Experiment No1  -->
             <div id="Ex_No0">
                 <h1>Post Processing Experiment No.1 <h4><u>3/9/2015</u></h4></h1>
@@ -358,147 +347,9 @@
     <script src="../../lib/marked.min.js"></script>
 
     <script>
-        var isCamEnabled = false;
-        var camTex = document.querySelector('#videoElement');
-        var v, camCanvas, context, w, h, CamStream;
-        $("#CamStatus").click(function() {
-            if (isCamEnabled) {
-                //$("#CamState").attr("src", "../../camOff.png");
-                document.getElementById('CamStatus').innerHTML = '<img src="../../camOff.png" id="CamState" width="24px"> Use WebCam (WIP)';
-                $("#videoCanvas").attr("hidden", true);
-                isCamEnabled = false;
-                CamStream.stop();
-
-                // reload Experiment No.4 using the "shader3.glsl"
-                var rr = document.getElementById('No3-wrapper');
-                rr.removeChild(document.getElementById('No3'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No3"
-                    }], w, w, 'No3-wrapper', {
-                        src: "shader3.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                // reload Experiment No.5 using the "shader4.glsl"
-                rr = document.getElementById('No4-wrapper');
-                rr.removeChild(document.getElementById('No4'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No4"
-                    }], w, w, 'No4-wrapper', {
-                        src: "shader4.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                // reload Experiment No.8 using the "webcam_error.glsl"
-                rr = document.getElementById('No7-wrapper');
-                rr.removeChild(document.getElementById('No7'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No7"
-                    }], w, w, 'No7-wrapper', {
-                        src: "shader7.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                load_all_GlslCanvas();
-
-            } else {
-                //$("#CamState").attr("src", "../../camOn.png");
-                document.getElementById('CamStatus').innerHTML = '<img src="../../camOn.png" id="CamState" width="24px"> Stop WebCam (WIP)';
-                $("#videoCanvas").attr("hidden", false);
-
-                // reload Experiment No.4 using the "webcam_error.glsl"
-                var rr = document.getElementById('No3-wrapper');
-                rr.removeChild(document.getElementById('No3'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No3"
-                    }], w, w, 'No3-wrapper', {
-                        src: "webcam_error.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                // reload Experiment No.5 using the "webcam_error.glsl"
-                rr = document.getElementById('No4-wrapper');
-                rr.removeChild(document.getElementById('No4'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No4"
-                    }], w, w, 'No4-wrapper', {
-                        src: "webcam_error.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                // reload Experiment No.8 using the "webcam_error.glsl"
-                rr = document.getElementById('No7-wrapper');
-                rr.removeChild(document.getElementById('No7'));
-                AppendCanvas([{
-                        name: "id",
-                        value: "No7"
-                    }], w, w, 'No7-wrapper', {
-                        src: "webcam_error.glsl",
-                        isPath: true
-                    },
-                    undefined);
-
-                load_all_GlslCanvas();
-
-                isCamEnabled = true;
-                // check for getUserMedia support
-                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-                if (navigator.getUserMedia) {
-                    // get webcam feed if available
-                    navigator.getUserMedia({
-                        video: true
-                    }, handleVideo, videoError);
-
-                } else {
-                    return console.error("Couldn't get access to the camera");
-                }
-            }
-        });
-
-        function handleVideo(stream) {
-            CamStream = stream;
-            if (!isCamEnabled) {
-                return stream.stop();
-            }
-            // webcam found - do something
-            $("#No0-input-wrapper\
-              , #No1-input-wrapper\
-              , #No2-input-wrapper\
-              , #No3-input-wrapper\
-              , #No4-input-wrapper\
-              , #No5-input-wrapper\
-              , #No6-input-wrapper\
-              , #No7-input-wrapper\
-              , #No8-input-wrapper\
-              , #No9-input-wrapper").hide();
-
-            camTex.src = window.URL.createObjectURL(CamStream);
-        }
-
-        function videoError(e) {
-            // no webcam found - do something
-        }
-
         var w = Math.floor(document.getElementById('page-content-wrapper').offsetWidth / 2);
 
         window.onload = function() {
-
-            v = document.getElementById('videoElement');
-            camCanvas = document.getElementById('videoCanvas');
-            context = camCanvas.getContext('2d');
-            CamW = camCanvas.width;
-            CamH = camCanvas.height;
 
             AppendCanvas([{
                     name: "id",
@@ -638,84 +489,76 @@
             billboards = [];
             // Load shaders on canvas
             for (var i = 0; i < list.length; i++) {
-                if (list[i].id !== "videoCanvas") {
-                    var sandbox = new GlslCanvas(list[i]);
+                var sandbox = new GlslCanvas(list[i]);
 
-                    //
-                    if (list[i].id === "No0") {
-                        sandbox.setUniform("u_texture", No0Img);
-                        sandbox.uniform('1f', 'float', "u_sampling", document.getElementById("No0_range").value);
-                    }
+                //
+                if (list[i].id === "No0") {
+                    sandbox.setUniform("u_texture", No0Img);
+                    sandbox.uniform('1f', 'float', "u_sampling", document.getElementById("No0_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No1") {
-                        sandbox.setUniform("u_texture", No1Img);
-                        sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
-                    }
+                //
+                if (list[i].id === "No1") {
+                    sandbox.setUniform("u_texture", No1Img);
+                    sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No2") {
-                        sandbox.setUniform("u_texture", No2Img);
-                        sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
-                    }
+                //
+                if (list[i].id === "No2") {
+                    sandbox.setUniform("u_texture", No2Img);
+                    sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No3") {
-                        sandbox.setUniform("u_texture", No3Img);
-                    }
+                //
+                if (list[i].id === "No3") {
+                    sandbox.setUniform("u_texture", No3Img);
+                }
 
-                    //
-                    if (list[i].id === "No4") {
-                        sandbox.setUniform("u_texture", No4Img);
-                    }
+                //
+                if (list[i].id === "No4") {
+                    sandbox.setUniform("u_texture", No4Img);
+                }
 
-                    //
-                    if (list[i].id === "No5") {
-                        sandbox.setUniform("u_texture", No5Img);
-                        sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No5_range").value);
-                    }
+                //
+                if (list[i].id === "No5") {
+                    sandbox.setUniform("u_texture", No5Img);
+                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No5_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No6") {
-                        sandbox.setUniform("u_texture", No6Img);
-                        sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No6_range").value);
-                    }
+                //
+                if (list[i].id === "No6") {
+                    sandbox.setUniform("u_texture", No6Img);
+                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No6_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No7") {
-                        sandbox.setUniform("u_texture", No7Img);
-                        sandbox.uniform('1f', 'float', "u_radius", document.getElementById("No7_Radius_range").value);
-                        sandbox.uniform('1f', 'float', "u_strength", document.getElementById("No7_Strength_range").value);
-                    }
+                //
+                if (list[i].id === "No7") {
+                    sandbox.setUniform("u_texture", No7Img);
+                    sandbox.uniform('1f', 'float', "u_radius", document.getElementById("No7_Radius_range").value);
+                    sandbox.uniform('1f', 'float', "u_strength", document.getElementById("No7_Strength_range").value);
+                }
 
-                    //
-                    if (list[i].id === "No8") {
-                        sandbox.setUniform("u_texture", No8Img);
-                    }
+                //
+                if (list[i].id === "No8") {
+                    sandbox.setUniform("u_texture", No8Img);
+                }
 
-                    //
-                    if (list[i].id === "No9") {
-                        sandbox.setUniform("u_texture", No9Img);
-                    }
+                //
+                if (list[i].id === "No9") {
+                    sandbox.setUniform("u_texture", No9Img);
+                }
 
-                    //
-                    if (sandbox.isValid) {
-                        billboards.push(sandbox);
-                    }
+                //
+                if (sandbox.isValid) {
+                    billboards.push(sandbox);
                 }
             }
             render_all_GlslCanvas();
         }
 
         function render_all_GlslCanvas() {
-            context.drawImage(v, 0, 0, CamW, CamH);
             for (var i = 0; i < billboards.length; i++) {
-                if (elementInViewport(list[i + 1])) {
-                    if (isCamEnabled) {
-                        billboards[i].loadTexture("u_texture", camCanvas.toDataURL("image/png"));
-                        //billboards[i].uniform('1i', 'sampler2D', "u_texture", camCanvas.toDataURL("image/png"));
-                        //billboards[i].uniform('1i', 'sampler2D', 'u_texture', camTex);
-                    }
+                if (elementInViewport(list[i])) {
                     billboards[i].setMouse(mouse);
                     billboards[i].render();
                 }
@@ -880,10 +723,11 @@
     </script>
 
 
+
     <script>
-        (function (i, s, o, g, r, a, m) {
+        (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
+            i[r] = i[r] || function() {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
@@ -895,7 +739,9 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
+
     </script>
+
 
 
 </body>

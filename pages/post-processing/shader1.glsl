@@ -12,7 +12,7 @@ uniform vec2 u_resolution;
 uniform sampler2D u_texture;
 varying vec2 v_texcoord;
 
-void magic(inout vec4 c){
+void blur(inout vec4 c){
     float offset[3];
     offset[0] = 0.0; 
     offset[1] = 1.3846153846*u_blur; 
@@ -33,6 +33,6 @@ void magic(inout vec4 c){
 void main( void ) {   
     float z = gl_FragCoord.x/u_resolution.x > 0.5 ? 0.75 : 0.35;
     vec4 color = vec4(z, 1.0-z, 0.0,1.0);
-    magic(color);
+    blur(color);
     gl_FragColor = color;
 }

@@ -86,6 +86,7 @@
         cursor: inherit;
         display: block;
     }
+
 </style>
 
 <body>
@@ -143,6 +144,9 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#Ex_No8">8x8 Bayer matrix dithering</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#Ex_No9">Old TV</a>
                     </li>
                 </div>
             </ul>
@@ -307,6 +311,23 @@
                 <a href="shader8.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
 
+            <!--  Experiment No10  -->
+            <div id="Ex_No9">
+                <h1>Post Processing Experiment No.10 <h4><u>27/1/2016</u></h4></h1>
+                <p id="No9P"></p>
+                <div id="No9-wrapper"></div>
+                <br>
+                <div id="No9-input-wrapper">
+                    <span class="btn btn-default btn-file">
+                        Browse <input id="No9_file" accept="image/*" type="file" />
+                    </span>
+                </div>
+                <br>
+                <a href="shader9.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+            </div>
+
+
+            <br>
             <br>
             <br>
             <br>
@@ -340,7 +361,7 @@
         var isCamEnabled = false;
         var camTex = document.querySelector('#videoElement');
         var v, camCanvas, context, w, h, CamStream;
-        $("#CamStatus").click(function () {
+        $("#CamStatus").click(function() {
             if (isCamEnabled) {
                 //$("#CamState").attr("src", "../../camOff.png");
                 document.getElementById('CamStatus').innerHTML = '<img src="../../camOff.png" id="CamState" width="24px"> Use WebCam (WIP)';
@@ -354,7 +375,7 @@
                 AppendCanvas([{
                         name: "id",
                         value: "No3"
-                }], w, w, 'No3-wrapper', {
+                    }], w, w, 'No3-wrapper', {
                         src: "shader3.glsl",
                         isPath: true
                     },
@@ -366,19 +387,19 @@
                 AppendCanvas([{
                         name: "id",
                         value: "No4"
-                }], w, w, 'No4-wrapper', {
+                    }], w, w, 'No4-wrapper', {
                         src: "shader4.glsl",
                         isPath: true
                     },
                     undefined);
 
-               // reload Experiment No.8 using the "webcam_error.glsl"
+                // reload Experiment No.8 using the "webcam_error.glsl"
                 rr = document.getElementById('No7-wrapper');
                 rr.removeChild(document.getElementById('No7'));
                 AppendCanvas([{
                         name: "id",
                         value: "No7"
-                }], w, w, 'No7-wrapper', {
+                    }], w, w, 'No7-wrapper', {
                         src: "shader7.glsl",
                         isPath: true
                     },
@@ -397,7 +418,7 @@
                 AppendCanvas([{
                         name: "id",
                         value: "No3"
-                }], w, w, 'No3-wrapper', {
+                    }], w, w, 'No3-wrapper', {
                         src: "webcam_error.glsl",
                         isPath: true
                     },
@@ -409,7 +430,7 @@
                 AppendCanvas([{
                         name: "id",
                         value: "No4"
-                }], w, w, 'No4-wrapper', {
+                    }], w, w, 'No4-wrapper', {
                         src: "webcam_error.glsl",
                         isPath: true
                     },
@@ -421,7 +442,7 @@
                 AppendCanvas([{
                         name: "id",
                         value: "No7"
-                }], w, w, 'No7-wrapper', {
+                    }], w, w, 'No7-wrapper', {
                         src: "webcam_error.glsl",
                         isPath: true
                     },
@@ -459,7 +480,8 @@
               , #No5-input-wrapper\
               , #No6-input-wrapper\
               , #No7-input-wrapper\
-              , #No8-input-wrapper").hide();
+              , #No8-input-wrapper\
+              , #No9-input-wrapper").hide();
 
             camTex.src = window.URL.createObjectURL(CamStream);
         }
@@ -470,7 +492,7 @@
 
         var w = Math.floor(document.getElementById('page-content-wrapper').offsetWidth / 2);
 
-        window.onload = function () {
+        window.onload = function() {
 
             v = document.getElementById('videoElement');
             camCanvas = document.getElementById('videoCanvas');
@@ -559,6 +581,14 @@
                 },
                 undefined);
 
+            AppendCanvas([{
+                    name: "id",
+                    value: "No9"
+                }], w, w, 'No9-wrapper', {
+                    src: "shader9.glsl",
+                    isPath: true
+                },
+                undefined);
 
 
             load_all_GlslCanvas();
@@ -569,19 +599,19 @@
             x: 0,
             y: 0
         };
-        document.addEventListener('mousemove', function (e) {
+        document.addEventListener('mousemove', function(e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY
         }, false);
 
         // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function () {
+        window.requestAnimFrame = (function() {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function (callback, element) {
+                function(callback, element) {
                     return window.setTimeout(callback, 1000 / 60);
                 };
         })();
@@ -597,7 +627,8 @@
             No5Img = "../../favicon.jpg",
             No6Img = "../../favicon.jpg",
             No7Img = "../../favicon.jpg",
-            No8Img = "../../favicon.jpg";
+            No8Img = "../../favicon.jpg",
+            No9Img = "../../favicon.jpg";
 
 
 
@@ -663,6 +694,11 @@
                     }
 
                     //
+                    if (list[i].id === "No9") {
+                        sandbox.setUniform("u_texture", No9Img);
+                    }
+
+                    //
                     if (sandbox.isValid) {
                         billboards.push(sandbox);
                     }
@@ -690,12 +726,12 @@
         }
 
         var isLoadingFile = false;
-        $('#No0_file').on('change', function (ev) {
+        $('#No0_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No0Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -704,12 +740,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No1_file').on('change', function (ev) {
+        $('#No1_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No1Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -718,12 +754,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No2_file').on('change', function (ev) {
+        $('#No2_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No2Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -732,12 +768,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No3_file').on('change', function (ev) {
+        $('#No3_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No3Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -746,12 +782,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No4_file').on('change', function (ev) {
+        $('#No4_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No4Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -760,12 +796,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No5_file').on('change', function (ev) {
+        $('#No5_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No5Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -774,12 +810,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No6_file').on('change', function (ev) {
+        $('#No6_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No6Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -788,12 +824,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No7_file').on('change', function (ev) {
+        $('#No7_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No7Img = ev2.target.result;
                 load_all_GlslCanvas();
@@ -802,14 +838,28 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No8_file').on('change', function (ev) {
+        $('#No8_file').on('change', function(ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function (ev2) {
+            fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No8Img = ev2.target.result;
+                load_all_GlslCanvas();
+            };
+
+            fr.readAsDataURL(f);
+        });
+
+        $('#No9_file').on('change', function(ev) {
+            isLoadingFile = true;
+            var f = ev.target.files[0];
+            var fr = new FileReader();
+
+            fr.onload = function(ev2) {
+                isLoadingFile = false;
+                No9Img = ev2.target.result;
                 load_all_GlslCanvas();
             };
 
@@ -825,8 +875,11 @@
         document.getElementById('No6P').innerHTML = marked('**Gaussian noise.**');
         document.getElementById('No7P').innerHTML = marked('**Bulge/Pinch** the image in a circle.');
         document.getElementById('No8P').innerHTML = marked('**Dither** is an intentionally applied form of noise used to randomize quantization error, preventing large-scale patterns such as **color banding** in images. \n\n If you want to learn more about ordered dithering and dither in general click [here](https://www.cs.princeton.edu/courses/archive/fall00/cs426/lectures/dither/dither.pdf).');
+        document.getElementById('No9P').innerHTML = marked('**Old TV** screen effect');
+
     </script>
 
+    <!--
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -843,6 +896,7 @@
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
     </script>
+-->
 
 </body>
 

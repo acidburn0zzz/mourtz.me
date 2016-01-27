@@ -17,7 +17,7 @@ varying vec2 v_texcoord;
 
 #define center u_mouse/u_resolution
 
-vec2 FX(vec2 coord){
+vec2 fx(vec2 coord){
     coord -= center;
     float distance = length(coord);
     if (distance < u_radius) {
@@ -33,7 +33,7 @@ vec2 FX(vec2 coord){
 }
 
 void main( void ) {    
-    vec2 TexCoords = FX(v_texcoord); 
+    vec2 TexCoords = fx(v_texcoord); 
     vec2 clampedCoord = clamp(TexCoords, vec2(0.0), vec2(1.0));
     
     if (TexCoords == clampedCoord) {

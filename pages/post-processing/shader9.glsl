@@ -20,10 +20,10 @@ void main() {
     uv.x   *= 1.0 + pow((abs(uv.y) * 0.2), 2.0);
     uv.y   *= 1.0 + pow((abs(uv.x) * 0.25), 2.0);
     uv 	 	= uv / 2.0 + 0.5;
-    uv 		=  uv *0.92 + 0.04;
+    uv 		= uv *0.92 + 0.04;
     uv      = clamp(uv, 0.0, 1.0);
-    
-    vec4 tex = texture2D(u_texture,vec2(uv.x,uv.y));
+
+    vec4 tex = texture2D(u_texture,uv);
     
     // brightness
     float bright = - 0.05;

@@ -37,7 +37,8 @@
     #No5_range,
     #No6_range,
     #No7_Radius_range,
-    #No7_Strength_range {
+    #No7_Strength_range,
+    #No10_range {
         width: 320px;
     }
 
@@ -139,6 +140,9 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#Ex_No9">Old TV</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#Ex_No10">Colors Threshold</a>
                     </li>
                 </div>
             </ul>
@@ -315,6 +319,22 @@
                 <a href="shader9.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
 
+            <!--  Experiment No11  -->
+            <div id="Ex_No10">
+                <h1>Post Processing Experiment No.11 <h4><u>28/1/2016</u></h4></h1>
+                <p id="No10P"></p>
+                <div id="No10-wrapper"></div>
+                <br>
+                <div id="No10-input-wrapper">
+                    <span class="btn btn-default btn-file">
+                        Browse <input id="No10_file" accept="image/*" type="file" />
+                    </span>
+                </div>
+                <br>Amount
+                <input id="No10_range" type="range" min="0.1" max="0.9" value="0.5" step="0.01" onchange="load_all_GlslCanvas();">
+                <br>
+                <a href="shader10.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+            </div>
 
             <br>
             <br>
@@ -441,6 +461,14 @@
                 },
                 undefined);
 
+            AppendCanvas([{
+                    name: "id",
+                    value: "No10"
+                }], w, w, 'No10-wrapper', {
+                    src: "shader10.glsl",
+                    isPath: true
+                },
+                undefined);
 
             load_all_GlslCanvas();
         };
@@ -479,9 +507,8 @@
             No6Img = "../../favicon.jpg",
             No7Img = "../../favicon.jpg",
             No8Img = "../../favicon.jpg",
-            No9Img = "../../favicon.jpg";
-
-
+            No9Img = "../../favicon.jpg",
+            No10Img = "../../favicon.jpg";
 
         function load_all_GlslCanvas() {
 
@@ -546,6 +573,11 @@
                 //
                 if (list[i].id === "No9") {
                     sandbox.setUniform("u_texture", No9Img);
+                }
+
+                if (list[i].id === "No10") {
+                    sandbox.setUniform("u_texture", No10Img);
+                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No10_range").value);
                 }
 
                 //
@@ -709,6 +741,20 @@
             fr.readAsDataURL(f);
         });
 
+        $('#No10_file').on('change', function(ev) {
+            isLoadingFile = true;
+            var f = ev.target.files[0];
+            var fr = new FileReader();
+
+            fr.onload = function(ev2) {
+                isLoadingFile = false;
+                No10Img = ev2.target.result;
+                load_all_GlslCanvas();
+            };
+
+            fr.readAsDataURL(f);
+        });
+
         document.getElementById('No0P').innerHTML = marked('**Pixelation** effect lowers the definition of an image and increases the size of the individual image pixels.');
         document.getElementById('No1P').innerHTML = marked('**Gaussian blur** is the result of blurring an image by a [Gaussian function](https://en.wikipedia.org/wiki/Gaussian_function).');
         document.getElementById('No2P').innerHTML = marked('**HSV** is a common cylindrical-coordinate representations of points in an RGB color model.\n\n**RGB** to **HSV** conversion algorithm taken from [here](http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl).');
@@ -719,6 +765,7 @@
         document.getElementById('No7P').innerHTML = marked('**Bulge/Pinch** the image in a circle.');
         document.getElementById('No8P').innerHTML = marked('**Dither** is an intentionally applied form of noise used to randomize quantization error, preventing large-scale patterns such as **color banding** in images. \n\n If you want to learn more about ordered dithering and dither in general click [here](https://www.cs.princeton.edu/courses/archive/fall00/cs426/lectures/dither/dither.pdf).');
         document.getElementById('No9P').innerHTML = marked('**Old TV** screen effect');
+        document.getElementById('No10P').innerHTML = marked('**Thresholding** is the simplest method of image segmentation. From a grayscale image, thresholding can be used to create binary images.');
 
     </script>
 

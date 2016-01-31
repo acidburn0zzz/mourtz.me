@@ -144,6 +144,9 @@
                     <li>
                         <a class="page-scroll" href="#Ex_No10">Colors Threshold</a>
                     </li>
+                    <li>
+                        <a class="page-scroll" href="#Ex_No11">Sobel Edge</a>
+                    </li>
                 </div>
             </ul>
         </div>
@@ -336,6 +339,21 @@
                 <a href="shader10.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
 
+            <!--  Experiment No12  -->
+            <div id="Ex_No11">
+                <h1>Post Processing Experiment No.12 <h4><u>1/2/2016</u></h4></h1>
+                <p id="No11P"></p>
+                <div id="No11-wrapper"></div>
+                <br>
+                <div id="No11-input-wrapper">
+                    <span class="btn btn-default btn-file">
+                        Browse <input id="No11_file" accept="image/*" type="file" />
+                    </span>
+                </div>
+                <br>
+                <a href="shader11.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+            </div>
+
             <br>
             <br>
             <br>
@@ -470,6 +488,15 @@
                 },
                 undefined);
 
+            AppendCanvas([{
+                    name: "id",
+                    value: "No11"
+                }], w, w, 'No11-wrapper', {
+                    src: "shader11.glsl",
+                    isPath: true
+                },
+                undefined);
+
             load_all_GlslCanvas();
         };
 
@@ -508,7 +535,8 @@
             No7Img = "../../favicon.jpg",
             No8Img = "../../favicon.jpg",
             No9Img = "../../favicon.jpg",
-            No10Img = "../../favicon.jpg";
+            No10Img = "../../favicon.jpg",
+            No11Img = "../../favicon.jpg";
 
         function load_all_GlslCanvas() {
 
@@ -578,6 +606,10 @@
                 if (list[i].id === "No10") {
                     sandbox.setUniform("u_texture", No10Img);
                     sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No10_range").value);
+                }
+
+                if (list[i].id === "No11") {
+                    sandbox.setUniform("u_texture", No11Img);
                 }
 
                 //
@@ -755,6 +787,20 @@
             fr.readAsDataURL(f);
         });
 
+        $('#No11_file').on('change', function(ev) {
+            isLoadingFile = true;
+            var f = ev.target.files[0];
+            var fr = new FileReader();
+
+            fr.onload = function(ev2) {
+                isLoadingFile = false;
+                No11Img = ev2.target.result;
+                load_all_GlslCanvas();
+            };
+
+            fr.readAsDataURL(f);
+        });
+
         document.getElementById('No0P').innerHTML = marked('**Pixelation** effect lowers the definition of an image and increases the size of the individual image pixels.');
         document.getElementById('No1P').innerHTML = marked('**Gaussian blur** is the result of blurring an image by a [Gaussian function](https://en.wikipedia.org/wiki/Gaussian_function).');
         document.getElementById('No2P').innerHTML = marked('**HSV** is a common cylindrical-coordinate representations of points in an RGB color model.\n\n**RGB** to **HSV** conversion algorithm taken from [here](http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl).');
@@ -766,8 +812,10 @@
         document.getElementById('No8P').innerHTML = marked('**Dither** is an intentionally applied form of noise used to randomize quantization error, preventing large-scale patterns such as **color banding** in images. \n\n If you want to learn more about ordered dithering and dither in general click [here](https://www.cs.princeton.edu/courses/archive/fall00/cs426/lectures/dither/dither.pdf).');
         document.getElementById('No9P').innerHTML = marked('**Old TV** screen effect');
         document.getElementById('No10P').innerHTML = marked('**Thresholding** is the simplest method of image segmentation. From a grayscale image, thresholding can be used to create binary images.');
+        document.getElementById('No11P').innerHTML = marked('**Sobel** edge detection is used in image processing and computer vision, particularly within edge detection algorithms where it creates an image emphasising edges.');
 
     </script>
+
 
 
 
@@ -786,7 +834,6 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
-
     </script>
 
 

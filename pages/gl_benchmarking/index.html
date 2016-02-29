@@ -115,7 +115,7 @@
                 <div>
                     <p>
                         <br> The first one is written in <b>C++</b>,the libs I chose to use for this little renderer were <b>GLEW</b> and
-                        <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for testing this little fella was <b>2.1</b> for three reasons. First, its still the most currently used version of OpenGL and probably the most stable one. Second, it basically runs everywhere. Finally, the current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
+                        <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for testing is <b>2.1</b> for three reasons. First, its still the most currently used version of OpenGL and probably the most stable one. Second, it basically runs everywhere. Finally, the current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
 
                         <br>
                         <br>
@@ -135,7 +135,7 @@
 
                 <div>
                     <p>
-                        <br> The second renderer is written in <b>JavaScript</b>. The browser for testing the code is <b>Firefox 44.0.2</b>, chose to use Firefox for benchmarking based on various benchmarks online which show that Firefox is actually the fastest when it comes to WebGL. Just for the record, I will also run some tests on Chrome and Microsoft Edge.
+                        <br> The second renderer is written in <b>JavaScript</b>. The browser for testing the code is <b>Firefox 44.0.2</b>, seeing that is actually the fastest when it comes to WebGL. Just for the record, I will also run some tests on Chrome and Microsoft Edge.
 
                         <br>
                         <br>
@@ -163,7 +163,7 @@
                     <img src="assets/2DSierpinski.png">
                     <br>
                     <p>
-                        OpenGL was slightly faster than WebGL but still that doesn't mean anything. If we convert from ms/frame to frames/second (<b>FPS</b>) we get 63.2911 and 60.0240 fps, respectively. Both of them are near the maximum framerate you can reach with <b>vsync</b> enabled. Although, I could close it off by changing the swapInterval to 0 in OpenGL, to disable vsync for browser it isn't that easy (tried <a target="_blank" href="http://www.geeks3d.com/20130611/webgl-how-to-enable-native-opengl-in-your-browser-windows/">this</a> solution by Geek3D and I got even worse render times than before). Besides that, I don't really see the point of disabling it. I 'll just increase GPU load to get it under 60fps for now.
+                        OpenGL was slightly faster than WebGL but still that doesn't mean anything. If we convert from ms/frame to frames/second (<b>FPS</b>) we get 63.2911 and 60.0240 fps, respectively. Both of them are near the maximum framerate you can reach with <b>vsync</b> enabled. Although, I could close it off by changing the swapInterval to 0 in OpenGL, to disable vsync for browser isn't that easy (tried <a target="_blank" href="http://www.geeks3d.com/20130611/webgl-how-to-enable-native-opengl-in-your-browser-windows/">this</a> solution by Geek3D and I got even worse render times than before). Besides that, I don't really see the point of disabling it. I 'll just increase GPU load to get it under 60fps for now.
                     </p>
 
                     <a role="button" id="Test-No1">

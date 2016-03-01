@@ -17,7 +17,7 @@ GLFWwindow* window;
 #include <glm/glm.hpp>
 using namespace glm;
 // LoadShaders function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/shader.cpp
-#include <shader.cxx>
+#include "common/shader.hpp"
 
 // window size in pixels
 int window_width = 1024, window_height = 768;
@@ -71,6 +71,8 @@ int main( void )
 	// Create and compile our GLSL program from the shaders
 	GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
 
+    GLuint a_PostionID = glGetAttribLocation(programID, "position");
+
 	//////////////////////////////
 	// VertexArray Buffer
 	//////////////////////////////
@@ -113,10 +115,10 @@ int main( void )
 		glUseProgram(programID);
 
 		// 1rst attribute buffer : vertices
-		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(a_PostionID);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 		glVertexAttribPointer(
-			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+			a_PostionID,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
 			3,                  // size
 			GL_FLOAT,           // type
 			GL_FALSE,           // normalized?
@@ -130,9 +132,9 @@ int main( void )
 		glUniform1f(glGetUniformLocation(programID, "u_time"), currentTime);
 
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 6); // 3 indices starting at 0 -> 1 triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
-		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(a_PostionID);
 
 		// Swap buffers
 		glfwSwapBuffers(window);

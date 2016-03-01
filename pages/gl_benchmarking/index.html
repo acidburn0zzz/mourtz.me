@@ -115,7 +115,7 @@
                 <div>
                     <p>
                         <br> The first one is written in <b>C++</b>,the libs I chose to use for this little renderer were <b>GLEW</b> and
-                        <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for testing is <b>2.1</b> for three reasons. First, its still the most currently used version of OpenGL and probably the most stable one. Second, it basically runs everywhere. Finally, the current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
+                        <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for testing was <b>2.1</b> for three reasons. First, its still the most currently used version of OpenGL and probably the most stable one. Second, it basically runs everywhere. Finally, the current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
 
                         <br>
                         <br>
@@ -163,7 +163,7 @@
                     <img src="assets/2DSierpinski.png">
                     <br>
                     <p>
-                        OpenGL was slightly faster than WebGL but still that doesn't mean anything. If we convert from ms/frame to frames/second (<b>FPS</b>) we get 63.2911 and 60.0240 fps, respectively. Both of them are near the maximum framerate you can reach with <b>vsync</b> enabled. Although, I could close it off by changing the swapInterval to 0 in OpenGL, to disable <b>vsync</b> in browser isn't that easy (tried <a target="_blank" href="http://www.geeks3d.com/20130611/webgl-how-to-enable-native-opengl-in-your-browser-windows/">this</a> solution by Geek3D and I got even worse render times than before). Besides that, I don't really see the point of disabling it. I 'll just increase GPU load to get it under 60fps for now.
+                        OpenGL was slightly faster than WebGL but still that doesn't mean anything. If we convert from ms/frame to frames/second (<b>FPS</b>) we get 63.2911 and 60.0240 fps, respectively. Both of them are near the maximum framerate we can reach with <b>vsync</b> enabled. Although, I could close it off by changing the <b>swapInterval</b> to 0 in OpenGL, to disable vsync in browser isn't that easy (tried <a target="_blank" href="http://www.geeks3d.com/20130611/webgl-how-to-enable-native-opengl-in-your-browser-windows/">this</a> solution by Geek3D and I got even worse render times than before). Besides that, I don't really see the point of disabling it. I 'll just increase GPU load to get it under 60fps for now.
                     </p>
 
                     <a role="button" id="Test-No1">
@@ -362,7 +362,7 @@
         CodeMirror.runMode(fetchHTTP("src/WebGL/fetchHTTP.js"), "text/javascript",
             document.getElementById("WebGL-fetchHTTP-Source"));
 
-        CodeMirror.runMode(fetchHTTP("src/OpenGL/index.cxx"), "text/x-c++src",
+        CodeMirror.runMode(fetchHTTP("src/OpenGL/_t/index.cxx"), "text/x-c++src",
             document.getElementById("OpenGL-Source"));
 
         CodeMirror.runMode(fetchHTTP("src/OpenGL/shader.cxx"), "text/x-c++src",
@@ -373,9 +373,9 @@
 
 
     <script>
-        (function (i, s, o, g, r, a, m) {
+        (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
+            i[r] = i[r] || function() {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
@@ -387,6 +387,7 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
+
     </script>
 
 

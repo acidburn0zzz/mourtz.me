@@ -19,9 +19,9 @@ GLFWwindow* window;
 #include <glm/gtc/matrix_transform.hpp>
 using namespace glm;
 // LoadShaders function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/shader.cpp
-#include <common/shader.hpp>
+#include <shader.hpp>
 // LoadOBJ function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/objloader.cpp
-#include <common/objloader.hpp>
+#include <objloader.hpp>
 
 // window size in pixels
 int window_width = 1024, window_height = 768;
@@ -146,7 +146,7 @@ int main( void )
 	vector<vec3> vertices;
 	vector<vec2> uvs;
 	vector<vec3> normals;
-	loadOBJ("suzanne2.obj", vertices, uvs, normals);
+	loadOBJ("../../../assets/models/suzanne_high-res.obj", vertices, uvs, normals);
 
 
 	//////////////////////////////

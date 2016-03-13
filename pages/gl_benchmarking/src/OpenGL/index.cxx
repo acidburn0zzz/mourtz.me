@@ -17,7 +17,7 @@ GLFWwindow* window;
 #include <glm/glm.hpp>
 using namespace glm;
 // LoadShaders function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/shader.cpp
-#include "common/shader.hpp"
+#include <shader.hpp>
 
 // window size in pixels
 int window_width = 1024, window_height = 768;

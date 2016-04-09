@@ -63,16 +63,19 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
+            <h1>Piano Tiles Grid <h4><u>6/4/2016</u></h4></h1>
+            <canvas id="pianoTiles" data-fragment-url="../../shaders/shader3.glsl" width="360" height="640"></canvas>
+            <br>
             <h1>PacMan <h4><u>16/8/2015</u></h4></h1>
-            <canvas id="glslCanvas" data-fragment-url="../../shaders/shader2.glsl" width="640" height="120"></canvas>
+            <canvas id="PacMan" data-fragment-url="../../shaders/shader2.glsl" width="640" height="120"></canvas>
             <br>
             <a href="../../shaders/shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             <h1>A radom pattern cycling through all RGB values.<h4><u>13/8/2015</u></h4></h1>
-            <canvas id="glslCanvas" data-fragment-url="../../shaders/shader0.glsl" width="640" height="640"></canvas>
+            <canvas id="R-Pattern" data-fragment-url="../../shaders/shader0.glsl" width="640" height="640"></canvas>
             <br>
             <a href="../../shaders/shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             <h1>Checkerboard Effect.<h4><u>13/8/2015</u></h4></h1>
-            <canvas id="glslCanvas" data-fragment-url="../../shaders/shader1.glsl" width="640" height="640"></canvas>
+            <canvas id="checkerboard" data-fragment-url="../../shaders/shader1.glsl" width="640" height="640"></canvas>
             <br>
             <a href="../../shaders/shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
 
@@ -115,8 +118,8 @@
 
         // Keep track of the mouse
         var mouse = {
-            x: 0,
-            y: 0
+            x: 0
+            , y: 0
         };
         document.addEventListener('mousemove', function (e) {
             mouse.x = e.clientX || e.pageX;
@@ -137,15 +140,27 @@
 
         var billboards = [];
         var list = document.getElementsByTagName("canvas");
+        var pianoTilesID;
 
         function load_all_GlslCanvas() {
             // Load shaders on canvas
             for (var i = 0; i < list.length; i++) {
                 var sandbox = new GlslCanvas(list[i]);
+
+                if (list[i].id === "pianoTiles") {
+                    pianoTilesID = i;
+                }
+
                 if (sandbox.isValid) {
                     billboards.push(sandbox);
                 }
             }
+            billboards[pianoTilesID].canvas.onmouseup = function () {
+                billboards[pianoTilesID].uniform('1i', 'bool', "u_mouse_down", 0);
+            };
+            billboards[pianoTilesID].canvas.onmousedown = function () {
+                billboards[pianoTilesID].uniform('1i', 'bool', "u_mouse_down", 1);
+            };
         }
 
         function render_all_GlslCanvas() {
@@ -179,6 +194,7 @@
         }
     </script>
 
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -195,6 +211,7 @@
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
     </script>
+
 
 </body>
 

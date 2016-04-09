@@ -6,7 +6,6 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
-#define ar 1.77777777777778
 #define zoom 3.0
 #define MAX_ITERATIONS 100.0
 #define MAX_DISTANCE 2.0

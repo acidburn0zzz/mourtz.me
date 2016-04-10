@@ -167,7 +167,7 @@
                     </span>
                 </div> Sampling
                 <br>
-                <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0" onchange="load_all_GlslCanvas();">
+                <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0" onchange="load_all_GlslCanvas(0);">
                 <br>
                 <a href="shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -184,7 +184,7 @@
                     </span>
                 </div> Scaling
                 <br>
-                <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01" onchange="load_all_GlslCanvas(1);">
                 <br>
                 <a href="shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -201,11 +201,11 @@
                     </span>
                 </div> Hue
                 <br>
-                <input id="No2_H_range" type="range" min="0.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas();"> Saturation
+                <input id="No2_H_range" type="range" min="0.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(2);"> Saturation
                 <br>
-                <input id="No2_S_range" type="range" min="0.0" max="1.0" value="0.0" step="0.01" onchange="load_all_GlslCanvas();"> Value
+                <input id="No2_S_range" type="range" min="0.0" max="1.0" value="0.0" step="0.01" onchange="load_all_GlslCanvas(2);"> Value
                 <br>
-                <input id="No2_V_range" type="range" min="0.0" max="1.0" value="0.8" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No2_V_range" type="range" min="0.0" max="1.0" value="0.8" step="0.01" onchange="load_all_GlslCanvas(2);">
                 <br>
                 <a href="shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -252,7 +252,7 @@
                     </span>
                 </div>
                 <br>
-                <input id="No5_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No5_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(5);">
                 <br>
                 <a href="shader5.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -269,7 +269,7 @@
                     </span>
                 </div>
                 <br>
-                <input id="No6_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No6_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(6);">
                 <br>
                 <a href="shader6.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -286,8 +286,8 @@
                     </span>
                 </div>
                 <br>Radius
-                <input id="No7_Radius_range" type="range" min="0.0" max="1.0" value="0.25" step="0.01" onchange="load_all_GlslCanvas();"> Strength
-                <input id="No7_Strength_range" type="range" min="-1.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No7_Radius_range" type="range" min="0.0" max="1.0" value="0.25" step="0.01" onchange="load_all_GlslCanvas(7);"> Strength
+                <input id="No7_Strength_range" type="range" min="-1.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(7);">
                 <br>
                 <a href="shader7.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -334,7 +334,7 @@
                     </span>
                 </div>
                 <br>Amount
-                <input id="No10_range" type="range" min="0.1" max="0.9" value="0.5" step="0.01" onchange="load_all_GlslCanvas();">
+                <input id="No10_range" type="range" min="0.1" max="0.9" value="0.5" step="0.01" onchange="load_all_GlslCanvas(10);">
                 <br>
                 <a href="shader10.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
@@ -498,6 +498,7 @@
                 undefined);
 
             load_all_GlslCanvas();
+            render_all_GlslCanvas();
         };
 
         // Keep track of the mouse
@@ -538,86 +539,88 @@
             No10Img = "../../favicon.jpg",
             No11Img = "../../favicon.jpg";
 
-        function load_all_GlslCanvas() {
-
-            // reset "billboards" array
-            billboards = [];
-            // Load shaders on canvas
-            for (var i = 0; i < list.length; i++) {
-                var sandbox = new GlslCanvas(list[i]);
-
-                //
-                if (list[i].id === "No0") {
-                    sandbox.setUniform("u_texture", No0Img);
-                    sandbox.uniform('1f', 'float', "u_sampling", document.getElementById("No0_range").value);
+        function load_all_GlslCanvas(id) {
+            if (id === undefined) {
+                // Load shaders on canvas
+                for (var x = 0; x < list.length; x++) {
+                    load_all_GlslCanvas(x);
                 }
-
-                //
-                if (list[i].id === "No1") {
-                    sandbox.setUniform("u_texture", No1Img);
-                    sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
-                }
-
-                //
-                if (list[i].id === "No2") {
-                    sandbox.setUniform("u_texture", No2Img);
-                    sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
-                }
-
-                //
-                if (list[i].id === "No3") {
-                    sandbox.setUniform("u_texture", No3Img);
-                }
-
-                //
-                if (list[i].id === "No4") {
-                    sandbox.setUniform("u_texture", No4Img);
-                }
-
-                //
-                if (list[i].id === "No5") {
-                    sandbox.setUniform("u_texture", No5Img);
-                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No5_range").value);
-                }
-
-                //
-                if (list[i].id === "No6") {
-                    sandbox.setUniform("u_texture", No6Img);
-                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No6_range").value);
-                }
-
-                //
-                if (list[i].id === "No7") {
-                    sandbox.setUniform("u_texture", No7Img);
-                    sandbox.uniform('1f', 'float', "u_radius", document.getElementById("No7_Radius_range").value);
-                    sandbox.uniform('1f', 'float', "u_strength", document.getElementById("No7_Strength_range").value);
-                }
-
-                //
-                if (list[i].id === "No8") {
-                    sandbox.setUniform("u_texture", No8Img);
-                }
-
-                //
-                if (list[i].id === "No9") {
-                    sandbox.setUniform("u_texture", No9Img);
-                }
-
-                if (list[i].id === "No10") {
-                    sandbox.setUniform("u_texture", No10Img);
-                    sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No10_range").value);
-                }
-
-                if (list[i].id === "No11") {
-                    sandbox.setUniform("u_texture", No11Img);
-                }
-
-                //
-                if (sandbox.isValid) {
-                    billboards.push(sandbox);
-                }
+                return;
             }
-            render_all_GlslCanvas();
+
+            var i = id;
+            var sandbox = new GlslCanvas(list[i]);
+
+            //
+            if (list[i].id === "No0") {
+                sandbox.setUniform("u_texture", No0Img);
+                sandbox.uniform('1f', 'float', "u_sampling", document.getElementById("No0_range").value);
+            }
+
+            //
+            if (list[i].id === "No1") {
+                sandbox.setUniform("u_texture", No1Img);
+                sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
+            }
+
+            //
+            if (list[i].id === "No2") {
+                sandbox.setUniform("u_texture", No2Img);
+                sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
+            }
+
+            //
+            if (list[i].id === "No3") {
+                sandbox.setUniform("u_texture", No3Img);
+            }
+
+            //
+            if (list[i].id === "No4") {
+                sandbox.setUniform("u_texture", No4Img);
+            }
+
+            //
+            if (list[i].id === "No5") {
+                sandbox.setUniform("u_texture", No5Img);
+                sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No5_range").value);
+            }
+
+            //
+            if (list[i].id === "No6") {
+                sandbox.setUniform("u_texture", No6Img);
+                sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No6_range").value);
+            }
+
+            //
+            if (list[i].id === "No7") {
+                sandbox.setUniform("u_texture", No7Img);
+                sandbox.uniform('1f', 'float', "u_radius", document.getElementById("No7_Radius_range").value);
+                sandbox.uniform('1f', 'float', "u_strength", document.getElementById("No7_Strength_range").value);
+            }
+
+            //
+            if (list[i].id === "No8") {
+                sandbox.setUniform("u_texture", No8Img);
+            }
+
+            //
+            if (list[i].id === "No9") {
+                sandbox.setUniform("u_texture", No9Img);
+            }
+
+            if (list[i].id === "No10") {
+                sandbox.setUniform("u_texture", No10Img);
+                sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No10_range").value);
+            }
+
+            if (list[i].id === "No11") {
+                sandbox.setUniform("u_texture", No11Img);
+            }
+
+            //
+            if (sandbox.isValid) {
+                billboards[i] = sandbox;
+            }
         }
 
         function render_all_GlslCanvas() {
@@ -641,7 +644,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No0Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(0);
             };
 
             fr.readAsDataURL(f);
@@ -655,7 +658,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No1Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(1);
             };
 
             fr.readAsDataURL(f);
@@ -669,7 +672,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No2Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(2);
             };
 
             fr.readAsDataURL(f);
@@ -683,7 +686,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No3Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(3);
             };
 
             fr.readAsDataURL(f);
@@ -697,7 +700,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No4Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(4);
             };
 
             fr.readAsDataURL(f);
@@ -711,7 +714,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No5Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(5);
             };
 
             fr.readAsDataURL(f);
@@ -725,7 +728,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No6Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(6);
             };
 
             fr.readAsDataURL(f);
@@ -739,7 +742,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No7Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(7);
             };
 
             fr.readAsDataURL(f);
@@ -753,7 +756,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No8Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(8);
             };
 
             fr.readAsDataURL(f);
@@ -767,7 +770,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No9Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(9);
             };
 
             fr.readAsDataURL(f);
@@ -781,7 +784,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No10Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(10);
             };
 
             fr.readAsDataURL(f);
@@ -795,7 +798,7 @@
             fr.onload = function(ev2) {
                 isLoadingFile = false;
                 No11Img = ev2.target.result;
-                load_all_GlslCanvas();
+                load_all_GlslCanvas(11);
             };
 
             fr.readAsDataURL(f);
@@ -834,6 +837,7 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
+
     </script>
 
 

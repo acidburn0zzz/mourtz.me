@@ -8,37 +8,47 @@
 
 <url>
   <loc>http://alexmourtziapis.xyz/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/me/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/works/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/eyecandy/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://alexmourtziapis.xyz/pages/gl_benchmarking/</loc>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://alexmourtziapis.xyz/pages/cpp-tricks/const/</loc>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/GDB-RE/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/Mandelbrot%20set/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://alexmourtziapis.xyz/pages/post-processing/</loc>
-  <lastmod>2015-10-08T15:24:48+00:00</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2016-05-07T11:42:34+00:00</lastmod>
+  <changefreq>monthly</changefreq>
 </url>
 </urlset>

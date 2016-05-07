@@ -2,34 +2,6 @@
 <html>
 
 <body>
-    <!-- Shaders -->
-	<script type="x-shader/x-vertex" id="vertexshader">
-
-		// switch on high precision floats
-		#ifdef GL_ES
-		precision highp float;
-		#endif
-
-		void main()
-		{
-			gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
-		}
-
-	</script>
-
-	<script type="x-shader/x-fragment" id="fragmentshader">
-
-		#ifdef GL_ES
-		precision highp float;
-		#endif
-
-		void main()
-		{
-			gl_FragColor 	= vec4(1.0,0.0,1.0,1.0);
-		}
-
-	</script>
-
     <script>
         var animFrame = window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -58,7 +30,7 @@
         }
 
     </script>
-    <script src="index.js"></script>
+    <script src="suzanneTest/index.js"></script>
 </body>
 
 </html>

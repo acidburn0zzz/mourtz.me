@@ -23,6 +23,7 @@ using namespace glm;
 // LoadOBJ function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/objloader.cpp
 #include <objloader.hpp>
 
+GLfloat iterations = 11;
 // window size in pixels
 int window_width = 1024, window_height = 768;
 float aspect_ratio = window_width / window_height;
@@ -61,29 +62,26 @@ mat4 CreateViewMatrix(vec3 position, vec3 direction, vec3 up) {
 mat4 CreatePerspectiveMatrix() {
 	float f = tan(3.141592f * 0.5 - 0.5 * fov);
 	float range = 1.0 / (znear - zfar);
-	return mat4(f / aspect_ratio, 0.0, 0.0, 0.0,
+	return mat4(
+		f / aspect_ratio, 0.0, 0.0, 0.0,
 		0.0, f, 0.0, 0.0,
 		0.0, 0.0, (znear + zfar) * range, -1.0,
-		0.0, 0.0, znear * zfar * range * 2, 0.0);
+		0.0, 0.0, znear * zfar * range * 2, 0.0
+	);
 }
 
 
-static const mat4 viewMatrix = CreateViewMatrix(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0));
+static mat4 viewMatrix = CreateViewMatrix(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0));
 
-//static const mat4 perspectiveMatrix = perspective(fov, aspect_ratio, znear, zfar);
-static const mat4 perspectiveMatrix = CreatePerspectiveMatrix();
+//static mat4 perspectiveMatrix = perspective(fov, aspect_ratio, znear, zfar);
+static mat4 perspectiveMatrix = CreatePerspectiveMatrix();
 
-static const GLfloat modelMatrix[] = {
-	0.5, 0.0,  0.0 ,  0.0,
-	0.0,  0.5, 0.0 ,  0.0,
-	0.0,  0.0 , 0.5,  0.0,
-	0.0,  0.0 , -2.0 ,  1.0,
-};
 // on window resize callback
 void windowSizeCallback(GLFWwindow* window, int width, int height)
 {
 	window_width = width;
 	window_height = height;
+	aspect_ratio = window_width / window_height;
 	glViewport(0, 0, width, height);
 }
 
@@ -122,8 +120,8 @@ int main( void )
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	// Dark blue background
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	// Black background
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
@@ -146,21 +144,13 @@ int main( void )
 	vector<vec3> vertices;
 	vector<vec2> uvs;
 	vector<vec3> normals;
-	loadOBJ("../../../assets/models/suzanne_high-res.obj", vertices, uvs, normals);
+	loadOBJ("suzanne_high-res.obj", vertices, uvs, normals);
 
-
-	//////////////////////////////
-	// Vertex Array Buffers
-	//////////////////////////////
+	//VBOs
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-	GLuint uvbuffer;
-	glGenBuffers(1, &uvbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 
 	GLuint normalbuffer;
 	glGenBuffers(1, &normalbuffer);
@@ -169,9 +159,34 @@ int main( void )
 
 	// Get a handle for our buffers
 	GLuint a_PostionID = glGetAttribLocation(programID, "position");
-	GLuint a_UVID = glGetAttribLocation(programID, "uv");
 	GLuint a_NormalID = glGetAttribLocation(programID, "normal");
 
+	// 1st attribute buffer : vertices
+	glEnableVertexAttribArray(a_PostionID);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	glVertexAttribPointer(
+		a_PostionID,        // attribute 0. No particular reason for 0, but must match the layout in the shader.
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
+	);
+
+	// 2nd attribute buffer : normals
+	glEnableVertexAttribArray(a_NormalID);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+	glVertexAttribPointer(
+		a_NormalID,                       // attribute
+		3,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+	);
+
+	// use loaded program
+	glUseProgram(programID);
 	// set on resize callback function
 	glfwSetWindowSizeCallback(window, windowSizeCallback);
 
@@ -181,7 +196,7 @@ int main( void )
 	do{
 
 		// Measure speed
-		double currentTime = glfwGetTime();
+		GLfloat currentTime = glfwGetTime();
 		nbFrames++;
 		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
 				// printf and reset timer
@@ -193,75 +208,61 @@ int main( void )
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		// Use our shader
-		glUseProgram(programID);
 
-		// 1st attribute buffer : vertices
-		glEnableVertexAttribArray(a_PostionID);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribPointer(
-			a_PostionID,        // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			3,                  // size
-			GL_FLOAT,           // type
-			GL_FALSE,           // normalized?
-			0,                  // stride
-			(void*)0            // array buffer offset
-		);
 
-		// 2nd attribute buffer : UVs
-		glEnableVertexAttribArray(a_UVID);
-		glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
-		glVertexAttribPointer(
-			a_UVID,                           // attribute
-			2,                                // size
-			GL_FLOAT,                         // type
-			GL_FALSE,                         // normalized?
-			0,                                // stride
-			(void*)0                          // array buffer offset
-		);
 
-		// 3rd attribute buffer : normals
-		glEnableVertexAttribArray(a_NormalID);
-		glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-		glVertexAttribPointer(
-			a_NormalID,                       // attribute
-			3,                                // size
-			GL_FLOAT,                         // type
-			GL_FALSE,                         // normalized?
-			0,                                // stride
-			(void*)0                          // array buffer offset
-		);
 
-		//  Window Resolution Uniform
-		glUniform2f(resolutionID, (float)window_width, (float)window_height);
-		// Time Uniform
-		glUniform1f(timeID, currentTime);
-		// Perspective Matrix Uniform
-		glUniformMatrix4fv(perspectiveMatrixID, 1, GL_FALSE, &perspectiveMatrix[0][0]);
-		// View Matrix Uniform
-		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
-		// Model Matrix Uniform
-		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, modelMatrix);
+		for (GLfloat x = 0; x < iterations; x++) {
+			GLfloat size = 60/iterations * 0.01;
+			GLfloat _step = iterations / 2;
+			GLfloat posX = -1 + x / _step;
+			GLfloat posY = 1;
+			GLfloat posZ = -2;
 
-		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+			for (GLfloat y = 0; y < iterations; y++) {
+				posY = 1 - y/ _step;
 
-		glDisableVertexAttribArray(a_PostionID);
-		glDisableVertexAttribArray(a_UVID);
-		glDisableVertexAttribArray(a_NormalID);
+				for (GLfloat z = 0; z < iterations; z++) {
+					posZ = -2 - z / _step;
+
+					//  Window Resolution Uniform
+					glUniform2f(resolutionID, (float)window_width, (float)window_height);
+					// Time Uniform
+					glUniform1f(timeID, currentTime);
+					// Perspective Matrix Uniform
+					glUniformMatrix4fv(perspectiveMatrixID, 1, GL_FALSE, &perspectiveMatrix[0][0]);
+					// View Matrix Uniform
+					glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
+					// Model Matrix Uniform
+					glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE,
+						new GLfloat[16]{
+							size, 0.0, 0.0, 0.0,
+							0.0, size, 0.0, 0.0,
+							0.0, 0.0, size, 0.0,
+							posX, posY, posZ, 1.0
+						}
+					);
+
+					// Draw suzanne !
+					glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+				}
+			}
+
+		}
+
+		//viewMatrix[3][2] += 0.01;
 
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
-
 	} // Check if the ESC key was pressed or the window was closed
 	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(window) == 0 );
 
 	// Cleanup VBO
 	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteBuffers(1, &uvbuffer);
 	glDeleteBuffers(1, &normalbuffer);
+	// Delete program
 	glDeleteProgram(programID);
 
 	// Close OpenGL window and terminate GLFW

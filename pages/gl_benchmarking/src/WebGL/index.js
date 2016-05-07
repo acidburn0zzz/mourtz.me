@@ -12,7 +12,7 @@ gl.shaderSource(vertexShader, fetchHTTP("../shaders/vertexshader.glsl"));
 gl.compileShader(vertexShader);
 
 var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-gl.shaderSource(fragmentShader, fetchHTTP("../shaders/test2.glsl"));
+gl.shaderSource(fragmentShader, fetchHTTP("../shaders/2DSierpinski.glsl"));
 gl.compileShader(fragmentShader);
 
 var program = gl.createProgram();
@@ -40,16 +40,6 @@ gl.vertexAttribPointer(program.position, 2, gl.FLOAT, false, 0, 0);
 var loadTime = Date.now();
 var lastTime = loadTime;
 var nbFrames = 0;
-
-var animFrame = window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback, element) {
-        console.error("requestAnimationFrame is not supported by you browser!");
-        return window.setTimeout(callback, 1000 / 60);
-    };
 
 function render() {
 

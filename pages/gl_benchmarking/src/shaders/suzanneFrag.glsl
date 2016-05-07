@@ -22,6 +22,4 @@ void main()
 	vec3 half_direction = normalize(normalize(light) + camera_dir);
 	float specular = pow(max(dot(half_direction, normalize(v_normal)), 0.0), 16.0);
 	gl_FragColor = vec4(ambient_color + diffuse * diffuse_color + specular * specular_color, 1.0);
-
-
 }

@@ -45,7 +45,7 @@ $(function () {
  * @param {string} url - filepath
  * @param {string} methood - Http Request method
  */
-function fetchHTTP(url, methood) {
+function fetchHTTP(url, method) {
     var request = new XMLHttpRequest(),
         response;
 
@@ -54,7 +54,7 @@ function fetchHTTP(url, methood) {
             response = request.responseText;
         }
     }
-    request.open(methood ? methood : 'GET', url, false);
+    request.open(method ? method : 'GET', url, false);
     request.overrideMimeType("text/plain");
     request.send(null);
     return response;

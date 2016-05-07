@@ -71,8 +71,6 @@ int main( void )
 	// Create and compile our GLSL program from the shaders
 	GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
 
-    GLuint a_PostionID = glGetAttribLocation(programID, "position");
-
 	//////////////////////////////
 	// VertexArray Buffer
 	//////////////////////////////
@@ -90,6 +88,11 @@ int main( void )
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+    GLuint a_PostionID = glGetAttribLocation(programID, "position");
+    glEnableVertexAttribArray(a_PostionID);
+
+    // use loaded program
+    glUseProgram(programID);
 	// set on resize callback function
 	glfwSetWindowSizeCallback(window, windowSizeCallback);
 
@@ -111,11 +114,7 @@ int main( void )
 		// Clear the screen
 		glClear( GL_COLOR_BUFFER_BIT );
 
-		// Use our shader
-		glUseProgram(programID);
-
 		// 1rst attribute buffer : vertices
-		glEnableVertexAttribArray(a_PostionID);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 		glVertexAttribPointer(
 			a_PostionID,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
@@ -134,8 +133,6 @@ int main( void )
 		// Draw the triangle !
 		glDrawArrays(GL_TRIANGLES, 0, 6);
 
-		glDisableVertexAttribArray(a_PostionID);
-
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -144,6 +141,7 @@ int main( void )
 	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(window) == 0 );
 
+    glDisableVertexAttribArray(a_PostionID);
 	// Cleanup VBO
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteProgram(programID);

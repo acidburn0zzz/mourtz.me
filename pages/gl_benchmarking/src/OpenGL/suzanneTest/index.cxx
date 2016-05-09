@@ -18,12 +18,13 @@ GLFWwindow* window;
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 using namespace glm;
+using json = nlohmann::json;
 // LoadShaders function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/shader.cpp
 #include <shader.hpp>
-// LoadOBJ function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/objloader.cpp
-#include <objloader.hpp>
+// https://github.com/nlohmann/json
+#include <json.hpp>
 
-GLfloat iterations = 11;
+GLfloat iterations = 5;
 // window size in pixels
 int window_width = 1024, window_height = 768;
 float aspect_ratio = window_width / window_height;
@@ -140,22 +141,41 @@ int main( void )
 	GLuint timeID = glGetUniformLocation(programID, "u_time");
 	GLuint resolutionID = glGetUniformLocation(programID, "u_resolution");
 
-	// Read our .obj file
-	vector<vec3> vertices;
-	vector<vec2> uvs;
-	vector<vec3> normals;
-	loadOBJ("suzanne_high-res.obj", vertices, uvs, normals);
+	cout << "Loading suzanne_high-res.json..."<< endl;
+	ifstream file("suzanne_high-res.json");
+	stringstream buffer;
+	buffer << file.rdbuf();
+	json js = json::parse(buffer.str());
+	cout << "vertices: "<< js["vertexPositions"].size() << endl;
+	cout << "normals: " << js["vertexNormals"].size() << endl;
+	cout << "indices: " << js["indices"].size() << endl;
+
+	vector<GLfloat> vertices;
+	vector<GLuint> indices;
+	vector<GLfloat> normals;
+
+	vertices.insert(vertices.end(), &js["vertexPositions"][0], &js["vertexPositions"][js["vertexPositions"].size()]);
+	indices.insert(indices.end(), &js["indices"][0], &js["indices"][js["indices"].size()]);
+	normals.insert(normals.end(), &js["vertexNormals"][0], &js["vertexNormals"][js["vertexNormals"].size()]);
+
+	//loadOBJ("suzanne_high-res.obj", vertices, uvs, normals);
 
 	//VBOs
 	GLuint vertexbuffer;
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), &vertices[0], GL_STATIC_DRAW);
 
 	GLuint normalbuffer;
 	glGenBuffers(1, &normalbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), &normals[0], GL_STATIC_DRAW);
+
+	GLuint indicesbuffer;
+	glGenBuffers(1, &indicesbuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesbuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
+
 
 	// Get a handle for our buffers
 	GLuint a_PostionID = glGetAttribLocation(programID, "position");
@@ -208,19 +228,15 @@ int main( void )
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-
-
-
 		for (GLfloat x = 0; x < iterations; x++) {
 			GLfloat size = 60/iterations * 0.01;
 			GLfloat _step = iterations / 2;
-			GLfloat posX = -1 + x / _step;
+			GLfloat posX = -0.9 + x / _step;
 			GLfloat posY = 1;
 			GLfloat posZ = -2;
 
 			for (GLfloat y = 0; y < iterations; y++) {
-				posY = 1 - y/ _step;
+				posY = 0.9 - y/ _step;
 
 				for (GLfloat z = 0; z < iterations; z++) {
 					posZ = -2 - z / _step;
@@ -244,7 +260,8 @@ int main( void )
 					);
 
 					// Draw suzanne !
-					glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+					//glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+					glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, (void*)0);
 				}
 			}
 

@@ -147,8 +147,6 @@
                     <div id="WebGL-Source-Wrapper" hidden>
                         <code>index.js</code>
                         <pre id="WebGL-Source" class="cm-s-default"></pre>
-                        <code>fetchHTTP.js</code>
-                        <pre id="WebGL-fetchHTTP-Source" class="cm-s-default"></pre>
                     </div>
                 </div>
 
@@ -212,10 +210,49 @@
                 </div>
 
                 <div>
-                    <h2>Test No.3 *WIP*</h2>
+                    <h2>Test No.3</h2>
                     <p>
-                        It's time to use more than 6 vertices and create an actual scene with geometry.
+                        It's time to use more than 2 triangles and create an actual scene with geometry. This test is focused at stressing the machine by increasing the size of the VBOs instead of flooding the fragment shader with complex calculations. The high resolution 3D model I chose to use for the test is the well known to some of you <a target="_blank" href="https://en.wikipedia.org/wiki/Blender_(software)#Suzanne"><b>suzanne</b></a>. Simple <b>Phong shading</b> was used for making this test possible.
                     </p>
+
+                    <p>
+                        Firstly, I ran a scene with 25 instances of suzanne with each suzzane constructed of <b>11,692 vertices</b>, so if we sum it up we have 25 render calls per frame and <b>58,460 vertices</b> in the scene ready to be rendered on the viewport without using any instancing techniques.
+                    </p>
+                    <img src="assets/25xSuzanne.png">
+                    <br>
+                    <p>
+                        Converting the above times to FPS gives us values withing a range of 58 to 60 frames (<b>vsync cap</b>). I think its time to increase the GPU load, here is the same program with 100 instances of suzanne. Summing up to 100 render calls per frame and <b>1,169,200 vertices</b> in the scene.
+                    </p>
+                    <img src="assets/100xSuzanne.png">
+                    <br>
+                    <p>
+                        Suprisingly, the difference between the two APIs was less than <b>1ms</b>. In detail, <b>OpenGL</b> gave <b>86.665 ms/frame</b> and <b>WebGL 87.5 ms/frame</b> using Firefox. I decided to run one more test with 125 additional instances of suzanne which sums up to 225 render calls per frame and <b>2,630,700 vertices</b> in the scene.
+                    </p>
+                    <img src="assets/225xSuzanne.png">
+                    <br>
+                    <p>
+                        <b>WebGL</b> was faster than <b>OpenGL</b> by <b>42 ms/frame (0.5767 FPS)</b>. Converting the above times to FPS gives us 3.4285 for OpenGL and 4.0053 for WebGL.
+                    </p>
+
+
+                    <p>To make this test the code of both <b>OpenGL</b> and <b>WebGL</b> renderers had to be modified.</p>
+                    <a role="button" id="OpenGL-Source-Icon2">
+                        <i class="fa fa-code"></i> Show/Hide Source Code of <b>OpenGL</b> renderer
+                    </a>
+                    <br>
+                    <div id="OpenGL-Source-Wrapper2" hidden>
+                        <code>index.cxx</code>
+                        <pre id="OpenGL-Source2" class="cm-s-default"></pre>
+                    </div>
+
+                    <a role="button" id="WebGL-Source-Icon2">
+                        <i class="fa fa-code"></i> Show/Hide Source Code of <b>WebGL</b> renderer
+                    </a>
+                    <br>
+                    <div id="WebGL-Source-Wrapper2" hidden>
+                        <code>index.js</code>
+                        <pre id="WebGL-Source2" class="cm-s-default"></pre>
+                    </div>
                 </div>
 
 
@@ -339,7 +376,6 @@
         }
 
 
-
         $("#Test-No1").click(function() {
             $("#Test-Canvas-No1").toggle(1000);
         });
@@ -356,21 +392,27 @@
             $("#WebGL-Source-Wrapper").toggle(1000);
         });
 
+        $("#OpenGL-Source-Icon2").click(function() {
+            $("#OpenGL-Source-Wrapper2").toggle(1000);
+        });
+
+        $("#WebGL-Source-Icon2").click(function() {
+            $("#WebGL-Source-Wrapper2").toggle(1000);
+        });
+
         CodeMirror.runMode(fetchHTTP("src/WebGL/index.js"), "text/javascript",
             document.getElementById("WebGL-Source"));
-
-        CodeMirror.runMode(fetchHTTP("src/WebGL/fetchHTTP.js"), "text/javascript",
-            document.getElementById("WebGL-fetchHTTP-Source"));
 
         CodeMirror.runMode(fetchHTTP("src/OpenGL/index.cxx"), "text/x-c++src",
             document.getElementById("OpenGL-Source"));
 
-        CodeMirror.runMode(fetchHTTP("src/OpenGL/include/shader.cpp"), "text/x-c++src",
-            document.getElementById("OpenGL-Shader-Source"));
+        CodeMirror.runMode(fetchHTTP("src/OpenGL/suzanneTest/index.cxx"), "text/x-c++src",
+            document.getElementById("OpenGL-Source2"));
+
+        CodeMirror.runMode(fetchHTTP("src/WebGL/suzanneTest/index.js"), "text/javascript",
+            document.getElementById("WebGL-Source2"));
 
     </script>
-
-
 
     <script>
         (function(i, s, o, g, r, a, m) {
@@ -389,8 +431,6 @@
         ga('send', 'pageview');
 
     </script>
-
-
 
 </body>
 

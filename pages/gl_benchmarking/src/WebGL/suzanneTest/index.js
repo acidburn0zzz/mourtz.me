@@ -1,6 +1,6 @@
 "uses strict";
 
-var iterations = 11;
+var iterations = 15;
 
 var window_width = 1024,
     window_height = 768;
@@ -28,7 +28,7 @@ try {
     gl.enable(gl.CULL_FACE);
     //    gl.clearDepth(1.0);
 } catch (e) {
-
+    console.error("It does not appear your computer can support WebGL.");
 }
 
 function CreateViewMatrix(position, direction, up) {
@@ -152,12 +152,12 @@ function render() {
     for (let x = 0; x < iterations; x++) {
         let size = 60 / iterations * 0.01;
         let _step = iterations / 2;
-        let posX = -1 + x / _step;
+        let posX = -0.9 + x / _step;
         let posY = 1;
         let posZ = -2;
 
         for (let y = 0; y < iterations; y++) {
-            posY = 1 - y / _step;
+            posY = 0.9 - y / _step;
 
             for (let z = 0; z < iterations; z++) {
                 posZ = -2 - z / _step;

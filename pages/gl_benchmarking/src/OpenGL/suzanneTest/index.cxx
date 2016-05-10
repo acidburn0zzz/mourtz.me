@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <sstream>
 #include <string.h>
-using namespace std;
 // Include GLEW
 #include <GL/glew.h>
 // Include GLFW
@@ -17,12 +16,12 @@ GLFWwindow* window;
 // Include GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-using namespace glm;
-using json = nlohmann::json;
-// LoadShaders function taken from https://github.com/opengl-tutorials/ogl/blob/master/common/shader.cpp
-#include <shader.hpp>
 // https://github.com/nlohmann/json
 #include <json.hpp>
+
+using namespace std;
+using namespace glm;
+using json = nlohmann::json;
 
 GLfloat iterations = 5;
 // window size in pixels
@@ -71,6 +70,24 @@ mat4 CreatePerspectiveMatrix() {
 	);
 }
 
+string readFile(const char *filePath) {
+	string content;
+	ifstream fileStream(filePath, ios::in);
+
+	if (!fileStream.is_open()) {
+		cerr << "Could not read file " << filePath << ". File does not exist." << endl;
+		return "";
+	}
+
+	string line = "";
+	while (!fileStream.eof()) {
+		getline(fileStream, line);
+		content.append(line + "\n");
+	}
+
+	fileStream.close();
+	return content;
+}
 
 static mat4 viewMatrix = CreateViewMatrix(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 1.0), vec3(0.0, 1.0, 0.0));
 
@@ -86,12 +103,12 @@ void windowSizeCallback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-int main( void )
+int main(void)
 {
 	// Initialise GLFW
-	if( !glfwInit() )
+	if (!glfwInit())
 	{
-		fprintf( stderr, "Failed to initialize GLFW\n" );
+		fprintf(stderr, "Failed to initialize GLFW\n");
 		getchar();
 		return -1;
 	}
@@ -102,8 +119,8 @@ int main( void )
 
 	// Open a window and create its OpenGL context
 	window = glfwCreateWindow(window_width, window_height, "GL Viewport", NULL, NULL);
-	if( window == NULL ){
-		fprintf( stderr, "Failed to open GLFW window.\n" );
+	if (window == NULL) {
+		fprintf(stderr, "Failed to open GLFW window.\n");
 		getchar();
 		glfwTerminate();
 		return -1;
@@ -132,7 +149,59 @@ int main( void )
 	glEnable(GL_CULL_FACE);
 
 	// Create and compile our GLSL program from the shaders
-	GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+	// GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+	string VertexShaderCode = readFile("SimpleVertexShader.vertexshader");
+
+	string FragmentShaderCode = readFile("SimpleFragmentShader.fragmentshader");
+
+	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+
+	GLint Result = GL_FALSE;
+	int InfoLogLength;
+
+	// compile vertex shader
+	char const * VertexSourcePointer = VertexShaderCode.c_str();
+	glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
+	glCompileShader(VertexShaderID);
+
+	// check vertex shader
+	glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &Result);
+	glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if (InfoLogLength > 0) {
+		std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
+		glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
+		printf("%s\n", &VertexShaderErrorMessage[0]);
+	}
+
+	// compile fragment shader
+	char const * FragmentSourcePointer = FragmentShaderCode.c_str();
+	glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
+	glCompileShader(FragmentShaderID);
+
+	// check fragment shader
+	glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &Result);
+	glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if (InfoLogLength > 0) {
+		std::vector<char> FragmentShaderErrorMessage(InfoLogLength + 1);
+		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+		printf("%s\n", &FragmentShaderErrorMessage[0]);
+	}
+
+	GLuint programID = glCreateProgram();
+	glAttachShader(programID, VertexShaderID);
+	glAttachShader(programID, FragmentShaderID);
+	glLinkProgram(programID);
+
+	// check the program
+	glGetProgramiv(programID, GL_LINK_STATUS, &Result);
+	glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	if (InfoLogLength > 0) {
+		std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
+		glGetProgramInfoLog(programID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+		printf("%s\n", &ProgramErrorMessage[0]);
+	}
+
 
 	// Uniform Locations
 	GLuint perspectiveMatrixID = glGetUniformLocation(programID, "perspective");
@@ -141,12 +210,12 @@ int main( void )
 	GLuint timeID = glGetUniformLocation(programID, "u_time");
 	GLuint resolutionID = glGetUniformLocation(programID, "u_resolution");
 
-	cout << "Loading suzanne_high-res.json..."<< endl;
+	cout << "Loading suzanne_high-res.json..." << endl;
 	ifstream file("suzanne_high-res.json");
 	stringstream buffer;
 	buffer << file.rdbuf();
 	json js = json::parse(buffer.str());
-	cout << "vertices: "<< js["vertexPositions"].size() << endl;
+	cout << "vertices: " << js["vertexPositions"].size() << endl;
 	cout << "normals: " << js["vertexNormals"].size() << endl;
 	cout << "indices: " << js["indices"].size() << endl;
 
@@ -213,30 +282,30 @@ int main( void )
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
 
-	do{
+	do {
 
 		// Measure speed
 		GLfloat currentTime = glfwGetTime();
 		nbFrames++;
 		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
-				// printf and reset timer
-				printf("%f ms/frame\n", 1000.0 / double(nbFrames));
-				nbFrames = 0;
-				lastTime += 1.0;
+											 // printf and reset timer
+			printf("%f ms/frame\n", 1000.0 / double(nbFrames));
+			nbFrames = 0;
+			lastTime += 1.0;
 		}
 
 		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		for (GLfloat x = 0; x < iterations; x++) {
-			GLfloat size = 60/iterations * 0.01;
+			GLfloat size = 60 / iterations * 0.01;
 			GLfloat _step = iterations / 2;
 			GLfloat posX = -0.9 + x / _step;
 			GLfloat posY = 1;
 			GLfloat posZ = -2;
 
 			for (GLfloat y = 0; y < iterations; y++) {
-				posY = 0.9 - y/ _step;
+				posY = 0.9 - y / _step;
 
 				for (GLfloat z = 0; z < iterations; z++) {
 					posZ = -2 - z / _step;
@@ -252,11 +321,11 @@ int main( void )
 					// Model Matrix Uniform
 					glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE,
 						new GLfloat[16]{
-							size, 0.0, 0.0, 0.0,
-							0.0, size, 0.0, 0.0,
-							0.0, 0.0, size, 0.0,
-							posX, posY, posZ, 1.0
-						}
+						size, 0.0, 0.0, 0.0,
+						0.0, size, 0.0, 0.0,
+						0.0, 0.0, size, 0.0,
+						posX, posY, posZ, 1.0
+					}
 					);
 
 					// Draw suzanne !
@@ -273,8 +342,8 @@ int main( void )
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	} // Check if the ESC key was pressed or the window was closed
-	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-		   glfwWindowShouldClose(window) == 0 );
+	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+		glfwWindowShouldClose(window) == 0);
 
 	// Cleanup VBO
 	glDeleteBuffers(1, &vertexbuffer);

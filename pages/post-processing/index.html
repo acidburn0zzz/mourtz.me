@@ -630,9 +630,7 @@
                     billboards[i].render();
                 }
             }
-            if (!isLoadingFile) {
-                window.requestAnimFrame(render_all_GlslCanvas);
-            }
+            window.requestAnimFrame(render_all_GlslCanvas);
         }
 
         var isLoadingFile = false;
@@ -818,9 +816,6 @@
         document.getElementById('No11P').innerHTML = marked('**Sobel** edge detection is used in image processing and computer vision, particularly within edge detection algorithms where it creates an image emphasising edges.');
 
     </script>
-
-
-
 
     <script>
         (function(i, s, o, g, r, a, m) {

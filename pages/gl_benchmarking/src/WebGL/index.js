@@ -37,6 +37,7 @@ program.position = gl.getAttribLocation(program, 'position');
 gl.enableVertexAttribArray(program.position);
 gl.vertexAttribPointer(program.position, 2, gl.FLOAT, false, 0, 0);
 
+gl.useProgram(program);
 var loadTime = Date.now();
 var lastTime = loadTime;
 var nbFrames = 0;
@@ -53,8 +54,6 @@ function render() {
 
     gl.clearColor(1, 0, 1, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
-
-    gl.useProgram(program);
 
     /// Resolution Uniform
     gl.uniform2f(gl.getUniformLocation(program, 'u_resolution'), canvas.width, canvas.height);

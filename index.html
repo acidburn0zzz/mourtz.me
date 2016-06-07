@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    #page-content-wrapper li {
+    #post0 ul li {
         display: table-cell;
         vertical-align: top;
         padding-left: 10px;
@@ -66,6 +66,15 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+
+            <!--  Post 6  -->
+            <div id="post6">
+                <h4><a href="pages/waving-flag/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Simple waving flag effect in GLSL</font><h4><u>7/6/2016</u></h4>
+                <p id="post6_description"></p>
+                </h4>
+            </div>
+
+            <br>
 
             <!--  Post 5  -->
             <div id="post5">
@@ -173,6 +182,8 @@
             <br>
             <br>
             <br>
+            <br>
+
             <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
         </div>
         <!-- /#page-content-wrapper -->
@@ -189,31 +200,16 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="lib/bootstrap.min.js"></script>
 
-    <!-- index -->
-    <script src="js/index.js"></script>
-
     <!-- GLSL canvas -->
     <script src="lib/GlslCanvas.min.js"></script>
 
     <!--  marked js  -->
     <script src="lib/marked.min.js"></script>
 
-    <!--            <canvas id="glslCanvas" data-fragment-url="../shaders/shader0.glsl" width="640" height="640"></canvas><br>-->
+    <!-- index -->
+    <script src="js/index.js"></script>
+
     <script>
-        //        document.getElementById('page-content-wrapper').innerHTML = marked('# GLSL toolbox\n\n');
-
-        //        var canvas0 = document.createElement('canvas');
-        //        canvas0.width = canvas0.height = 150;
-        //        canvas0.setAttribute("data-fragment-url","shaders/shapes/circle.glsl");
-        //        document.getElementById('page-content-wrapper').appendChild(canvas0);
-        //
-        //        document.getElementById('page-content-wrapper').innerHTML += '&ensp;';
-        //
-        //        var canvas1 = document.createElement('canvas');
-        //        canvas1.width = canvas1.height = 150;
-        //        canvas1.setAttribute("data-fragment-url","shaders/shapes/polygon.glsl");
-        //        document.getElementById('page-content-wrapper').appendChild(canvas1);
-
         //
         window.onload = function () {
             load_all_GlslCanvas();
@@ -263,9 +259,6 @@
             }
             window.requestAnimFrame(render_all_GlslCanvas);
         }
-
-        document.getElementById('post1_description').innerHTML = marked('#### Here is a brief list of some post-FX shaders. :)');
-        document.getElementById('post5_description').innerHTML = marked("#### Trying to find out which API performs better between OpenGL and WebGL.");
     </script>
 
     <script>

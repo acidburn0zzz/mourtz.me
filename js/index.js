@@ -1,44 +1,4 @@
 /**
- *
- */
-
-// Menu Toggle Script
-var mm = undefined;
-
-if(window.innerWidth < 768){
-    document.getElementById('menu-toggle').innerHTML = '<i class="fa fa-arrow-circle-o-right"> Open Menu</i>';
-    mm = true;
-} else{
-    mm = false;
-}
-
-$("#menu-toggle").click(function (e) {
-    if(mm === undefined)
-        return;
-
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-
-    if (mm)
-        document.getElementById('menu-toggle').innerHTML = '<i class="fa fa-arrow-circle-o-left"> Close Menu</i>';
-    else
-        document.getElementById('menu-toggle').innerHTML = '<i class="fa fa-arrow-circle-o-right"> Open Menu</i>';
-
-    mm = !mm;
-});
-
-//jQuery for page scrolling feature - requires jQuery Easing plugin
-$(function () {
-    $('a.page-scroll').bind('click', function (event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
-    });
-});
-
-/**
  * Fetch for files
  * @medhod #fetchHTTP
  *
@@ -168,3 +128,14 @@ function getRandomArbitrary(min, max) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+// Provides requestAnimationFrame in a cross browser way.
+window.requestAnimFrame =
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) {
+        window.setTimeout(callback, 1e3 / 60)
+    };

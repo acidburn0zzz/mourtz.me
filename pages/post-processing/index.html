@@ -2,33 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Alex &#183; Mourtziapis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="../../favicon.jpg" />
+
+    <link rel="icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+    <link rel="shortcut icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+
     <meta name="keywords" content="gamedev, creative, connection, shunless" />
     <meta name="description" content="" />
 
     <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="../../css/simple-sidebar.css" rel="stylesheet">
-
     <!--  Font Awesome  -->
     <link href="../../css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <header>
+        <div class="name">Alex</div>
+        <div class="surname">Mourtziapis</div>
+        <div class="title">Software Developer</div>
+    </header>
 
 </head>
+
 <style>
+    content {
+        font-size: 14px;
+        font-family: monospace;
+    }
+
     #No0_range,
     #No1_range,
     #No2_H_range,
@@ -79,304 +84,226 @@
         cursor: inherit;
         display: block;
     }
-
 </style>
 
 <body>
+    <nav>
+        <a href="../projects/">Projects</a>
+        <a href="../../">Blog</a>
+        <a href="../eyecandy/">Eye Candy</a>
+        <a href="mailto:alex.mourtziapis@gmail.com">Contact</a>
 
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="../../">
-                        <img src="../../favicon.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
-                    </a>
-                </li>
-                <li>
-                    <a href="../me/">About me</a>
-                </li>
-                <li>
-                    <a href="#">Collaborations</a>
-                </li>
-                <li>
-                    <a href="../works/">Works of mine</a>
-                </li>
-                <li>
-                    <a href="../eyecandy/">Eye candy</a>
-                </li>
-
-                <!--  Shaders List  -->
-                <div id="list">
-                    <hr>
-                    <p id="title">Shaders List:</p>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No0">Pixelation</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No1">Gaussian blur</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No2">HSV Modifier</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No3">Transistion Effect #0</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No4">Cross Stitching Filter</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No5">Sepia Filter</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No6">Gaussian noise</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No7">Bulge/Pinch</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No8">8x8 Bayer matrix dithering</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No9">Old TV</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No10">Colors Threshold</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Ex_No11">Sobel Edge</a>
-                    </li>
-                </div>
-            </ul>
+        <div class="social">
+            <a href="https://github.com/Mourtz" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/mourtz_alex" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/mourtz" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="http://stackoverflow.com/users/4205263/alex-mourtziapis" target="_blank"><i class="fa fa-stack-overflow"></i></a>
         </div>
-        <!-- /#sidebar-wrapper -->
+    </nav>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <!--  Experiment No1  -->
-            <div id="Ex_No0">
-                <h1>Post Processing Experiment No.1 <h4><u>3/9/2015</u></h4></h1>
-                <p id="No0P"></p>
-                <div id="No0-wrapper"></div>
-                <br>
-                <div id="No0-input-wrapper">
-                    <span class="btn btn-default btn-file">
+    <content id="content-wrapper">
+        <!--  Experiment No1  -->
+        <div id="Ex_No0">
+            <h1>Post Processing Experiment No.1 <h4><u>3/9/2015</u></h4></h1>
+            <p id="No0P"></p>
+            <div id="No0-wrapper"></div>
+            <br>
+            <div id="No0-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No0_file" accept="image/*" type="file">
                     </span>
-                </div> Sampling
-                <br>
-                <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0" onchange="load_all_GlslCanvas(0);">
-                <br>
-                <a href="shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-            </div>
+            </div> Sampling
+            <br>
+            <input id="No0_range" type="range" min="1.0" max="20.0" step="0.01" value="10.0" onchange="load_all_GlslCanvas(0);">
+            <br>
+            <a href="shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No2  -->
-            <div id="Ex_No1">
-                <h1>Post Processing Experiment No.2 <h4><u>5/9/2015</u></h4></h1>
-                <p id="No1P"></p>
-                <div id="No1-wrapper"></div>
-                <br>
-                <div id="No1-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No2  -->
+        <div id="Ex_No1">
+            <h1>Post Processing Experiment No.2 <h4><u>5/9/2015</u></h4></h1>
+            <p id="No1P"></p>
+            <div id="No1-wrapper"></div>
+            <br>
+            <div id="No1-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No1_file" accept="image/*" type="file" />
                     </span>
-                </div> Scaling
-                <br>
-                <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01" onchange="load_all_GlslCanvas(1);">
-                <br>
-                <a href="shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-            </div>
+            </div> Scaling
+            <br>
+            <input id="No1_range" type="range" min="0.0" max="3.0" value="1.5" step="0.01" onchange="load_all_GlslCanvas(1);">
+            <br>
+            <a href="shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No3  -->
-            <div id="Ex_No2">
-                <h1>Post Processing Experiment No.3 <h4><u>7/9/2015</u></h4></h1>
-                <p id="No2P"></p>
-                <div id="No2-wrapper"></div>
-                <br>
-                <div id="No2-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No3  -->
+        <div id="Ex_No2">
+            <h1>Post Processing Experiment No.3 <h4><u>7/9/2015</u></h4></h1>
+            <p id="No2P"></p>
+            <div id="No2-wrapper"></div>
+            <br>
+            <div id="No2-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No2_file" accept="image/*" type="file" />
                     </span>
-                </div> Hue
-                <br>
-                <input id="No2_H_range" type="range" min="0.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(2);"> Saturation
-                <br>
-                <input id="No2_S_range" type="range" min="0.0" max="1.0" value="0.0" step="0.01" onchange="load_all_GlslCanvas(2);"> Value
-                <br>
-                <input id="No2_V_range" type="range" min="0.0" max="1.0" value="0.8" step="0.01" onchange="load_all_GlslCanvas(2);">
-                <br>
-                <a href="shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-            </div>
+            </div> Hue
+            <br>
+            <input id="No2_H_range" type="range" min="0.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(2);"> Saturation
+            <br>
+            <input id="No2_S_range" type="range" min="0.0" max="1.0" value="0.0" step="0.01" onchange="load_all_GlslCanvas(2);"> Value
+            <br>
+            <input id="No2_V_range" type="range" min="0.0" max="1.0" value="0.8" step="0.01" onchange="load_all_GlslCanvas(2);">
+            <br>
+            <a href="shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No4  -->
-            <div id="Ex_No3">
-                <h1>Post Processing Experiment No.4 <h4><u>13/9/2015</u></h4></h1>
-                <p id="No3P"></p>
-                <div id="No3-wrapper"></div>
-                <br>
-                <div id="No3-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No4  -->
+        <div id="Ex_No3">
+            <h1>Post Processing Experiment No.4 <h4><u>13/9/2015</u></h4></h1>
+            <p id="No3P"></p>
+            <div id="No3-wrapper"></div>
+            <br>
+            <div id="No3-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No3_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <a href="shader3.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <a href="shader3.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No5  -->
-            <div id="Ex_No4">
-                <h1>Post Processing Experiment No.5 <h4><u>14/9/2015</u></h4></h1>
-                <p id="No4P"></p>
-                <div id="No4-wrapper"></div>
-                <br>
-                <div id="No4-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No5  -->
+        <div id="Ex_No4">
+            <h1>Post Processing Experiment No.5 <h4><u>14/9/2015</u></h4></h1>
+            <p id="No4P"></p>
+            <div id="No4-wrapper"></div>
+            <br>
+            <div id="No4-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No4_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <a href="shader4.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <a href="shader4.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No6  -->
-            <div id="Ex_No5">
-                <h1>Post Processing Experiment No.6 <h4><u>15/9/2015</u></h4></h1>
-                <p id="No5P"></p>
-                <div id="No5-wrapper"></div>
-                <br>
-                <div id="No5-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No6  -->
+        <div id="Ex_No5">
+            <h1>Post Processing Experiment No.6 <h4><u>15/9/2015</u></h4></h1>
+            <p id="No5P"></p>
+            <div id="No5-wrapper"></div>
+            <br>
+            <div id="No5-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No5_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <input id="No5_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(5);">
-                <br>
-                <a href="shader5.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <input id="No5_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(5);">
+            <br>
+            <a href="shader5.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No7  -->
-            <div id="Ex_No6">
-                <h1>Post Processing Experiment No.7 <h4><u>17/9/2015</u></h4></h1>
-                <p id="No6P"></p>
-                <div id="No6-wrapper"></div>
-                <br>
-                <div id="No6-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No7  -->
+        <div id="Ex_No6">
+            <h1>Post Processing Experiment No.7 <h4><u>17/9/2015</u></h4></h1>
+            <p id="No6P"></p>
+            <div id="No6-wrapper"></div>
+            <br>
+            <div id="No6-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No6_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <input id="No6_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(6);">
-                <br>
-                <a href="shader6.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <input id="No6_range" type="range" min="0.0" max="1.0" value="1.0" step="0.01" onchange="load_all_GlslCanvas(6);">
+            <br>
+            <a href="shader6.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No8  -->
-            <div id="Ex_No7">
-                <h1>Post Processing Experiment No.8 <h4><u>19/9/2015</u></h4></h1>
-                <p id="No7P"></p>
-                <div id="No7-wrapper"></div>
-                <br>
-                <div id="No7-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No8  -->
+        <div id="Ex_No7">
+            <h1>Post Processing Experiment No.8 <h4><u>19/9/2015</u></h4></h1>
+            <p id="No7P"></p>
+            <div id="No7-wrapper"></div>
+            <br>
+            <div id="No7-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No7_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>Radius
-                <input id="No7_Radius_range" type="range" min="0.0" max="1.0" value="0.25" step="0.01" onchange="load_all_GlslCanvas(7);"> Strength
-                <input id="No7_Strength_range" type="range" min="-1.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(7);">
-                <br>
-                <a href="shader7.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>Radius
+            <input id="No7_Radius_range" type="range" min="0.0" max="1.0" value="0.25" step="0.01" onchange="load_all_GlslCanvas(7);"> Strength
+            <input id="No7_Strength_range" type="range" min="-1.0" max="1.0" value="0.5" step="0.01" onchange="load_all_GlslCanvas(7);">
+            <br>
+            <a href="shader7.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No9  -->
-            <div id="Ex_No8">
-                <h1>Post Processing Experiment No.9 <h4><u>20/9/2015</u></h4></h1>
-                <p id="No8P"></p>
-                <div id="No8-wrapper"></div>
-                <br>
-                <div id="No8-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No9  -->
+        <div id="Ex_No8">
+            <h1>Post Processing Experiment No.9 <h4><u>20/9/2015</u></h4></h1>
+            <p id="No8P"></p>
+            <div id="No8-wrapper"></div>
+            <br>
+            <div id="No8-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No8_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <a href="shader8.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <a href="shader8.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No10  -->
-            <div id="Ex_No9">
-                <h1>Post Processing Experiment No.10 <h4><u>27/1/2016</u></h4></h1>
-                <p id="No9P"></p>
-                <div id="No9-wrapper"></div>
-                <br>
-                <div id="No9-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No10  -->
+        <div id="Ex_No9">
+            <h1>Post Processing Experiment No.10 <h4><u>27/1/2016</u></h4></h1>
+            <p id="No9P"></p>
+            <div id="No9-wrapper"></div>
+            <br>
+            <div id="No9-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No9_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <a href="shader9.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>
+            <a href="shader9.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No11  -->
-            <div id="Ex_No10">
-                <h1>Post Processing Experiment No.11 <h4><u>28/1/2016</u></h4></h1>
-                <p id="No10P"></p>
-                <div id="No10-wrapper"></div>
-                <br>
-                <div id="No10-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No11  -->
+        <div id="Ex_No10">
+            <h1>Post Processing Experiment No.11 <h4><u>28/1/2016</u></h4></h1>
+            <p id="No10P"></p>
+            <div id="No10-wrapper"></div>
+            <br>
+            <div id="No10-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No10_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>Amount
-                <input id="No10_range" type="range" min="0.1" max="0.9" value="0.5" step="0.01" onchange="load_all_GlslCanvas(10);">
-                <br>
-                <a href="shader10.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
+            <br>Amount
+            <input id="No10_range" type="range" min="0.1" max="0.9" value="0.5" step="0.01" onchange="load_all_GlslCanvas(10);">
+            <br>
+            <a href="shader10.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        </div>
 
-            <!--  Experiment No12  -->
-            <div id="Ex_No11">
-                <h1>Post Processing Experiment No.12 <h4><u>1/2/2016</u></h4></h1>
-                <p id="No11P"></p>
-                <div id="No11-wrapper"></div>
-                <br>
-                <div id="No11-input-wrapper">
-                    <span class="btn btn-default btn-file">
+        <!--  Experiment No12  -->
+        <div id="Ex_No11">
+            <h1>Post Processing Experiment No.12 <h4><u>1/2/2016</u></h4></h1>
+            <p id="No11P"></p>
+            <div id="No11-wrapper"></div>
+            <br>
+            <div id="No11-input-wrapper">
+                <span class="btn btn-default btn-file">
                         Browse <input id="No11_file" accept="image/*" type="file" />
                     </span>
-                </div>
-                <br>
-                <a href="shader11.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
             </div>
-
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
+            <a href="shader11.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
         </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+    </content>
 
     <!-- jQuery -->
     <script src="../../lib/jquery.min.js"></script>
-
-    <!-- jQuery Easing -->
-    <script src="../../lib/jquery.easing.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../lib/bootstrap.min.js"></script>
-
-    <!-- index -->
-    <script src="../../js/index.js"></script>
 
     <!-- GLSL canvas -->
     <script src="../../lib/GlslCanvas.min.js"></script>
@@ -384,10 +311,13 @@
     <!--  marked js  -->
     <script src="../../lib/marked.min.js"></script>
 
-    <script>
-        var w = Math.floor(document.getElementById('page-content-wrapper').offsetWidth / 2);
+    <!-- index -->
+    <script src="../../js/index.js"></script>
 
-        window.onload = function() {
+    <script>
+        var w = Math.floor(document.body.offsetWidth / 1.5);
+
+        window.onload = function () {
 
             AppendCanvas([{
                     name: "id",
@@ -506,19 +436,19 @@
             x: 0,
             y: 0
         };
-        document.addEventListener('mousemove', function(e) {
+        document.addEventListener('mousemove', function (e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY
         }, false);
 
         // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function() {
+        window.requestAnimFrame = (function () {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function(callback, element) {
+                function (callback, element) {
                     return window.setTimeout(callback, 1000 / 60);
                 };
         })();
@@ -634,12 +564,12 @@
         }
 
         var isLoadingFile = false;
-        $('#No0_file').on('change', function(ev) {
+        $('#No0_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No0Img = ev2.target.result;
                 load_all_GlslCanvas(0);
@@ -648,12 +578,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No1_file').on('change', function(ev) {
+        $('#No1_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No1Img = ev2.target.result;
                 load_all_GlslCanvas(1);
@@ -662,12 +592,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No2_file').on('change', function(ev) {
+        $('#No2_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No2Img = ev2.target.result;
                 load_all_GlslCanvas(2);
@@ -676,12 +606,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No3_file').on('change', function(ev) {
+        $('#No3_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No3Img = ev2.target.result;
                 load_all_GlslCanvas(3);
@@ -690,12 +620,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No4_file').on('change', function(ev) {
+        $('#No4_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No4Img = ev2.target.result;
                 load_all_GlslCanvas(4);
@@ -704,12 +634,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No5_file').on('change', function(ev) {
+        $('#No5_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No5Img = ev2.target.result;
                 load_all_GlslCanvas(5);
@@ -718,12 +648,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No6_file').on('change', function(ev) {
+        $('#No6_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No6Img = ev2.target.result;
                 load_all_GlslCanvas(6);
@@ -732,12 +662,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No7_file').on('change', function(ev) {
+        $('#No7_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No7Img = ev2.target.result;
                 load_all_GlslCanvas(7);
@@ -746,12 +676,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No8_file').on('change', function(ev) {
+        $('#No8_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No8Img = ev2.target.result;
                 load_all_GlslCanvas(8);
@@ -760,12 +690,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No9_file').on('change', function(ev) {
+        $('#No9_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No9Img = ev2.target.result;
                 load_all_GlslCanvas(9);
@@ -774,12 +704,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No10_file').on('change', function(ev) {
+        $('#No10_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No10Img = ev2.target.result;
                 load_all_GlslCanvas(10);
@@ -788,12 +718,12 @@
             fr.readAsDataURL(f);
         });
 
-        $('#No11_file').on('change', function(ev) {
+        $('#No11_file').on('change', function (ev) {
             isLoadingFile = true;
             var f = ev.target.files[0];
             var fr = new FileReader();
 
-            fr.onload = function(ev2) {
+            fr.onload = function (ev2) {
                 isLoadingFile = false;
                 No11Img = ev2.target.result;
                 load_all_GlslCanvas(11);
@@ -814,13 +744,12 @@
         document.getElementById('No9P').innerHTML = marked('**Old TV** screen effect');
         document.getElementById('No10P').innerHTML = marked('**Thresholding** is the simplest method of image segmentation. From a grayscale image, thresholding can be used to create binary images.');
         document.getElementById('No11P').innerHTML = marked('**Sobel** edge detection is used in image processing and computer vision, particularly within edge detection algorithms where it creates an image emphasising edges.');
-
     </script>
 
     <script>
-        (function(i, s, o, g, r, a, m) {
+        (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
+            i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
@@ -832,11 +761,7 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
-
     </script>
-
-
-
 </body>
 
 </html>

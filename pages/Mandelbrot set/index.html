@@ -2,23 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Alex &#183; Mourtziapis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="../../favicon.jpg" />
+
+    <link rel="icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+    <link rel="shortcut icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+
     <meta name="keywords" content="Mandelbrot set, Fractals, GLSL, WebGL, computer graphics" />
     <meta name="description" content="Gentle introduction to the Mandelbrot set." />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../css/simple-sidebar.css" rel="stylesheet">
-
     <!--  Font Awesome  -->
     <link href="../../css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/index.css">
 
     <!--  CodeMirror  -->
     <link href="../../lib/CodeMirror/lib/codemirror.css" rel="stylesheet">
@@ -29,23 +26,26 @@
     <link href="../../lib/CodeMirror/theme/3024-night.css" rel="stylesheet">
     <link href="../../lib/CodeMirror/theme/zenburn.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <header>
+        <div class="name">Alex</div>
+        <div class="surname">Mourtziapis</div>
+        <div class="title">Software Developer</div>
+    </header>
 
 </head>
 
 <style>
-    #page-content-wrapper ul#Editor li {
+    content {
+        font-size: 14px;
+        font-family: monospace;
+    }
+    
+    content ul#Editor li {
         display: table-cell;
         vertical-align: top;
     }
     
     .CodeMirror {
-        border: 1px solid black;
         font-size: 12px;
     }
     
@@ -55,69 +55,38 @@
 </style>
 
 <body>
+    <nav>
+        <a href="../projects/">Projects</a>
+        <a href="../../">Blog</a>
+        <a href="../eyecandy/">Eye Candy</a>
+        <a href="mailto:alex.mourtziapis@gmail.com">Contact</a>
 
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="../../">
-                        <img src="../../favicon.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
-                    </a>
-                </li>
-                <li>
-                    <a href="../me/">About me</a>
-                </li>
-                <li>
-                    <a href="#">Collaborations</a>
-                </li>
-                <li>
-                    <a href="../works/">Works of mine</a>
-                </li>
-                <li>
-                    <a href="../eyecandy/">Eye candy</a>
-                </li>
-            </ul>
+        <div class="social">
+            <a href="https://github.com/Mourtz" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/mourtz_alex" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/mourtz" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="http://stackoverflow.com/users/4205263/alex-mourtziapis" target="_blank"><i class="fa fa-stack-overflow"></i></a>
         </div>
-        <!-- /#sidebar-wrapper -->
+    </nav>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <p id="part0"></p>
-            <div id="iq_Mandelbrot"></div>
-            <p id="part1"></p>
-            <ul id="Editor">
-                <li id="canvas0">
+    <content id="content-wrapper">
+        <p id="part0"></p>
+        <div id="iq_Mandelbrot"></div>
+        <p id="part1"></p>
+        <ul id="Editor">
+            <li id="canvas0">
 
-                </li>
-                <!--                <canvas id="No6" data-fragment-url="iq_Mandelbrot.glsl" width=640 height=640></canvas>-->
-                <li>
-                    <div>
-                        <textarea id="code"></textarea>
-                    </div>
-                </li>
-            </ul>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+            </li>
+            <li>
+                <div>
+                    <textarea id="code"></textarea>
+                </div>
+            </li>
+        </ul>
+    </content>
 
     <!-- jQuery -->
     <script src="../../lib/jquery.min.js"></script>
-
-    <!-- jQuery Easing -->
-    <script src="../../lib/jquery.easing.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../lib/bootstrap.min.js"></script>
 
     <!-- GLSL canvas -->
     <script src="../../lib/GlslCanvas.min.js"></script>
@@ -142,7 +111,7 @@
     <script src="../../js/index.js"></script>
 
     <script>
-        var w = Math.floor(document.getElementById('page-content-wrapper').offsetWidth / 2 - 25);
+        var w = Math.floor(document.body.offsetWidth / 2 - 25);
         var FragShader0 = fetchHTTP("Mandelbrot.glsl");
         document.getElementById("code").innerHTML = FragShader0;
 
@@ -251,7 +220,6 @@
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
     </script>
-
 </body>
 
 </html>

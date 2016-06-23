@@ -2,113 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Alex &#183; Mourtziapis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="../../favicon.jpg" />
+
+    <link rel="icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+    <link rel="shortcut icon" href="../../favicon.jpg" type="img/portfolio/x-icon">
+
     <meta name="keywords" content="gamedev, creative, connection, shunless" />
-    <meta name="description" content="" />
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../css/simple-sidebar.css" rel="stylesheet">
+    <meta name="description" content="Eye Candy." />
 
     <!--  Font Awesome  -->
     <link href="../../css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <header>
+        <div class="name">Alex</div>
+        <div class="surname">Mourtziapis</div>
+        <div class="title">Software Developer</div>
+    </header>
 
 </head>
+
 <style>
-    * {
-        -webkit-touch-callout: none;
-        /* iOS Safari */
-        -webkit-user-select: none;
-        /* Chrome/Safari/Opera */
-        -khtml-user-select: none;
-        /* Konqueror */
-        -moz-user-select: none;
-        /* Firefox */
-        -ms-user-select: none;
-        /* IE/Edge */
-        user-select: none;
-        /* non-prefixed */
+    content {
+        font-size: 14px;
+        font-family: monospace;
     }
 
     #piano_tiles_restart_btn {
         transform: translate(0px, -620px);
     }
-
 </style>
 
 <body>
+    <nav>
+        <a href="../projects/">Projects</a>
+        <a href="../../">Blog</a>
+        <a href="../eyecandy/">Eye Candy</a>
+        <a href="mailto:alex.mourtziapis@gmail.com">Contact</a>
 
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="../../">
-                        <img src="../../favicon.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
-                    </a>
-                </li>
-                <li>
-                    <a href="../me/">About me</a>
-                </li>
-                <li>
-                    <a href="#">Collaborations</a>
-                </li>
-                <li>
-                    <a href="../works/">Works of mine</a>
-                </li>
-                <li>
-                    <a href="#">Eye candy</a>
-                </li>
-            </ul>
+        <div class="social">
+            <a href="https://github.com/Mourtz" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/mourtz_alex" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/mourtz" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="http://stackoverflow.com/users/4205263/alex-mourtziapis" target="_blank"><i class="fa fa-stack-overflow"></i></a>
         </div>
-        <!-- /#sidebar-wrapper -->
+    </nav>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <h1>Piano Tiles Grid <h4><u>6/4/2016</u></h4></h1>
-            <canvas id="pianoTiles" data-fragment-url="../../shaders/shader3.glsl" width="360" height="640"></canvas>
-            <button class="btn btn-default" id="piano_tiles_restart_btn" onclick="load_all_GlslCanvas(0)">Reset</button>
-            <br>
-            <h1>PacMan <h4><u>16/8/2015</u></h4></h1>
-            <canvas id="PacMan" data-fragment-url="../../shaders/shader2.glsl" width="640" height="120"></canvas>
-            <br>
-            <a href="../../shaders/shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-            <h1>A radom pattern cycling through all RGB values.<h4><u>13/8/2015</u></h4></h1>
-            <canvas id="R-Pattern" data-fragment-url="../../shaders/shader0.glsl" width="640" height="640"></canvas>
-            <br>
-            <a href="../../shaders/shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-            <h1>Checkerboard Effect.<h4><u>13/8/2015</u></h4></h1>
-            <canvas id="checkerboard" data-fragment-url="../../shaders/shader1.glsl" width="640" height="640"></canvas>
-            <br>
-            <a href="../../shaders/shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
+    <content id="content-wrapper">
+        <h1>Piano Tiles Grid <h4><u>6/4/2016</u></h4></h1>
+        <canvas id="pianoTiles" data-fragment-url="../../shaders/shader3.glsl" width="360" height="640"></canvas>
+        <button class="btn btn-default" id="piano_tiles_restart_btn" onclick="load_all_GlslCanvas(0)">Reset</button>
+        <br>
+        <h1>PacMan <h4><u>16/8/2015</u></h4></h1>
+        <canvas id="PacMan" data-fragment-url="../../shaders/shader2.glsl" width="640" height="120"></canvas>
+        <br>
+        <a href="../../shaders/shader2.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        <h1>A radom pattern cycling through all RGB values.<h4><u>13/8/2015</u></h4></h1>
+        <canvas id="R-Pattern" data-fragment-url="../../shaders/shader0.glsl" width="640" height="640"></canvas>
+        <br>
+        <a href="../../shaders/shader0.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+        <h1>Checkerboard Effect.<h4><u>13/8/2015</u></h4></h1>
+        <canvas id="checkerboard" data-fragment-url="../../shaders/shader1.glsl" width="640" height="640"></canvas>
+        <br>
+        <a href="../../shaders/shader1.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+    </content>
 
     <!-- jQuery -->
     <script src="../../lib/jquery.min.js"></script>
@@ -116,21 +76,18 @@
     <!-- jQuery Easing -->
     <script src="../../lib/jquery.easing.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../lib/bootstrap.min.js"></script>
-
-    <!-- index -->
-    <script src="../../js/index.js"></script>
-
     <!-- GLSL canvas -->
     <script src="../../lib/GlslCanvas.min.js"></script>
 
     <!--  marked js  -->
     <script src="../../lib/marked.min.js"></script>
 
+    <!-- index -->
+    <script src="../../js/index.js"></script>
+
     <script>
         //
-        window.onload = function() {
+        window.onload = function () {
             load_all_GlslCanvas();
             render_all_GlslCanvas();
         };
@@ -140,19 +97,19 @@
             x: 0,
             y: 0
         };
-        document.addEventListener('mousemove', function(e) {
+        document.addEventListener('mousemove', function (e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY
         }, false);
 
         // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function() {
+        window.requestAnimFrame = (function () {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function(callback, element) {
+                function (callback, element) {
                     return window.setTimeout(callback, 1000 / 60);
                 };
         })();
@@ -188,10 +145,10 @@
                         billboards.push(sandbox);
                     }
                 }
-                billboards[pianoTilesID].canvas.onmouseup = function() {
+                billboards[pianoTilesID].canvas.onmouseup = function () {
                     billboards[pianoTilesID].uniform('1i', 'bool', "u_mouse_down", 0);
                 };
-                billboards[pianoTilesID].canvas.onmousedown = function() {
+                billboards[pianoTilesID].canvas.onmousedown = function () {
                     billboards[pianoTilesID].uniform('1i', 'bool', "u_mouse_down", 1);
                 };
             } else {
@@ -240,15 +197,12 @@
                 (left + width) > window.pageXOffset
             );
         }
-
     </script>
 
-
-
     <script>
-        (function(i, s, o, g, r, a, m) {
+        (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
+            i[r] = i[r] || function () {
                 (i[r].q = i[r].q || []).push(arguments)
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
@@ -260,11 +214,7 @@
 
         ga('create', 'UA-66672624-1', 'auto');
         ga('send', 'pageview');
-
     </script>
-
-
-
 </body>
 
 </html>

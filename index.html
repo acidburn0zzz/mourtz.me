@@ -1,265 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    #post0 ul li {
-        display: table-cell;
-        vertical-align: top;
-        padding-left: 10px;
-    }
-</style>
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Alex &#183; Mourtziapis</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="favicon.jpg" />
+
+    <link rel="icon" href="./favicon.jpg" type="img/portfolio/x-icon">
+    <link rel="shortcut icon" href="./favicon.jpg" type="img/portfolio/x-icon">
+
     <meta name="keywords" content="Mourtz, Alex, computer graphics, gamedev, 3D, shader, rendering, realtime" />
     <meta name="description" content="Repository of productions, tutorials and articles of Alex Mourtziapis on computer graphics, gamedev and more." />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <header>
+        <div class="name">Alex</div>
+        <div class="surname">Mourtziapis</div>
+        <div class="title">Software Developer</div>
+    </header>
 
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://tympanus.net/Development/PageTransitions/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="http://tympanus.net/Development/PageTransitions/css/multilevelmenu.css" />
+    <link rel="stylesheet" type="text/css" href="http://tympanus.net/Development/PageTransitions/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="http://tympanus.net/Development/PageTransitions/css/animations.css" />
 
     <!--  Font Awesome  -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/blog.css">
 </head>
 
 <body>
+    <nav>
+        <a href="pages/projects/">Projects</a>
+        <a>Blog</a>
+        <a href="pages/eyecandy/">Eye Candy</a>
+        <a href="mailto:alex.mourtziapis@gmail.com">Contact</a>
 
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        <img src="favicon.jpg" class="img-rounded" width="40px"> Alex Mourtziapis
-                    </a>
-                </li>
-                <li>
-                    <a href="pages/me">About me</a>
-                </li>
-                <li>
-                    <a href="#">Collaborations</a>
-                </li>
-                <li>
-                    <a href="pages/works">Works of mine</a>
-                </li>
-                <li>
-                    <a href="pages/eyecandy">Eye candy</a>
-                </li>
-            </ul>
+        <div class="social">
+            <a href="https://github.com/Mourtz" target="_blank"><i class="fa fa-github"></i></a>
+            <a href="https://twitter.com/mourtz_alex" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/mourtz" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <a href="http://stackoverflow.com/users/4205263/alex-mourtziapis" target="_blank"><i class="fa fa-stack-overflow"></i></a>
         </div>
-        <!-- /#sidebar-wrapper -->
+    </nav>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
+    <content>
+        <div class="category"> Programming</div>
+        <ul>
+            <li>
+                <div class="date">07.06.2016</div>
+                <div class="title"><a href="pages/waving-flag/"> Simple waving effect in GLSL</a></div>
+            </li>
 
-            <!--  Post 6  -->
-            <div id="post6">
-                <h4><a href="pages/waving-flag/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Simple waving flag effect in GLSL</font><h4><u>7/6/2016</u></h4>
-                <p id="post6_description"></p>
-                </h4>
-            </div>
+            <li>
+                <div class="date">28.02.2016</div>
+                <div class="title"><a href="pages/gl_benchmarking/"> OpenGL vs WebGL, the final countdwn!</a></div>
+            </li>
 
-            <br>
+            <li>
+                <div class="date">08.01.2016</div>
+                <div class="title"><a href="pages/cpp-tricks/const/"> Intricate const</a></div>
+            </li>
 
-            <!--  Post 5  -->
-            <div id="post5">
-                <h4><a href="pages/gl_benchmarking/"><i class="fa fa-external-link"></i></a> [<font color="#000">C++, OpenGL, JavaScript, WebGL</font>] <font color="#939393">OpenGL vs WebGL, the final countdown!</font><h4><u>28/2/2016</u></h4>
-                <p id="post5_description"></p>
-                </h4>
-            </div>
+            <li>
+                <div class="date">04.10.2015</div>
+                <div class="title"><a href="pages/GDB-RE/"> Basic Reverse Engineering with GDB</a></div>
+            </li>
 
-            <br>
+            <li>
+                <div class="date">23.09.2015</div>
+                <div class="title"><a href="pages/Mandelbrot%20set/"> Mandelbrot set</a></div>
+            </li>
 
-            <!--  Post 4  -->
-            <div id="post4">
-                <h4><a href="pages/cpp-tricks/const/"><i class="fa fa-external-link"></i></a> [<font color="#000">C++</font>] <font color="#939393">Intricate <b>const</b></font><h4><u>8/1/2016</u></h4>
-                <p id="post4_description"></p>
-                </h4>
-            </div>
+            <li>
+                <div class="date">03.09.2015</div>
+                <div class="title"><a href="pages/post-processing/"> Post Processing</a></div>
+            </li>
 
-            <br>
-
-            <!--  Post 3  -->
-            <div id="post3">
-                <h4><a href="pages/GDB-RE/"><i class="fa fa-external-link"></i></a> [<font color="#000">C, C++, ASM, Linux</font>] <font color="#939393">Basic Reverse Engineering with GDB</font><h4><u>4/10/2015</u></h4>
-                <p id="post3_description"></p>
-                </h4>
-            </div>
-
-            <br>
-
-            <!--  Post 2  -->
-            <div id="post2">
-                <h4><a href="pages/Mandelbrot%20set/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Mandelbrot set</font><h4><u>23/9/2015</u></h4>
-                <p id="post2_description"></p>
-                </h4>
-            </div>
-
-            <br>
-
-            <!--  Post 1  -->
-            <div id="post1">
-                <h4><a href="pages/post-processing/"><i class="fa fa-external-link"></i></a> [<font color="#000">GLSL</font>] <font color="#939393">Post Processing</font><h4><u>3/9/2015</u></h4>
-                <p id="post1_description"></p>
-                </h4>
-            </div>
-
-            <br>
-
-            <!--  Post 0  -->
-            <div id="post0">
-                <h4>[<font color="#000">GLSL</font>] <font color="#939393">Simple 2D shapes</font><h4><u>13/8/2015</u></h4></h4>
-                <ul>
-                    <li>
-                        Rectangle
-                        <br>
-                        <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/rect.glsl" target="_blank">
-                            <canvas id="glslCanvas" data-fragment-url="shaders/shapes/rect.glsl" width="150" height="150"></canvas>
-                            <br>
-                        </a>
-                        <a href="../shaders/shapes/rect.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-
-                    </li>
-                    <li>
-                        Rounded Rectangle
-                        <br>
-                        <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/rounded_rect.glsl" target="_blank">
-                            <canvas id="glslCanvas" data-fragment-url="shaders/shapes/rounded_rect.glsl" width="150" height="150"></canvas>
-                            <br>
-                        </a>
-                        <a href="../shaders/shapes/rounded_rect.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-                        <br>
-                    </li>
-                    <li>
-                        Circle
-                        <br>
-                        <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/circle.glsl" target="_blank">
-                            <canvas id="glslCanvas" data-fragment-url="shaders/shapes/circle.glsl" width="150" height="150"></canvas>
-                            <br>
-                        </a>
-                        <a href="../shaders/shapes/circle.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-
-                    </li>
-                    <li>
-                        Polygon
-                        <br>
-                        <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/polygon.glsl" target="_blank">
-                            <canvas id="glslCanvas" data-fragment-url="shaders/shapes/polygon.glsl" width="150" height="150"></canvas>
-                            <br>
-                        </a>
-                        <a href="../shaders/shapes/polygon.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-                        <br>
-                    </li>
-                    <li>
-                        Line
-                        <br>
-                        <a href="https://github.com/Mourtz/mourtz.xyz/blob/gh-pages/shaders/shapes/line.glsl" target="_blank">
-                            <canvas id="glslCanvas" data-fragment-url="shaders/shapes/line.glsl" width="150" height="150"></canvas>
-                            <br>
-                        </a>
-                        <a href="../shaders/shapes/line.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
-                        <br>
-                    </li>
-                </ul>
-            </div>
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"> <i class="fa fa-arrow-circle-o-left"> Close Menu</i></a>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="lib/jquery.min.js"></script>
-
-    <!-- jQuery Easing -->
-    <script src="lib/jquery.easing.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="lib/bootstrap.min.js"></script>
-
-    <!-- GLSL canvas -->
-    <script src="lib/GlslCanvas.min.js"></script>
-
-    <!--  marked js  -->
-    <script src="lib/marked.min.js"></script>
-
-    <!-- index -->
-    <script src="js/index.js"></script>
-
-    <script>
-        //
-        window.onload = function () {
-            load_all_GlslCanvas();
-            render_all_GlslCanvas();
-        };
-
-        // Keep track of the mouse
-        var mouse = {
-            x: 0,
-            y: 0
-        };
-        document.addEventListener('mousemove', function (e) {
-            mouse.x = e.clientX || e.pageX;
-            mouse.y = e.clientY || e.pageY
-        }, false);
-
-        // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function () {
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function (callback, element) {
-                    return window.setTimeout(callback, 1000 / 60);
-                };
-        })();
-
-        var billboards = [];
-
-        function load_all_GlslCanvas() {
-            var list = document.getElementsByTagName("canvas");
-
-            // Load shaders on canvas
-            for (var i = 0; i < list.length; i++) {
-                var sandbox = new GlslCanvas(list[i]);
-                if (sandbox.isValid) {
-                    billboards.push(sandbox);
-                }
-            }
-        }
-
-        function render_all_GlslCanvas() {
-            for (var i = 0; i < billboards.length; i++) {
-                billboards[i].setMouse(mouse);
-                billboards[i].render();
-            }
-            window.requestAnimFrame(render_all_GlslCanvas);
-        }
-    </script>
+        </ul>
+    </content>
 
     <script>
         (function (i, s, o, g, r, a, m) {

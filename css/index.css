@@ -1,0 +1,155 @@
+/*  global  */
+
+@font-face {
+    font-family: Assassin;
+    src: url("../fonts/Assassin$.ttf");
+}
+
+@font-face {
+    font-family: KeepCalm-Medium;
+    src: url("../fonts/KeepCalm-Medium.ttf");
+}
+
+
+/*  https://css-tricks.com/snippets/css/shake-css-keyframe-animation/   */
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes bg-color {
+    0% {
+        background: #253748;
+    }
+    100% {
+        background: #1e2429;
+    }
+}
+
+body {
+    position: absolute;
+    background-color: #253748;
+    animation: bg-color 30s infinite alternate linear;
+    color: #ffffff;
+    font-family: Assassin;
+    margin: 0;
+    padding: 0;
+    left: 20%;
+    width: 60%;
+    height: 100%;
+}
+
+a {
+    color: greenyellow;
+}
+
+pre {
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+
+
+/*  header  */
+
+header {
+    position: relative;
+    word-break: break-all;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header div {
+    display: inline;
+}
+
+header div.surname {
+    color: #30e030;
+}
+
+header div.title {
+    cursor: crosshair;
+    display: table-cell;
+    color: #959595;
+    font-size: 28px;
+    letter-spacing: 6px;
+}
+
+header div.title:hover {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+
+/*  nav */
+
+nav {
+    font-family: KeepCalm-Medium;
+    margin-bottom: 10px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+nav a {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none!important;
+    padding: 10px;
+}
+
+nav a:hover {
+    color: #000000;
+    background-color: #fff;
+}
+
+nav div.social {
+    display: inline-block;
+}
+
+nav div.social a {
+    display: table-cell;
+    -webkit-transition: all .6s ease;
+    -moz-transition: all .6s ease;
+    -ms-transition: all .6s ease;
+    -o-transition: all .6s ease;
+    transition: all .6s ease;
+}
+
+@media screen and (min-width: 1080px) {
+    nav div.social {
+        position: absolute;
+        right: 0;
+    }
+}

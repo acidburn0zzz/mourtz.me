@@ -56,7 +56,7 @@ body {
 }
 
 a {
-    color: greenyellow;
+    color: #30e030;
 }
 
 pre {
@@ -64,6 +64,7 @@ pre {
     color: black;
     border-radius: 5px;
     padding: 5px;
+    margin: 5px 0px;
     white-space: pre-wrap;
 }
 

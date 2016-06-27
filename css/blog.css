@@ -26,6 +26,7 @@ content ul {
 }
 
 content li {
+    margin-left: 32px;
     height: 24px;
     margin-bottom: 2px;
     font-size: 32px;

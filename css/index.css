@@ -35,10 +35,10 @@
 
 @keyframes bg-color {
     0% {
-        background: #253748;
+        background-color: #253748;
     }
     100% {
-        background: #1e2429;
+        background-color: #1e2429;
     }
 }
 
@@ -89,7 +89,7 @@ header {
 }
 
 header div {
-    display: inline;
+    display: inline-block;
 }
 
 header div.surname {

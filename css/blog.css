@@ -26,22 +26,23 @@ content ul {
 }
 
 content li {
-    margin-left: 32px;
+    margin-left: 2%;
     height: 24px;
     margin-bottom: 2px;
     font-size: 32px;
+    white-space: nowrap;
 }
 
 content div.date {
     color: #cccccc;
     font-family: fantasy;
     letter-spacing: 1px;
-    display: inline-block;
+    display: inline;
     font-size: 15px;
 }
 
 content div.title {
-    display: inline-block;
+    display: inline;
     font-family: monospace;
     font-weight: bold;
     margin-left: 5px;

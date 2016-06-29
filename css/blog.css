@@ -30,14 +30,14 @@ content li {
     height: 24px;
     margin-bottom: 2px;
     font-size: 32px;
-    white-space: nowrap;
+    display: table-row;
 }
 
 content div.date {
+    display: inline;
     color: #cccccc;
     font-family: fantasy;
     letter-spacing: 1px;
-    display: inline;
     font-size: 15px;
 }
 

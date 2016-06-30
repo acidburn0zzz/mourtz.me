@@ -26,11 +26,8 @@ content ul {
 }
 
 content li {
-    margin-left: 2%;
-    height: 24px;
-    margin-bottom: 2px;
-    font-size: 32px;
     display: table-row;
+    margin-left: 2%;
 }
 
 content div.date {

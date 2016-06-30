@@ -137,6 +137,7 @@ nav a:hover {
 
 nav div.social {
     display: inline-block;
+    vertical-align: bottom;
 }
 
 nav div.social a {

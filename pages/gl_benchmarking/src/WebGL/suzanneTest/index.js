@@ -10,8 +10,8 @@ var zfar = 1024.0,
     znear = 0.1;
 
 var canvas = document.createElement('canvas');
-canvas.width = 1024;
-canvas.height = 768;
+canvas.width = window_width;
+canvas.height = window_height;
 document.body.appendChild(canvas);
 
 var gl = undefined;
@@ -97,14 +97,14 @@ gl.attachShader(program, vertexShader);
 gl.attachShader(program, fragmentShader);
 gl.linkProgram(program);
 
-var perspectiveMatrixID = gl.getUniformLocation(program, "perspective");
-var modelMatrixID = gl.getUniformLocation(program, "model");
-var viewMatrixID = gl.getUniformLocation(program, "view");
+var perspectiveMatrixID = gl.getUniformLocation(program, "u_perspective");
+var modelMatrixID = gl.getUniformLocation(program, "u_model");
+var viewMatrixID = gl.getUniformLocation(program, "u_view");
 var timeID = gl.getUniformLocation(program, "u_time");
 var resolutionID = gl.getUniformLocation(program, "u_resolution");
 
-var a_PostionID = gl.getAttribLocation(program, "position");
-var a_NormalID = gl.getAttribLocation(program, "normal");
+var a_PostionID = gl.getAttribLocation(program, "a_position");
+var a_NormalID = gl.getAttribLocation(program, "a_normal");
 
 var model = JSON.parse(fetchHTTP('../../assets/models/suzanne_high-res.json'));
 var vertices = new Float32Array(model.vertexPositions);

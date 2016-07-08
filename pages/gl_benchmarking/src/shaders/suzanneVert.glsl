@@ -1,9 +1,9 @@
-attribute vec3 position;
-attribute vec3 normal;
+attribute vec3 a_position;
+attribute vec3 a_normal;
 
-uniform mat4 perspective;
-uniform mat4 view;
-uniform mat4 model;
+uniform mat4 u_perspective;
+uniform mat4 u_view;
+uniform mat4 u_model;
 
 varying vec3 v_position;
 varying vec3 v_normal;
@@ -33,10 +33,10 @@ mat3 inverse(mat3 m) {
 }
 
 void main(){
-	mat4 modelview = view * model;
-	v_normal = transpose(inverse(mat3(modelview))) * normal;
+	mat4 modelview = u_view * u_model;
+	v_normal = transpose(inverse(mat3(modelview))) * a_normal;
 
-    gl_Position = perspective * modelview * vec4(position,1.0);
+    gl_Position = u_perspective * modelview * vec4(a_position,1.0);
 	v_position = gl_Position.xyz/gl_Position.w;
 }
 

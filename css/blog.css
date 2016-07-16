@@ -1,55 +1,55 @@
 content {
-    position: relative;
-    padding: 0px 10px;
+  position: relative;
+  padding: 0px 10px;
 }
 
 content a {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    -webkit-transition: all .6s ease;
-    -moz-transition: all .6s ease;
-    -ms-transition: all .6s ease;
-    -o-transition: all .6s ease;
-    transition: all .6s ease;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  -webkit-transition: all .6s ease;
+  -moz-transition: all .6s ease;
+  -ms-transition: all .6s ease;
+  -o-transition: all .6s ease;
+  transition: all .6s ease;
 }
 
 content a:hover {
-    color: #30e030;
+  color: #30e030;
 }
 
 content ul {
-    margin: 0px;
-    margin-top: 10px;
-    margin-bottom: 40px;
-    list-style: none;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  list-style: none;
 }
 
 content li {
-    display: table-row;
-    margin-left: 2%;
+  display: table-row;
+  margin-left: 2%;
 }
 
 content div.date {
-    display: inline;
-    color: #cccccc;
-    font-family: fantasy;
-    letter-spacing: 1px;
-    font-size: 15px;
+  display: inline;
+  color: #cccccc;
+  font-family: fantasy;
+  letter-spacing: 1px;
+  font-size: 15px;
 }
 
 content div.title {
-    display: inline;
-    font-family: monospace;
-    font-weight: bold;
-    margin-left: 5px;
+  display: inline;
+  font-family: monospace;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 content div.category {
-    color: #FFA500;
-    font-size: 20px;
-    margin: 0px;
-    margin-left: 35px;
-    font-weight: lighter;
-    font-family: KeepCalm-Medium;
+  color: #FFA500;
+  font-size: 20px;
+  margin: 0px;
+  margin-left: 35px;
+  font-weight: lighter;
+  font-family: KeepCalm-Medium;
 }

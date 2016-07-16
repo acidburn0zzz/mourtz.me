@@ -1,5 +1,6 @@
 /*  global  */
 
+@images: "../img";
 @font-face {
   font-family: Assassin;
   src: url("../fonts/Assassin$.ttf");
@@ -9,7 +10,6 @@
   font-family: KeepCalm-Medium;
   src: url("../fonts/KeepCalm-Medium.ttf");
 }
-
 
 /*  https://css-tricks.com/snippets/css/shake-css-keyframe-animation/   */
 
@@ -86,29 +86,25 @@ header {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-header div {
-  display: inline-block;
-}
-
-header div.surname {
-  color: #30e030;
-}
-
-header div.title {
-  cursor: crosshair;
-  display: table-cell;
-  color: #959595;
-  font-size: 28px;
-  letter-spacing: 6px;
-}
-
-header div.title:hover {
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  & div {
+    display: inline-block;
+    &.surname {
+      color: #30e030
+    }
+    &.title {
+      cursor: crosshair;
+      display: table-cell;
+      color: #959595;
+      font-size: 28px;
+      letter-spacing: 6px;
+      &:hover {
+        animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+    }
+  }
 }
 
 
@@ -121,32 +117,28 @@ nav {
   border-bottom: 1px solid #ffffff;
   font-size: 24px;
   cursor: pointer;
-}
-
-nav a {
-  display: inline-block;
-  color: #ffffff;
-  text-decoration: none!important;
-  padding: 10px;
-}
-
-nav a:hover {
-  color: #000000;
-  background-color: #fff;
-}
-
-nav div.social {
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-nav div.social a {
-  display: table-cell;
-  -webkit-transition: all .6s ease;
-  -moz-transition: all .6s ease;
-  -ms-transition: all .6s ease;
-  -o-transition: all .6s ease;
-  transition: all .6s ease;
+  & a {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none!important;
+    padding: 10px;
+    &:hover {
+      color: #000000;
+      background-color: #fff;
+    }
+  }
+  & div.social {
+    display: inline-block;
+    vertical-align: bottom;
+    & a {
+      display: table-cell;
+      -webkit-transition: all .6s ease;
+      -moz-transition: all .6s ease;
+      -ms-transition: all .6s ease;
+      -o-transition: all .6s ease;
+      transition: all .6s ease;
+    }
+  }
 }
 
 @media screen and (min-width: 1080px) {

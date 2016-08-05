@@ -1,5 +1,5 @@
 #ifdef GL_ES
-precision mediump float;
+  precision mediump float;
 #endif
 
 uniform float u_time;
@@ -7,7 +7,6 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform bool u_mouse_down;
 uniform int u_piano_tiles [32];
-
 
 const vec3 bg_color = vec3(0.5,0.9,1.0);
 const vec3 black_tile_color = vec3(0.0);
@@ -43,8 +42,7 @@ void main( void ) {
     }
 
     vec3 color = bg_color;
-    
-    
+        
     // fist tile
     if(id == 8)
         color = start_tile_color;
@@ -54,7 +52,6 @@ void main( void ) {
         if(id == i*4+u_piano_tiles[i])
             color = black_tile_color;
     }
-
 
     int isMouseOver = getTileWhereMouse();
     if(id == isMouseOver && u_mouse_down)
@@ -69,5 +66,4 @@ void main( void ) {
     }
 
     gl_FragColor = vec4(color,1.0);
-    
 }

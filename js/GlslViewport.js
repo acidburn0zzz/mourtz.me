@@ -1,47 +1,5 @@
 "uses strict";
 
-function fetchHTTP(url) {
-  var request = new XMLHttpRequest(),
-    response;
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      response = request.responseText;
-    }
-  }
-  request.open('GET', url, false);
-  request.overrideMimeType("text/plain");
-  request.send(null);
-  return response;
-};
-
-function elementInViewport(el) {
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-  return (
-    top < (window.pageYOffset + window.innerHeight) &&
-    left < (window.pageXOffset + window.innerWidth) &&
-    (top + height) > window.pageYOffset &&
-    (left + width) > window.pageXOffset
-  );
-}
-
-window.requestAnimFrame =
-  window.requestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  window.oRequestAnimationFrame ||
-  window.msRequestAnimationFrame ||
-  function (callback) {
-    window.setTimeout(callback, 1e3 / 60);
-  };
-
 function create3DContext(canvas, optAttribs) {
   let names = ['webgl', 'experimental-webgl'];
   let context;

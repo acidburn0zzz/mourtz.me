@@ -1,5 +1,8 @@
+#ifdef GL_ES
+  precision mediump float;
+#endif
+
 #define PI 3.14159265359
-precision mediump float;
 
 uniform float u_time;
 uniform vec2 u_mouse;

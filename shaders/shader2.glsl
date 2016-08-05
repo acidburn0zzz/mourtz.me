@@ -1,5 +1,5 @@
 #ifdef GL_ES
-precision mediump float;
+  precision mediump float;
 #endif
 
 #define PI 3.14159
@@ -10,26 +10,22 @@ uniform vec2 u_resolution;
 
 vec2 eyePosition=vec2(0.0,20.0);
 
-bool inCircle(vec2 circleCenter, float radius)
-{
+bool inCircle(vec2 circleCenter, float radius){
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
 	return temp.x*temp.x+temp.y*temp.y<radius*radius;
 }
 
-bool inBorder(vec2 circleCenter, float radius,float PIxelWidth)
-{
+bool inBorder(vec2 circleCenter, float radius,float PIxelWidth){
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
 	return (temp.x*temp.x+temp.y*temp.y>radius*radius-PIxelWidth)&&(temp.x*temp.x+temp.y*temp.y<radius*radius);
 }
 
-bool inMouth(vec2 circleCenter, float radius,float maxAngle)
-{
+bool inMouth(vec2 circleCenter, float radius,float maxAngle){
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy;
 	return ((temp.y>temp.x*sin(maxAngle))&&(temp.y<temp.x*sin(-maxAngle)))&&(temp.x*temp.x+temp.y*temp.y<radius*radius);
 }
 
-bool inEye(vec2 circleCenter, vec2 eyePos,float eyeRadius)
-{
+bool inEye(vec2 circleCenter, vec2 eyePos,float eyeRadius){
 	vec2 temp = gl_FragCoord.xy - circleCenter.xy- eyePos;
 	return (temp.x*temp.x+temp.y*temp.y<eyeRadius*eyeRadius);
 }
@@ -67,6 +63,5 @@ void main( void ) {
     if(center.x <= 440.0 && inCircle(vec2(450.0,center.y), radius/5.0))
         color += vec3(1.0,1.0,-0.0); 
     
-
 	gl_FragColor= vec4(color + pacman,1.0);
 }

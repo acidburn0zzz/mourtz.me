@@ -257,18 +257,6 @@
             mouse.y = e.clientY || e.pageY
         }, false);
 
-        // Provides requestAnimationFrame in a cross browser way.
-        window.requestAnimFrame = (function () {
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function (callback, element) {
-                    return window.setTimeout(callback, 1000 / 60);
-                };
-        })();
-
         var billboards = [];
         var list = document.getElementsByTagName("canvas");
 
@@ -291,29 +279,6 @@
             }
             window.requestAnimFrame(render_all_GlslCanvas);
         }
-
-        function elementInViewport(el) {
-            var canvas = el;
-            var top = el.offsetTop;
-            var left = el.offsetLeft;
-            var width = el.offsetWidth;
-            var height = el.offsetHeight;
-
-            while (el.offsetParent) {
-                el = el.offsetParent;
-                top += el.offsetTop;
-                left += el.offsetLeft;
-            }
-
-            return (
-                top < (window.pageYOffset + window.innerHeight) &&
-                left < (window.pageXOffset + window.innerWidth) &&
-                (top + height) > window.pageYOffset &&
-                (left + width) > window.pageXOffset &&
-                canvas.offsetParent != null
-            );
-        }
-
 
         $("#Test-No1").click(function () {
             $("#Test-Canvas-No1").toggle(1000);

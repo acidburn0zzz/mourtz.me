@@ -104,8 +104,8 @@ void main(){
     this.frontTarget.backbufferID = gl.getUniformLocation(this.frontTarget.program, "u_backbuffer");
     this.frontTarget.resolutionID = gl.getUniformLocation(this.frontTarget.program, "u_resolution");
     this.frontTarget.keyboardID = gl.getUniformLocation(this.frontTarget.program, "u_keyboard");
-    this.frontTarget.mouseID = gl.getAttribLocation(this.frontTarget.program, "u_mouse");
-    this.frontTarget.mouse_downID = gl.getAttribLocation(this.frontTarget.program, "u_mouse_down");
+    this.frontTarget.mouseID = gl.getUniformLocation(this.frontTarget.program, "u_mouse");
+    this.frontTarget.mouse_downID = gl.getUniformLocation(this.frontTarget.program, "u_mouse_down");
     this.frontTarget.passID = gl.getUniformLocation(this.frontTarget.program, "u_frame");
     this.frontTarget.a_PostionID = gl.getAttribLocation(this.frontTarget.program, "a_position");
     gl.enableVertexAttribArray(this.frontTarget.a_PostionID);
@@ -157,18 +157,18 @@ void main(){
       this.key = -1;
     });
 
+    let sandbox = this;
+
     this.canvas.onmouseup = function () {
-      this.gl.uniform1i(this.frontTarget.mouse_downID, 0);
+      gl.uniform1i(sandbox.frontTarget.mouse_downID, 0);
     };
 
     this.canvas.onmousedown = function () {
-      this.gl.uniform1i(this.frontTarget.mouse_downID, 0);
+      gl.uniform1i(sandbox.frontTarget.mouse_downID, 1);
     };
 
-    let sandbox = this;
-
     function RenderLoop() {
-      if(elementInViewport(sandbox.canvas)) sandbox.render();
+      if (elementInViewport(sandbox.canvas)) sandbox.render();
 
       if (!sandbox.paused && sandbox.passes++ < sandbox.max_passes)
         window.requestAnimFrame(RenderLoop);

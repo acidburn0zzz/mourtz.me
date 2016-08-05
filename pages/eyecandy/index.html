@@ -54,10 +54,12 @@
 
   <content id="content-wrapper">
 
-    <h1>smallpt<h4><u>4/8/2016</u></h4></h1>
-    <div id="pt-wrapper"></div>
-    <br>
-    <a href="../../shaders/shader4.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+    <div>
+      <h1>smallpt<h4><u>4/8/2016</u></h4></h1> Click on canvas to render one additional time.
+      <div id="pt-wrapper"></div>
+      <br>
+      <a href="../../shaders/shader4.glsl"><i class="fa fa-file-code-o fa-2x"></i></a>
+    </div>
 
     <h1>PacMan <h4><u>16/8/2015</u></h4></h1>
     <div id="PacMan-wrapper"></div>
@@ -101,15 +103,25 @@
       document.getElementById('PacMan-wrapper').appendChild(sandbox.canvas);
       billboards.push(sandbox);
 
-      sandbox = new GlslViewport(null, {
-        fragmentString: fetchHTTP("../../shaders/shader4.glsl"),
-        width: w,
-        height: w,
-        max_passes: 12,
-        preserveDrawingBuffer: true
-      });
-      document.getElementById('pt-wrapper').appendChild(sandbox.canvas);
-      billboards.push(sandbox)
+      if (!window.mobilecheck()) {
+        sandbox = new GlslViewport(null, {
+          fragmentString: fetchHTTP("../../shaders/shader4.glsl"),
+          width: w,
+          height: w,
+          max_passes: 8,
+          preserveDrawingBuffer: true
+        });
+        document.getElementById('pt-wrapper').appendChild(sandbox.canvas);
+        sandbox.canvas.onclick = function () {
+          sandbox.render();
+        };
+        billboards.push(sandbox)
+      } else {
+        let list = document.getElementById("content-wrapper");
+        if (list.hasChildNodes()) {
+          list.removeChild(list.childNodes[1]);
+        }
+      }
 
     }
   </script>

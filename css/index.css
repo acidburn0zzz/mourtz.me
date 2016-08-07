@@ -83,6 +83,7 @@ header {
   font-weight: bold;
   letter-spacing: 8px;
   font-family: Assassin;
+  line-height: normal!important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

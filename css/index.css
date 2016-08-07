@@ -1,5 +1,7 @@
 /*  global  */
 
+@import 'https://fonts.googleapis.com/css?family=Bungee|Work+Sans';
+
 @font-face {
   font-family: Assassin;
   src: url("../fonts/Assassin$.ttf");
@@ -47,7 +49,7 @@ body {
   background-color: #253748;
   animation: bg-color 30s infinite alternate linear;
   color: #ffffff;
-  font-family: Assassin;
+  font-family: 'Work Sans', sans-serif;
   margin: 0;
   padding: 0;
   left: 20%;
@@ -115,19 +117,20 @@ header div.title:hover {
 /*  nav */
 
 nav {
-  font-family: KeepCalm-Medium;
+  font-family: 'Bungee', cursive;
   margin-bottom: 10px;
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
-  font-size: 24px;
+  font-size: 18px;
   cursor: pointer;
 }
 
 nav a {
   display: inline-block;
   color: #ffffff;
+  line-height: normal!important;
   text-decoration: none!important;
-  padding: 10px;
+  padding: 0px 10px 0px 10px;
 }
 
 nav a:hover {

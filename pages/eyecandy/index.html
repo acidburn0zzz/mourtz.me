@@ -54,7 +54,7 @@
 
   <content id="content-wrapper">
 
-    <div>
+    <div id="pt" hidden>
       <h1>smallpt<h4><u>4/8/2016</u></h4></h1> Click on canvas to render one additional time.
       <div id="pt-wrapper"></div>
       <br>
@@ -116,11 +116,7 @@
           sandbox.render();
         };
         billboards.push(sandbox)
-      } else {
-        let list = document.getElementById("content-wrapper");
-        if (list.hasChildNodes()) {
-          list.removeChild(list.childNodes[1]);
-        }
+        $("#pt").toggle();
       }
 
     }

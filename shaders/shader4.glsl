@@ -30,9 +30,9 @@ vec3 random_in_unit_sphere() {
     return p;
 }
 
-struct Ray { vec3 o, d; };
+const struct Ray { vec3 o, d; };
 
-struct Sphere {
+const struct Sphere {
 	float r;
 	vec3 p, e, c;
 	int refl;

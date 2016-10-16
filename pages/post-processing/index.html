@@ -476,46 +476,54 @@
 
             //
             if (i === 0) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No0Img);
                 sandbox.uniform('1f', 'float', "u_sampling", document.getElementById("No0_range").value);
             }
 
             //
             if (i === 1) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No1Img);
                 sandbox.uniform('1f', 'float', "u_blur", document.getElementById("No1_range").value);
             }
 
             //
             if (i === 2) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No2Img);
                 sandbox.uniform('3f', 'vec3', "u_vHSV", document.getElementById("No2_H_range").value, document.getElementById("No2_S_range").value, document.getElementById("No2_V_range").value);
             }
 
             //
             if (i === 3) {
+                sandbox.auto_update = true;
                 sandbox.setUniform("u_texture", No3Img);
             }
 
             //
             if (i === 4) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No4Img);
             }
 
             //
             if (i === 5) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No5Img);
                 sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No5_range").value);
             }
 
             //
             if (i === 6) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No6Img);
                 sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No6_range").value);
             }
 
             //
             if (i === 7) {
+                sandbox.auto_update = true;
                 sandbox.setUniform("u_texture", No7Img);
                 sandbox.uniform('1f', 'float', "u_radius", document.getElementById("No7_Radius_range").value);
                 sandbox.uniform('1f', 'float', "u_strength", document.getElementById("No7_Strength_range").value);
@@ -523,20 +531,24 @@
 
             //
             if (i === 8) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No8Img);
             }
 
             //
             if (i === 9) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No9Img);
             }
 
             if (i === 10) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No10Img);
                 sandbox.uniform('1f', 'float', "u_amount", document.getElementById("No10_range").value);
             }
 
             if (i === 11) {
+                sandbox.auto_update = false;
                 sandbox.setUniform("u_texture", No11Img);
             }
 
@@ -548,6 +560,7 @@
 
         function render_all_GlslCanvas() {
             for (var i = 0; i < billboards.length; i++) {
+                if(!billboards[i].auto_update) continue;
                 if (elementInViewport(list[i])) {
                     billboards[i].setMouse(mouse);
                     billboards[i].render();

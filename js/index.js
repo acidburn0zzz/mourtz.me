@@ -47,6 +47,8 @@ function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
   canvas0.width = width;
   canvas0.height = height;
 
+  attributes = attributes || [];
+
   if (Frag !== undefined) {
     if (Frag.isPath) {
       canvas0.setAttribute("data-fragment-url", Frag.src);
@@ -64,11 +66,8 @@ function AppendCanvas(attributes, width, height, parent, Frag, Vert) {
     }
   }
 
-  if (attributes !== undefined) {
-    var i = 0;
-    for (; i < attributes.length; i++) {
-      canvas0.setAttribute(attributes[i].name, attributes[i].value);
-    }
+  for (var i = 0; i < attributes.length; i++) {
+    canvas0.setAttribute(attributes[i].name, attributes[i].value);
   }
 
   document.getElementById(parent).appendChild(canvas0);

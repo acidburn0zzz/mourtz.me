@@ -20,14 +20,12 @@ uniform int u_frame;
 
 float seed = 0.;
 float rand() { return fract(sin(seed++)*43758.5453123); }
+vec2 rand2(){return fract(sin(vec2(seed++,seed++))*vec2(43758.5453123,22578.1459123));}
 
 vec3 random_in_unit_sphere() {
-    vec3 p;
-	for(int i = 0; i < 1; i--){
-		p = 2.0*vec3(rand(),rand(),rand()) - vec3(1,1,1);
-		if(dot(p,p) >= 1.0) break;
-	}
-    return p;
+	vec2 r = rand2()*2.0*PI;
+	vec3 dr=vec3(sin(r.x)*vec2(sin(r.y),cos(r.y)),cos(r.x));
+	return dr;
 }
 
 const struct Ray { vec3 o, d; };

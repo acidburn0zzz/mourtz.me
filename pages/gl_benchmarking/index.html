@@ -80,9 +80,18 @@
         <div>
             <p>
                 <br> The first one is written in <b>C++</b>,the libs I chose to use for this little renderer were <b>GLEW</b> and
-                <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for testing was <b>2.1</b> for three reasons. First, its still the most currently used version of OpenGL and probably the most stable one. Second, it basically runs everywhere. Finally, the current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
-
-                <br>
+                <b>GLFW</b> cause they are particularly easy to learn and work with (especialy if you are new to the world of 3D graphics). The version of <b>OpenGL</b> I decided to use for experimentation is <b>2.1</b> mainly for three reasons:
+                <ul>
+                    <li>
+                        Its still the most currently used version of OpenGL and probably the most stable one.
+                    </li>
+                    <li>
+                        It basically runs everywhere
+                    </li>
+                    <li>
+                        The current version of WebGL that runs on our browsers uses <b>OpenGL ES 2.0</b> which is a subset <b>OpenGL 2</b>.
+                    </li>
+                </ul>
             </p>
             <a role="button" class="button" id="OpenGL-Source-Icon">
                 <i class="fa fa-code"></i> Show/Hide Source Code
@@ -97,10 +106,7 @@
 
         <div>
             <p>
-                <br> The second renderer is written in <b>JavaScript</b>. The browser for testing the code is <b>Firefox 44.0.2</b>, seeing that is actually the fastest when it comes to WebGL. Just for the record, I will also run some tests on Chrome and Microsoft Edge.
-
-                <br>
-                <br>
+                The second renderer is written in <b>JavaScript</b>. The browser for testing the code is <b>Firefox 44.0.2</b>, seeing that is actually the fastest when it comes to WebGL. Just for the record, I will also run some tests on Chrome and Microsoft Edge.
             </p>
             <a role="button" class="button" id="WebGL-Source-Icon">
                 <i class="fa fa-code"></i> Show/Hide Source Code
@@ -115,7 +121,7 @@
         <div>
             <h2>Test No.1</h2>
             <p>
-                For the first test I ran a 2D Sierpinski fractal shader made by Inigo Quilez. The shader is "static" which gives a constant framerate (or render time per frame).
+                For the first test I ran a 2D <a href="https://en.wikipedia.org/wiki/Sierpinski_triangle" target="_blank">Sierpinski</a> fractal shader made by Inigo Quilez. The shader is "static" (meaning the final result doesn't change over time) which gives a constant framerate (or render time per frame).
             </p>
 
             Results:

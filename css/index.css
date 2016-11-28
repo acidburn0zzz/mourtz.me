@@ -125,6 +125,7 @@ header div.title:hover {
 /*  nav */
 
 nav {
+    display: block;
 	font-family: 'Bungee', cursive;
 	margin-bottom: 10px;
 	border-top: 1px solid #ffffff;
@@ -138,7 +139,7 @@ nav a {
 	color: #ffffff;
 	line-height: normal!important;
 	text-decoration: none!important;
-	padding: 2px 10px 2px 10px!important;
+	padding: 2px 5px 2px 5px!important;
 }
 
 nav a:hover {
@@ -148,11 +149,9 @@ nav a:hover {
 
 nav div.social {
 	display: inline-block;
-	vertical-align: bottom;
 }
 
 nav div.social a {
-	display: table-cell;
 	-webkit-transition: all .6s ease;
 	-moz-transition: all .6s ease;
 	-ms-transition: all .6s ease;

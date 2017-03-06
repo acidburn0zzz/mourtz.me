@@ -8,7 +8,7 @@ uniform vec2 u_resolution;
 uniform int u_keyboard;
 uniform int u_frame;
 
-#define SAMPLES 20
+#define SAMPLES 18
 #define MAXDEPTH 8
 #define NUM_SPHERES 13
 
@@ -134,6 +134,7 @@ vec3 radiance(Ray r) {
 				else { mask *= obj.c*TP; r = Ray(x, tdir); }
 			}
 		}
+        if(length(obj.e) > 0.) break; // break if hit something bright
 	}
 	return acc;
 }

@@ -167,20 +167,20 @@ void main(){
       gl.uniform1i(sandbox.frontTarget.mouse_downID, 1);
     };
 
-    function RenderLoop() {
-      if (elementInViewport(sandbox.canvas)) sandbox.render();
-
-      if (!sandbox.paused && sandbox.passes++ < sandbox.max_passes)
-        window.requestAnimFrame(RenderLoop);
-      else
-        console.warn("Stopped");
-    }
-
     this.setMouse({
       x: 0,
       y: 0
     });
-    RenderLoop();
+
+//    function RenderLoop() {
+//      if (elementInViewport(sandbox.canvas)) sandbox.render();
+//
+//      if (!sandbox.paused && sandbox.passes++ < sandbox.max_passes)
+//        window.requestAnimFrame(RenderLoop);
+//      else
+//        console.warn("Stopped");
+//    }
+//  RenderLoop();
     return this;
   }
 
